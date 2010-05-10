@@ -1,0 +1,2116 @@
+/**
+ *		http://localhost/wszechwiedzacy
+ *   site name: http://wszechwiedzacy.pl
+ *   site URI: http://wszechwiedzacy.pl
+ *   description: quiz / gra
+ *   version: 0.9
+ *   author: Marcin Kumorek
+ *   author URI: http://qmmr.pl
+ *
+ * 							COLORS
+ * --------------------------------------------------------------
+ * body			#FFFFFF
+ * links			#0073ea
+ * 
+ * l.grey			#f6f6f6
+ * m.grey		#dddddd
+ * d.grey		#a3a3a3
+ * 
+ * l.red			#f3d8d8
+ * d.red			#bb0000
+ * l.green		#f6ffdb
+ * b.green		#a1d700
+ * 
+ * home 		#17373C
+ * gra 			#2B6832
+ * ranking 		#A1D700
+ * blog 			#4F9300
+ * kontakt 		#0D1C33 +11 #336ec8  +7 #255092 +4 #1b3a69
+ *
+ *
+ *							RESET
+ * ---------------------------------------------------------------
+ *
+ */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    padding: 0;
+    margin: 0;
+	border: 0;
+	outline: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+fieldset, img { border: 0; }
+ol, ul { list-style: none outside none; }
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+	color: #1b3a69;
+	margin: 0.5em 0;
+}
+
+abbr, acronym { border: 0; }
+/* a {outline: none;} */
+
+
+a:active, a:active * { outline: none !important; -moz-outline-style: none !important; }
+a:focus, a:focus * { outline: none !important; -moz-outline-style: none !important; }
+
+
+/**
+ * 
+ * -------------------------------------------------------------------------------------------------------
+ * 													GLOBAL
+ * -------------------------------------------------------------------------------------------------------
+ * 
+ */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #FFFFFF;
+    text-align: center;
+    color: #000000;
+    line-height: 1;
+	font-size: 100.01%
+}
+
+#container {
+    width: 960px;
+    margin: 0 auto;
+    text-align: left;
+    position: relative;
+}
+
+#mainContent {
+    margin: 0;
+    min-height: 500px;
+    position: relative;
+    width: 960px;
+	border-top: 1px solid #ddd;
+}
+
+p {line-height: 1.4; font-family: Arial, Helvetica, sans-serif;}
+h1 {font-size: 32px;}
+h2 {font-size: 28px;}
+h3 {font-size: 25px;}
+h4 {font-size: 22px;}
+h5 {font-size: 20px;}
+h6 {font-size: 17px;}
+
+a:link, a:visited {color: #336ec8; text-decoration: none;}
+a:hover, a:active {color: #A1D700;}
+#wrapper {border-top: 5px solid #0D1C33;}
+#wszechwiedzacy #wrapper { border-top: 5px solid #17373C;}
+#gra #wrapper {border-top: 5px solid #2B6832;}
+#ranking #wrapper {border-top: 5px solid #A1D700;}
+#blog #wrapper {border-top: 5px solid #4F9300;}
+#kontakt #wrapper {border-top: 5px solid #0D1C33;}
+
+input, textarea, select {
+	border: 1px solid #DDDDDD;
+	font-weight: bold;
+	line-height: 1.6;
+	font-family: Arial, Helvetica, sans-serif;
+	padding: 5px;
+}
+
+input {width: 200px;}
+
+textarea {
+	width: 98%;
+	height: 150px;
+}
+
+hr {
+	background: none repeat scroll 0 0 #DDDDDD;
+	border: medium none;
+	clear: both;
+	color: #DDDDDD;
+	height: 1px;
+	margin: 15px 0 20px;
+	width: 100%;
+}
+
+hr.small {margin: 10px 0;}
+
+/**
+ * 
+ * -------------------------------------------------------------------------------------------------------
+ * 													HEADER
+ * -------------------------------------------------------------------------------------------------------
+ * 
+ */
+
+#header {
+    padding: 0.5em 45px;
+    height: 1.3em;
+    font-size: 0.85em;
+}
+
+#breadcrumb {
+    height: auto;
+    line-height: 1.2;
+    float: left;
+}
+
+#log_reg_head {width:auto;}
+
+/**
+ * 
+ * -------------------------------------------------------------------------------------------------------
+ * 													NAVIGATION
+ * -------------------------------------------------------------------------------------------------------
+ * 
+ */
+
+#topHeader {
+    height: 60px;
+    margin: 0 auto 10px;
+    position: relative;
+}
+.logo {
+    background: transparent url(http://wszechwiedzacy.pl/images/logo.png) no-repeat scroll 0 0;
+    height: 60px;
+    width: 330px;
+    margin: 0;
+    padding: 0;
+    text-indent: -9999px;
+}
+ul.tabs {
+    float: right;
+    margin: 0;
+}
+ul.tabs li {
+    display: block;
+    float: left;
+    line-height: 1;
+}
+ul.tabs li a {
+    display: block;
+    padding: 25px 15px 15px 50px;
+    cursor: pointer;
+    text-decoration: none;
+}
+ul.tabs li.wszechwiedzacy a:hover {
+    background: #17373C;
+    color: #FFF;
+    text-decoration: none;
+    margin: 0;
+}
+ul.tabs li.gra a:hover {
+    background: #2B6832;
+    color: #FFF;
+    text-decoration: none;
+    margin: 0;
+}
+ul.tabs li.ranking a:hover {
+    background: #A1D700;
+    color: #FFF;
+    text-decoration: none;
+    margin: 0;
+}
+ul.tabs li.blog a:hover {
+    background: #4F9300;
+    color: #FFF;
+    text-decoration: none;
+    margin: 0;
+}
+ul.tabs li.kontakt a:hover {
+    background: #0D1C33;
+    color: #FFF;
+    text-decoration: none;
+    margin: 0;
+}
+ul.tabs li.current a { text-shadow: 1px 1px 3px #0D1C33;}
+
+#wszechwiedzacy ul.tabs li.current a {
+    background: #17373C;
+    color: #FFF;
+    cursor: default;
+    text-decoration: none;
+}
+#gra ul.tabs li.current a {
+    background: #2B6832;
+    color: #FFF;
+    cursor: default;
+    text-decoration: none;
+}
+#ranking ul.tabs li.current a {
+    background: #A1D700;
+    color: #FFF;
+    cursor: default;
+    text-decoration: none;
+}
+#blog ul.tabs li.current a {
+    background: #4F9300;
+    color: #FFF;
+    cursor: default;
+    text-decoration: none;
+}
+#kontakt ul.tabs li.current a {
+    background: #0D1C33;
+    color: #FFF;
+    cursor: default;
+    text-decoration: none;
+}
+ul.tabs li span {
+    font-size: 1em;
+    font-weight: bold;
+    display: block;
+    line-height: 1;
+	color: #fff;
+}
+ul.tabs li.wszechwiedzacy span {color: #17373C;}
+ul.tabs li.gra span {color: #2B6832;}
+ul.tabs li.ranking span {color: #A1D700;}
+ul.tabs li.blog span {color: #4F9300;}
+ul.tabs li.kontakt span {color: #0D1C33;}
+ul.tabs li:hover span {color: #FFF;	text-shadow: 1px 1px 3px #0D1C33;}
+
+/**
+ * 
+ * -------------------------------------------------------------------------------------------------------
+ * 													CONTENT
+ * -------------------------------------------------------------------------------------------------------
+ * 
+ */
+
+hr.main {
+	margin: 50px auto 0;
+	width: 870px;
+}
+
+.blog_excerpt {margin: 15px 0 30px;}
+
+.blog_excerpt h2 {
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 15px;
+}
+
+.post {position: relative;}
+
+.post .date {
+	font-size: 80%;
+	color: #999999;
+	text-shadow: 1px 1px 1px #ddd;
+}
+.heading h3 {margin-top: 5px;}
+
+.post .comments {
+	position: absolute;
+	right: -5px;
+	top: 5px;
+	height: 32px;
+	width: 32px;
+	background: transparent url(http://wszechwiedzacy.pl/images/comment_32x32_green.png) no-repeat scroll 0 0;
+	line-height: 28px;
+	text-align: center;
+}
+
+.post .more-link {
+	display: block;
+	margin: 10px 0;
+}
+
+/* nivo slider */
+
+/*
+ * Note: Include the nivo-slider.css file that comes
+ * with the main download before including this file.
+ */
+
+#slider {
+	margin: 2em auto;
+	width: 870px;
+	position:relative;
+	height: 300px;
+	/* margin:30px 30px 60px 30px; */
+	-moz-box-shadow:0px 0px 10px #333;
+	-webkit-box-shadow:0px 0px 10px #333;
+	box-shadow:0px 0px 10px #333;
+}
+
+#slider img {
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+
+#slider a {border:0;}
+
+.nivo-controlNav {
+	position:absolute;
+	left:47%;
+	bottom:-30px;
+}
+
+.nivo-controlNav a {
+	display:block;
+	width:10px;
+	height:10px;
+	background:url(bullets.png) no-repeat;
+	text-indent:-9999px;
+	border:0;
+	margin-right:3px;
+	float:left;
+}
+
+.nivo-controlNav a.active {background-position:-10px 0;}
+
+.nivo-directionNav a {
+	display:block;
+	width:32px;
+	height:34px;
+	background:url(arrows.png) no-repeat;
+	text-indent:-9999px;
+	border:0;
+}
+
+a.nivo-nextNav {
+	background-position:-32px 0;
+	right:10px;
+}
+
+a.nivo-prevNav {left:10px;}
+
+/**
+ * 			REGULAMIN / POLITYKA PRYWATNOŚCI / POMOC
+ */
+
+#mainContent .inside {
+	min-height: 500px;
+	margin: 1em auto;
+	width: 870px;
+}
+
+ol.arabic {list-style: decimal inside none;}
+ol.roman {list-style: upper-latin inside none;}
+.rules {
+    width: 870px;
+    min-height: 500px;
+    margin: 1em auto 10em;
+}
+.rules p {
+	font-size: .85em;
+	line-height: 1.6;
+	text-align: justify;
+}
+.rules h1 {
+    /* font-size: 1.4em; */
+    /* line-height: 1.4; */
+    margin: 1em 0 .5em;
+    padding: 0;
+}
+.rules h4, h5 {
+	padding-top: 2em;
+	clear: both;
+}
+.rules ul {
+    margin: 1.75em 0;
+    padding: 0;
+}
+.rules ol {margin-bottom: 2em;}
+.rules li {
+    margin: 0 0 8px;
+	line-height: 1.4;
+	font-size: .85em;
+	clear: both;
+}
+.rules ol.lower_alpha {
+	list-style: lower-alpha outside none;
+	margin: 0 0 0 19px;
+}
+.rules a.block {padding: 2em 0;}
+ul.browsers {margin: 0;}
+ol li ul.browsers li {
+	line-height: 48px;
+	padding: 0;
+	margin: 10px 0;
+}
+ul.browsers li a {	padding-left: 5px;}
+.rules ul.child, .rules ol.child {margin-left: 40px;}
+.rules ol li ol li {
+	margin: 10px 0;
+	font-size: 100%;
+}
+
+.rules .alignright {
+	margin-bottom: 1em;
+}
+
+.rules span.browser {
+	display: inline-block;
+	height: 48px;
+	width: 48px;
+	float: left;
+}
+
+.firefox {
+	background: transparent url(http://wszechwiedzacy.pl/images/48px/Firefox.png) no-repeat scroll 0 0 !important;
+}
+
+.chrome {
+	background: transparent url(http://wszechwiedzacy.pl/images/48px/Chrome.png) no-repeat scroll 0 0 !important;
+}
+
+.safari {
+	background: transparent url(http://wszechwiedzacy.pl/images/48px/Safari.png) no-repeat scroll 0 0 !important;
+}
+
+.opera {
+	background: transparent url(http://wszechwiedzacy.pl/images/48px/Opera.png) no-repeat scroll 0 0 !important;
+}
+
+.ie7 {
+	background: transparent url(http://wszechwiedzacy.pl/images/48px/IE7.png) no-repeat scroll 0 0 !important;
+}
+
+/**
+ * 
+ * -------------------------------------------------------------------------------------------------------
+ * 													GRA
+ * -------------------------------------------------------------------------------------------------------
+ * 
+ */
+
+#gra #mainContent {
+	border: 0 none;
+}
+
+.oknoGry {
+	background-color: #ffffff;
+	width: 870px;
+	margin: 1em auto;
+	height: 500px;
+	position: relative;
+	padding-top: 1px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+#pytanieWrap, #breakWrap, #endWrap, #tutorialWrap, #wrongAnswers, #statystyki, #rezultat {
+	/* position: relative; */
+	overflow: hidden;
+    display: none;
+	background-color: #fdfff9;
+	/* background: -moz-linear-gradient(left bottom, #FFFFFF, #f5ffd7);	background: -webkit-gradient(linear, 0 0, 0 100%, from(#FFFFFF), to(#f5ffd7)); */
+}
+
+#startWrap {
+	background: -moz-linear-gradient(left bottom, #FFFFFF, #f5ffd7);
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#FFFFFF), to(#f5ffd7));
+}
+
+#submitButton {
+	/* padding: 10px 20px; */
+	position: relative;
+}
+
+#back {
+	position: absolute;
+	top: 20px;
+	right: 15px;
+}
+
+#tutorialWrap #tut_start {
+	position: relative;
+	font-size: 24px;
+	margin-top: 50px;
+}
+
+#tutorialWrap #back {
+	background: transparent url(http://wszechwiedzacy.pl/images/delete_48x48.png) no-repeat scroll 0 0;
+	border: none;
+	height: 48px;
+	width: 48px;
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	padding: 0;
+	outline: none;	
+}
+
+#tutorialWrap .navi {
+	width: 44px;
+	margin: 0 auto;
+	height: 14px;
+	clear: both;
+	cursor: pointer;
+}
+
+.navi a {
+	background: url(http://wszechwiedzacy.pl/images/navigator.png) no-repeat scroll 0 0 transparent;
+	display: block;
+	float: left;
+	height: 8px;
+	margin: 3px;
+	width: 8px;
+}
+
+.navi a:hover {
+	background-position: 0 -8px;
+}
+
+.navi a.active {
+	background-position: 0 -16px;
+}
+
+.slideContainer {
+	position: relative; 
+    overflow: hidden; 
+    width: 640px; 
+    height: 420px; 
+    float: left;
+	margin: 30px 0 0 115px; 
+}
+
+.slideContainer .pics {
+	width: 20000em; 
+    position: absolute; 
+    clear: both; 
+}
+
+.pics .item {
+	float: left; 
+    cursor: pointer; 
+    width: 640px;
+	height: 420px; 
+    margin: 0px;
+}
+
+.item img {
+	/* border: 1px solid #d1d1d1; */
+}
+
+.item h4 {
+	font-size: 18px;
+	margin: 10px 0;
+}
+
+.item h3 {
+	margin-top: 2em;
+}
+
+.backBtn {
+	display: block;
+	height: 80px;
+	width: 48px;
+	background: transparent url(http://wszechwiedzacy.pl/images/back_48x48.png) no-repeat scroll 0 30px;
+	cursor: pointer;
+}
+
+.text {
+	/* font-size: .9em; */
+	/* font-weight: bold; */
+	margin: 0;
+	line-height: 32px;
+	background: transparent url(http://wszechwiedzacy.pl/images/next_32x32.png) no-repeat scroll 0 0;
+	padding-left: 36px;
+}
+
+.resultsBlock {
+	background: #f6f6f6;
+	background: -moz-linear-gradient(left bottom, #eee, #f6f6f6);
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#eee), to(#f6f6f6));
+	border: 1px solid #ddd;
+	width: 380px;
+	margin: 0 auto;
+	padding: 10px 0;
+	position: relative;
+}
+
+#yourResult {
+	/* width: 480px; */
+	margin-top: 35px;
+	margin-bottom: 16px;
+	line-height: 32px;
+	height: 32px;
+	text-align: center;
+}
+
+/* MENU */
+
+#startWrap #menu {
+	/* display: none; */
+	top: 65px;
+	left: 244px;
+}
+
+#endWrap #menu {
+	/* display: none; */
+	top: 105px;
+	left: 244px;
+}
+
+#wprowadzenie {	
+	top: 135px;
+	left: 244px;
+}
+
+#start {
+	top: 200px;
+	left: 244px;
+}
+
+h2.menu {
+	text-shadow: 1px 2px 2px rgba(37, 80, 146, .5);
+	text-align: center;
+	position: absolute;	
+}
+
+button.menu {
+	margin: 0 auto 1em;
+    padding: 15px 0;
+	width: 381px;
+	font-size: 100%;
+	display: block;
+	position: absolute;
+}
+
+#wa {
+	top: 170px;
+	left: 244px;
+}
+
+#sts {
+	top: 235px;
+	left: 244px;
+}
+
+#again {
+	top: 300px;
+	left: 244px;
+}
+
+/* zapiszWynik */
+
+#rezultat {
+	font-size: 100%;
+	line-height: 1.4;
+	text-align: center;
+}
+
+#rezultat h1 {
+	font-weight: bold;
+	margin: 110px 0 0 0;
+	color: #a1d700;
+	text-shadow: 0px 1px 1px #557100;
+}
+
+h3.gra {
+	margin: 0 auto;
+	width: 600px;
+	text-align: center;
+	line-height: 1.4;
+}
+
+h3.gra.first {
+	margin-top: 50px;
+	margin-bottom: 40px;
+	font-style: italic;
+	text-align: center;
+	font-weight: bold;
+}
+
+h3.gra.not {
+	margin-top: 70px;
+	margin-bottom: 20px;
+}
+
+h3.gra.szanse {
+	
+}
+
+#rezultat label {
+	font-size: 120%;
+	font-weight: normal;
+	margin-bottom: 5px;
+}
+
+#rezultat label.error {
+	background: none;
+	display: block;
+	line-height: 1.6;
+	font-size: 100%;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+#rezultat input {
+	width: 370px;
+	height: 32px;
+	font-size: 140%;
+	text-align: center;
+}
+
+#saveScore {
+	position: absolute;
+	top: 80px;
+	left: 244px;
+}
+
+#saveScore #save {
+	left: 0;
+}
+
+#saveScore #anuluj {
+	background: transparent url(http://wszechwiedzacy.pl/images/delete_48x48.png) no-repeat scroll 0 0;
+	border: none;
+	height: 48px;
+	width: 48px;
+	position: absolute;
+	right: -200px;
+	top: -60px;
+	padding: 0;	
+}
+
+#save, #out2 {
+	margin-top: 20px;
+	left: 244px;
+}
+
+#continue {
+	top: 300px;
+	left: 244px;
+}
+
+#wrongAnswers h3.gra.first {
+	margin-top: 25px;
+	margin-bottom: 25px;
+	color: #17325c;
+	text-shadow: 1px 1px 3px rgba(0,0,0,.5);
+}
+
+#wrongAnswers #out {
+	position: relative;
+}
+
+#accordion .ui-widget-content {
+	background: #fdfff9;
+}
+
+#wrongAnswers .ui-accordion-content-active {
+	border: 1px solid #88B500;
+}
+
+#accordion {
+	width: 80%;
+	margin: 0 auto 20px;
+}
+
+#accordion h3 {
+	text-align: center;
+}
+
+#accordion .ia a {
+    margin: 10px auto 0;
+	padding: 5px;
+    font-size: 80%;
+    display: block;
+	width: 40%;
+	text-align: center;
+	cursor: pointer;
+}
+
+#accordion .ia a:hover {
+	border: 1px solid #cdd5da;
+	background: #f6f6f6 url(images/ui-bg_highlight-hard_100_f6f6f6_1x100.png) 50% 50% repeat-x;
+	font-weight: bold;
+	color: #A1D700;
+	outline: none;
+}
+
+/* ia - incorrect answers */
+
+.ia {	
+    /* background: url(../images/ui-bg_diagonals-small_10_f6ffdb_40x40.png) repeat-x scroll 50% 50% #F6FFDB; */
+    /* border: 1px solid #A1D700; */
+    /* display: none; */
+    /* z-index: 10000; */
+	
+    /* CSS3 styling for latest browsers */
+    /* -moz-box-shadow: 6px 5px 15px 0 #17373C;    -webkit-box-shadow: 6px 5px 15px 0 #17373C;    -moz-border-radius-bottomleft: 10px;    -moz-border-radius-bottomright: 10px;    -moz-border-radius-topleft: 10px;    -moz-border-radius-topright: 10px; */
+}
+
+.ia p {
+    font-size: 90%;
+    color: #0D1C33;
+    text-align: center;
+    margin: 0;
+}
+
+.ia p.question {
+    margin-bottom: 8px;
+    font-weight: bold;
+	font-size: 120%;
+}
+
+.ia p.wrong {
+    color: #bb0000;
+}
+
+.ia p.correct {
+    color: #A1D700;
+    font-weight: bold;
+	line-height: 2;
+}
+
+.ia span {
+    display: inline-block;
+    height: 14px;
+    width: 14px;
+}
+
+.ia span.wrong {
+    background-image: url("images/ui-icons_cc0000_256x240.png");
+    background-position: -80px -128px;
+}
+
+.ia span.correct {
+    background-image: url("images/ui-icons_A1D700_256x240.png");
+    background-position: -65px -144px;
+}
+
+span.know {
+    background-image: url("images/ui-icons_A1D700_256x240.png");
+    background-position: -46px -144px;
+}
+
+/* END OF ia */
+
+form#odpowiedzi {
+    width: 785px;
+    margin: 0 auto;
+}
+
+form#odpowiedzi input {
+    padding: 0 !important;
+    line-height: 0;
+    height: 0;
+    margin: 0;
+}
+
+#pytanieWrap p {
+    font-size: 1em;
+    color: #17373C;
+    line-height: 1;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+#pytanieWrap p.szanse, #pytanieWrap p.punkty {
+    line-height: 32px;
+}
+
+#pytanieWrap p.runda, #pytanieWrap p.numerPytania, #pytanieWrap p.kategoria {
+    font-weight: bold;
+    line-height: 32px;
+    margin-left: 46px;
+}
+
+#pytanieWrap #tresc {
+    background: #E7F3F5;
+    min-height: 67px;
+    margin: .75em auto;
+    border: 1px solid #0D1C33;
+    width: 778px;
+    position: relative;
+}
+
+#pytanieWrap p.pytanie {
+    color: #0D1C33;
+    line-height: 1.2;
+    font-size: 1.3em;
+    font-weight: normal;
+    margin: 1em;
+}
+
+.stars {
+    width: 100%;
+}
+
+#pytanieWrap p.timeBar {
+    font-size: 1.3em;
+    line-height: 48px;
+    margin: 0 2em;
+    vertical-align: middle;
+}
+
+#pytanieWrap p.wybor {
+    margin: 0 0 0 3em;
+    padding: 0;
+    font-size: 0.95em;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+#pytanieWrap p.answer {
+    width: 386px;
+    background: #94B3C5;
+    line-height: 45px;
+    margin: 10px 0;
+	position: relative;
+}
+
+#pytanieWrap p.answer:hover {
+    background: #586B7A;
+    color: #fff;
+}
+
+#pytanieWrap .inLine {
+    display: inline-block;
+    width: 360px;
+    padding: 0 20px;
+}
+
+.fltlftZero {
+    float: left;
+    margin: 0 0 15px 10px;
+}
+
+.floatContainer {
+    float: left;
+    width: 50%;
+    margin-top: 1.5em;
+}
+
+.floatContainer .ui-progressbar {
+	margin-left: 60px;
+	margin-top: 6px;
+	width: 330px;
+	height: 20px;
+}
+
+span.chances {
+    background: url(http://wszechwiedzacy.pl/images/star_32x32.png) no-repeat 0 0 transparent;
+    height: 32px;
+    width: 32px;
+    display: inline-block;
+    margin-left: 0.35em;
+}
+
+span.bad {
+	background: url(http://wszechwiedzacy.pl/images/delete_32x32.png) no-repeat 0 2px transparent;
+    height: 32px;
+    width: 32px;
+    display: inline-block;
+    margin-left: 0.35em;
+}
+
+span.user {
+    color: #336ec8;
+}
+
+#quit_dialog p {
+    font-size: 90%;
+	font-weight: bold;
+    color: #17373C;
+	margin-top: 1em;
+}
+
+#gra .ui-dialog .ui-dialog-buttonpane button {
+	padding: 0;
+}
+
+#ui-dialog-title-quit_dialog {
+	color: #bb0000;
+}
+
+/* wynik */
+.swq {
+    display: none;
+    background-color: #A1D700;
+    padding: 3em;
+    width: 69%;
+    border: 1px solid #17373C;
+}
+
+.swq p {
+    font-size: 0.9em;
+    color: #ffffff;
+    line-height: 1;
+    padding: 0;
+    margin: .25em .5em;
+}
+
+.img_container {
+	width: auto;
+	text-align: center;
+}
+
+/*
+ 
+ RADIO BUTTONS / CHECKBOXES
+ 
+ */
+
+/* Radio Buttons */
+
+p.answer label {
+	background: #FFFFFF url(http://wszechwiedzacy.pl/images/empty_45x45.png) no-repeat 5px 0;
+	border: 1px solid #DFDFDF;
+    color: #5c5c5c;
+	display: block;
+	padding-left: 60px;
+	font-size: 1em;
+	line-height: 45px;
+	text-align: left;
+	width: auto;
+}
+
+p.answer label.radio_check {
+/*     background: #e6f6cd url(../images/tick_45x45.png) no-repeat 5px 0;
+    border: 1px solid #58742b;
+    color: #58742b; */
+}
+
+p.answer label.radio_empty {}
+
+span#tick {
+	background: transparent url(http://wszechwiedzacy.pl/images/tick_48x48.png) no-repeat scroll 0 0;
+	position: absolute;
+	top: -1000px;
+	left: 6px;
+	height: 48px;
+	width: 48px;
+}
+
+/* Hover State */
+label.radio_empty:hover {
+	/* color: #5c5c5c;
+	    background-color: #f1f1f1; */
+	border: 1px solid #a8a8a8;
+}
+
+label.highlighted {
+    border: 1px solid #333;
+}
+
+.radioHidden {
+    position: absolute;
+    left: -9999px;
+}
+
+/**
+ * 
+ * -------------------------------------------------------------------------------------------------------
+ * 													KONTAKT
+ * -------------------------------------------------------------------------------------------------------
+ * 
+ */
+
+.formWrap {
+    /* background-color: #eeeeee; */
+    width: 640px;
+    min-height: 415px;
+    margin: 1em auto;
+}
+
+.fixWidth {
+    width: 100%;
+    margin: 10px auto;
+    text-align: left;
+}
+
+#frmQuestionAdd .fixWidth, #frmQuestionEdit .fixWidth {
+	margin: 20px auto;
+}
+
+#frmQuestionAdd label, #frmQuestionEdit label {
+	display: inline-block;
+	width: 145px;
+	text-align: right;
+	margin-right: 5px;
+}
+
+#frmQuestionAdd textarea, #frmQuestionEdit textarea {
+	width: 461px;
+}
+
+.longInput {
+    width: 400px;
+}
+
+form#frmKontakt {
+    margin: 0 auto;
+    padding: 20px;
+}
+
+fieldset {
+    /* border: 1px solid #586B7A; */
+    margin: 0;
+    /* padding: 10px 15px 5px 15px; */
+    min-height: 358px;
+}
+
+legend {
+/*     font-size: 1.1em;    color: #820F00;    padding: 0 10px; */
+}
+
+label {
+    font: bold 0.8em / 1.6 Arial, Helvetica, sans-serif;
+    /* width: 110px; */
+    display: block;
+    /* text-align: right; */
+    padding: 0;
+    vertical-align: top;
+    margin-top: 4px;
+    cursor: pointer;
+}
+
+textarea {
+    /*
+     border: 0 none;
+     */
+    width: 385px;
+    /* height: 100px; */
+}
+
+button {
+    cursor: pointer;
+    padding: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+select.margin {
+    font: bold 0.8em Arial, Helvetica, sans-serif;
+    height: 30px;
+    padding: 5px;
+}
+
+#mainContent p {
+    /* margin-bottom: 10px; */
+}
+
+input:focus, textarea:focus, select:focus {
+    border: 1px solid #336ec8;
+}
+
+#frmKontakt button {
+    /* margin: 0 0 5px 6px; */
+    /* padding: 55px 42px; */
+	margin-right: 202px;
+	padding: 10px 40px;
+	float: right;
+}
+
+#frmKontakt input {
+	width: 385px;
+}
+
+#frmKontakt select {
+    width: 397px;
+}
+
+#frmKontakt label {
+    /* width: 115px; */
+	/* display: block; */
+}
+
+#frmKontakt .formLast label.error {
+    /* margin-left: 130px;    display: inline-block;    	width: auto; */
+}
+
+.emailConfirmation {
+    background-color: #A1D700;
+    border: 1px solid #2B6832;
+    margin: 1em auto 0;
+    color: #FFF;
+    width: 640px;
+    height: 415px;
+    position: relative;
+}
+
+.emailConfirmation h1 {
+    position: absolute;
+    top: 170px;
+    left: 320px;
+    color: #fff;
+    font-size: 1.2em;
+}
+
+.emailConfirmation p {
+    /* font-size: 0.9em; */
+    position: absolute;
+    top: 200px;
+    left: 320px;
+    margin: 10px 0;
+}
+
+span.checkmark {
+    display: block;
+    background: url(http://wszechwiedzacy.pl/images/checkmark.png) no-repeat 0 0;
+    height: 256px;
+    width: 256px;
+    position: absolute;
+    top: 0px;
+    left: 50px;
+    float: left;
+}
+
+.reCaptcha_element {
+    float: left;
+    margin: 0 0 5px 54px;
+    width: 318px;
+}
+
+#register_dialog .reCaptcha_element {
+    margin: 0;
+}
+
+#recaptcha_msg {
+    height: 0px;
+    width: 460px;
+    margin: 10px auto;
+    background: #f3d8d8 url(images/ui-bg_diagonals-small_75_f3d8d8_40x40.png) repeat scroll 50% 50%;
+    border: 1px solid #bb0000;
+}
+
+#recaptcha_msg p {
+    margin: 0.3em;
+    padding: 0;
+    font-size: 0.75em;
+    color: #000;
+}
+
+#recaptcha_msg span {
+    display: inline-block;
+    width: 16px;
+    height: 13px;
+    background: url(images/ui-icons_cc0000_256x240.png) no-repeat scroll 0 -144px;
+}
+
+/**
+ * 
+ * -------------------------------------------------------------------------------------------------------
+ * 													TABLES
+ * -------------------------------------------------------------------------------------------------------
+ * 
+ */
+
+table {
+    margin: 0 auto;
+    /*border: 1px solid #A1D700;*/
+    color: #0D1C33;
+    width: auto;
+    text-align: left;
+}
+
+thead {
+    color: #0D1C33;
+    text-align: center;
+}
+
+tbody {
+    color: #0D1C33;
+}
+
+tbody tr {
+    color: #17373C;
+}
+
+#mainContent thead tr, #mainContent thead tr:hover {
+    background: transparent url(http://wszechwiedzacy.pl/images/table_th_green.png) repeat-x 0 0;
+    height: 30px;
+    cursor: pointer;
+}
+
+#mainContent tr.even {
+	background-color: #FFFFFF;
+}
+
+#mainContent tr.odd {
+    background-color: #f4f7eb;
+}
+
+#mainContent tr:hover {
+    background: #dae5b8;
+}
+
+th {
+    font-size: .75em;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+}
+
+td {
+    font-size: .9em;
+    text-align: center;
+    vertical-align: middle;
+}
+
+td.tla {
+    text-align: left;
+}
+
+/*specific table styling*/
+#mainContent table#rankingGraczy {
+    width: 640px;
+    margin-bottom: 4em;
+}
+
+#mainContent #rankingGraczy caption {
+    font: bold 1.4em / 1 Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding: 1em 0 0.5em 0;
+}
+
+#mainContent #rankingGraczy thead {
+}
+
+#mainContent #rankingGraczy tbody {
+}
+
+#mainContent #rankingGraczy tbody tr {
+    height: 40px;
+}
+
+#mainContent #rankingGraczy th {
+    height: 35px;
+}
+
+#mainContent #rankingGraczy th.pozycja {
+    width: 5%;
+}
+
+#mainContent #rankingGraczy th.nick {
+    width: 45%;
+}
+
+#mainContent #rankingGraczy th.punkty {
+    width: 15%;
+}
+
+#mainContent #rankingGraczy th.czas {
+    width: 18%;
+}
+
+#mainContent #rankingGraczy th.poprawne {
+    width: 18%;
+}
+
+#mainContent #rankingGraczy th.procent {
+    width: 5%;
+}
+
+#mainContent #rankingGraczy td {
+    padding: 10px 15px;
+}
+
+#mainContent #rankingGraczy td.upper {
+    text-transform: uppercase;
+}
+
+#mainContent #rankingGraczy td.position {
+}
+
+#mainContent #rankingGraczy tr.newRecord {
+    font: bold 1.1em / 1 Arial, Helvetica, sans-serif;
+    background: #ecffb0;
+    color: #17373C;
+    border: 1px solid #A1D700;
+}
+
+#mainContent #rankingGraczy tr:hover {
+}
+
+#mainContent #rankingGraczy td.gravatar {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+}
+
+/* admin table */
+table#pytaniaAdmin {
+    clear: both;
+}
+
+table#pytaniaAdmin caption {
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: .75em;
+    padding-top: 1em;
+}
+
+span.css_right {
+    float: right;
+    margin-left: 0.25em;
+}
+
+table#pytaniaAdmin th {
+    line-height: 16px;
+    text-align: left;
+    padding: .125em 0 0 1em;
+}
+
+table#pytaniaAdmin td {
+    padding: 5px 18px;
+}
+
+#pytaniaAdmin th.numer {
+    width: 10%;
+}
+
+#pytaniaAdmin th.round {
+    width: 10%;
+}
+
+#pytaniaAdmin th.category {
+    width: 20%;
+}
+
+#pytaniaAdmin th.body {
+    width: auto;
+}
+
+#pytaniaAdmin th.edit {
+    width: 10%;
+}
+
+#pytaniaAdmin th.delete {
+    width: 10%;
+}
+
+#pytaniaAdmin td.edit {
+    text-align: center;
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
+}
+
+#pytaniaAdmin td.editLock {
+    text-align: center;
+    vertical-align: middle;
+    width: 24px;
+    height: 24px;
+}
+
+#pytaniaAdmin a.edit {
+    margin: 0 auto;
+    width: 24px;
+    height: 24px;
+}
+
+#pytaniaAdmin a.editLock {
+    margin: 0 auto;
+    width: 24px;
+    height: 24px;
+}
+
+#pytaniaAdmin a.edit, #pytaniaAdmin a.delete {
+	cursor: pointer;
+}   
+
+#pytaniaAdmin span.edit {
+    display: table;
+    width: 24px;
+    height: 24px;
+    background: transparent url(http://wszechwiedzacy.pl/images/edit_question_24x24.png) no-repeat 0 0;
+}
+
+#pytaniaAdmin span.editLock {
+    display: table;
+    width: 24px;
+    height: 24px;
+    background: transparent url(http://wszechwiedzacy.pl/images/question_lock_24x24.png) no-repeat 0 0;
+}
+
+#pytaniaAdmin span.delete {
+    display: table;
+    width: 24px;
+    height: 24px;
+    background: transparent url(http://wszechwiedzacy.pl/images/delete_page_24x24.png) no-repeat 0 0;
+}
+
+#pytaniaAdmin span.deleteLock {
+    display: table;
+    width: 24px;
+    height: 24px;
+    background: transparent url(http://wszechwiedzacy.pl/images/lock_24x24.png) no-repeat 0 0;
+}
+
+#mainContent div.addQuestion {
+    float: right;
+    width: 50%;
+    text-align: right;
+    margin: 15px 0;
+}
+
+#mainContent a.addQuestion {
+    position: relative;
+    line-height: 32px;
+	padding: 6px;
+    /* vertical-align: middle; */
+}
+
+span.addQuestion {
+    position: absolute;
+    left: -32px;
+    background: transparent url(http://wszechwiedzacy.pl/images/add_question_32x32.png) no-repeat 0 0;
+    width: 32px;
+    height: 32px;
+}
+
+#pytaniaAdmin_length {
+    font-size: 0.8em;
+    margin: 0.25em;
+}
+
+#pytaniaAdmin_filter {
+    font-size: 0.75em;
+	margin: 5px 5px 0 0;
+}
+
+/**
+ * 
+ * -------------------------------------------------------------------------------------------------------
+ * 													FOOTER
+ * -------------------------------------------------------------------------------------------------------
+ * 
+ */
+
+#footer {
+    padding: 10px 45px;
+    width: 870px;
+	border-top: 1px solid #ddd;
+}
+
+#footer p {
+    margin-right: 1.5em;
+}
+
+#footer p.fltrt {
+    margin: 0;
+}
+
+#footer .fltlft a {
+    margin: 0 2em 0 0;
+}
+
+#footer a {
+	 /*font-size: 0.8em;*/
+}
+
+/**
+ * 
+ * -------------------------------------------------------------------------------------------------------
+ * 													DEFAULT STYLES
+ * -------------------------------------------------------------------------------------------------------
+ * 
+ */
+
+.alignleft, .float_left {float: left;}
+.alignright, .float_right {float: right;}
+.fltrt {float: right;}
+.fltlft {float: left;}
+.clear, .clearfloat {
+    clear: both;
+    height: 0;
+    font-size: 1px;
+    line-height: 0px;
+    margin: 0;
+    padding: 0;
+}
+
+.center {text-align: center;}
+.left {text-align: left;}
+.right {text-align: right;}
+
+.small {font-size: 10px; color: #aaa;}
+.smaller {font-size: 60%; color:#ccc;}
+.hidden {display: none;}
+.uwaga {color: #bb0000;}
+.block {display:block;}
+.absolute{position:absolute;}
+.content{
+	width: 870px;
+	margin: 0 auto;
+}
+
+.roundCorners {
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+.boxShadow {
+	-webkit-box-shadow: 2px 2px 2px  rgba(0,0,0,.4);
+	-moz-box-shadow: 2px 2px 2px  rgba(0,0,0,.4);
+	box-shadow: 2px 2px 2px  rgba(0,0,0,.4); 
+}
+
+.boxShadow:hover {
+	-webkit-box-shadow: 2px 2px 2px  rgba(0,0,0,.6);
+	-moz-box-shadow: 2px 2px 2px  rgba(0,0,0,.6);
+	box-shadow: 2px 2px 2px  rgba(0,0,0,.6); 
+}
+
+#yourResult span {
+	font-weight: bold;
+	/* text-shadow: 0px 1px 1px #557100; */
+	font-size: 23px;
+	float: left;
+}
+
+span.high {
+	color: #a1d700;
+}
+
+span.low {
+	color: #B2221B;
+}
+
+span.miejsce {
+	margin-left: 70px;
+}
+
+span.score {
+	margin-left: 10px;
+}
+
+span.tick {
+	background: transparent url(http://wszechwiedzacy.pl/images/tick_48x48.png) no-repeat scroll 0 0;
+	position: absolute;
+	top: 1px;
+	left: 10px;
+	height: 48px;
+	width: 48px;
+}
+
+span.wa {
+	background: transparent url(http://wszechwiedzacy.pl/images/delete_48x48.png) no-repeat scroll 0 0;
+	position: absolute;
+	top: 3px;
+	left: 10px;
+	height: 48px;
+	width: 48px;
+}
+
+/**
+ * 
+ * -------------------------------------------------------------------------------------------------------
+ * 													ADDITIONAL
+ * -------------------------------------------------------------------------------------------------------
+ * 
+ */
+
+ul.modified {
+	margin: 0 0 20px;
+}
+
+ul.modified li {
+	margin: 0;
+	padding-left: 12px;
+	line-height: 20px;
+	position: relative;
+}
+
+span.bullet {
+	background-image: url(images/ui-icons_0073ea_256x240.png);
+	background-position: -38px 0;
+	height: 16px;
+	width: 6px;
+	display: block;
+	position: absolute;
+	top: 2px;
+	left: 0;
+}
+
+.div_error, .div_highlight {
+    padding: 1em;
+    margin: 2em auto;
+    width: 75%;
+}
+
+.div_error p, .div_highlight p {
+    text-align: center;
+    font-size: 0.8em;
+    font-weight: bold;
+    margin: 0.5em;
+}
+
+.form_input {
+    margin: 5px 5px;
+    width: 170px;
+}
+
+.form_regular_text {
+    text-align: right;
+    width: 200px;
+}
+
+.info_block {
+    background: #A1D700;
+    color: #0D1C33;
+    font-size: 0.9em;
+    padding: 20px;
+    width: auto;
+    margin: 0 auto;
+    height: 40px;
+    display: none;
+}
+
+.info_block p {
+    text-align: center;
+}
+
+.info_block a:hover {
+    color: #336ec8;
+}
+
+.intro {
+    background: transparent url(http://wszechwiedzacy.pl/images/intro.jpg) no-repeat scroll 0 0;
+    width: 870px;
+    height: 300px;
+    margin: 1em auto;
+}
+
+#mainContent .welcome {
+    border: 2px solid #17373C;
+    height: 498px;
+    width: 868px;
+    margin: 1em auto 0;
+}
+
+#mainContent .welcome p {
+    text-align: center;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* STATYSTYKI / PROFIL GRACZA */
+.stats_right {
+    width: 415px;
+    padding: 20px;
+    margin-left: 25px;
+}
+
+.stats_left {
+    width: 415px;
+    padding: 20px;
+    margin-left: 25px;
+}
+
+#profil h1, #stats h1 {
+    font-size: 1.2em;
+    margin-bottom: 0.3em;
+}
+
+span.small_star {
+    background: transparent url(http://wszechwiedzacy.pl/images/star_16x16.png) no-repeat 0 0;
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+}
+
+.gravatar {
+    margin-right: 20px;
+}
+
+.dane {
+    float: left;
+    margin-left: 20px;
+}
+
+.dane .nick {
+	
+}
+
+.nick span {
+	color: #2B6832;
+	font-size: 1em;
+	font-weight: bold;
+}
+
+#full_stats {
+    display: none;
+}
+
+#gracze #mainContent p {
+    padding: 0;
+}
+
+#edit_profile label {
+    width: 160px;
+	display: inline-block;
+}
+
+input.checkbox {
+    width: auto;
+}
+
+#edit_profile .info {
+    font-size: 0.8em;
+    color: #d1d1d1;
+}
+
+#edit_profile p.password {
+    font: bold 0.8em / 1.6 Arial, Helvetic, sans-serif;
+    margin: 2em 0 0.25em;
+}
+
+input#woman, input#man, label.gender {
+    width: 1em !important;
+}
+
+#edit_profile label.error, #edit_profile label.success {
+    display: block;
+    height: 16px;
+    line-height: 16px;
+    margin-left: 170px;
+    width: auto;
+}
+
+#edit_profile .fixWidth {
+    margin: 10px auto;
+}
+
+/* jQuery dialog login/register forms */
+form#login_form input, form#register_form input, form#login_form label, form#register_form label, form#forgot_form input, form#forgot_form label {
+    display: block;
+    text-align: left;
+    width: auto;
+}
+
+form#login_form label.error, form#register_form label.error, form#forgot_form label.error {
+    display: block;
+    text-align: left;
+    background: transparent url(http://wszechwiedzacy.pl/images/warning_16x16.png) no-repeat 3px 1px;
+    margin: 0;
+    padding-bottom: 0;
+    padding-top: 0;
+}
+
+form#login_form input, form#register_form input, form#forgot_form input {
+    width: 97%;
+    padding: 0.2em;
+    margin: 0 0 5px 0;
+}
+
+#register_form select, #profile_form select {
+    font-size: 0.8em;
+    font-weight: bold;
+    margin: 0.2em 0.5em 0.25em 0;
+    padding: 0.2em;
+}
+
+#register_form .chkbox {
+    margin: 0.125em 0.2em 0 0;
+    width: auto;
+    cursor: pointer;
+}
+
+#forgot_form label {
+    margin: 0 0 5px 0;
+}
+
+form#login_form {
+    margin-bottom: 10px;
+}
+
+#register_form p {
+    clear: both;
+    float: left;
+    margin: 0.3em 0;
+}
+
+#register_form p.last {
+    margin: 0 0 0.5em;
+}
+
+label.regulamin {
+    /* font-size: 0.7em;    font-weight: normal; */
+}
+
+.error {
+    font-size: 0.85em;
+    color: #820F00;
+}
+
+label.error {
+    background: transparent url(http://wszechwiedzacy.pl/images/delete_16x16.png) no-repeat 0px 2px;
+    line-height: 19px;
+    margin: 2px 0 0 2px;
+    padding: 2px 0 2px 20px;
+    text-align: left;
+    display: inline;
+    font-size: 11px;
+    font-weight: bold;
+    vertical-align: middle;
+    width: auto;
+}
+
+label.success {
+    background: transparent url(http://wszechwiedzacy.pl/images/accept_16x16.png) no-repeat 1px 1px;
+    color: #4F9300;
+    margin: 0 5px;
+    display: inline;
+}
+
+.formBottom label.success, .formBottom label.error, .formLast label.success, .formLast label.error {
+    /* display: block; */
+    /* margin: 5px 0 0 115px; */
+    line-height: 16px;
+    height: 16px;
+}
+
+.formBottom {margin: 0;}
+p.formLast label {vertical-align: top;}
+input.error, textarea.error, select.error {
+    background: #FFD1D1;
+    border: 1px solid #820F00;
+    /*margin: 5px;*/
+}
+#frmQuestionAdd input.error, #frmQuestionAdd textarea.error, #frmQuestionAdd select.error {margin: 0;}
+#frmQuestionAdd input#link {width: 400px;}
+#frmQuestionAdd button {margin-left: 400px;}
+form#frmQuestionAdd {
+    width: 547px;
+    margin: 0 auto;
+}
+
+#frmAddQuestion .fixWidth {margin: 5px auto 12px;}
+label.joint {
+    width: 20px;
+    padding: 0 5px;
+    margin-top: 5px;
+}
+
+input.valid, textarea.valid, select.valid {
+    background: #F4F7EB;
+    border: 1px solid #4F9300;
+}
+
+a.dialogLink {
+    font-size: 0.9em;
+    color: #336ec8 !important;
+    text-decoration: none;
+    padding: 2px 0;
+    display: block;
+}
+
+a.changeDialog:hover {
+    color: #ABC507;
+    text-decoration: none;
+}
+
+/* GENERIC CLASSES */
+
+.display_inline {
+    display: inline !important;
+}
+
+.login_flt {
+    float: left;
+    margin-left: 8px;
+    line-height: 1.4em;
+}
+
+.center_div {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.posRel {
+    position: relative;
+}
+
+.info {
+    font-size: .75em;
+    color: #737373;
+    padding: 2px 0px;
+}
+
+/*
+ 
+ AJAX LOADER ANIMATION
+ 
+ */
+.ajaxLoader {
+    margin: 40px auto;
+    background: transparent url(http://wszechwiedzacy.pl/images/ajax-loader.gif) no-repeat 0 0;
+    height: 66px;
+    width: 66px;
+}
+
+#frmQuestionAdd .ajaxLoader, #frmQuestionEdit .ajaxLoader {
+    margin: 236px auto;
+}
+
+#forgot_dialog .ajaxLoader {
+    margin: 20px auto;
+}
+
+#loaderContainer .ajaxLoader {
+    margin: 0 auto;
+}
+
+#edit_profile .ajaxLoader {
+    margin: 150px auto;
+}
+
+#loaderContainer {
+    height: 500px;
+    width: 870px;
+    overflow: hidden;
+    position: relative;
+    background-color: #FFF;
+    margin: 1em auto;
+	padding-top: 1px;
+}
+
+#frmQuestionAdd #loaderContainer, #frmQuestionEdit #loaderContainer {
+    width: auto;
+    height: 519px;
+}
+
+#loaderContainer[id] {
+    display: table;
+    position: static;
+}
+
+#outer {
+    display: table-cell;
+    vertical-align: middle;
+    width: 870px;
+    /* IE 6
+    _position: absolute;
+    _top: 35%;
+	*/
+    /* IE7 */
+     *position: absolute;
+     *top: 35%;
+}
+
+#inner {
+    position: relative;
+    top: -50%
+}
+ /* for explorer only */
+#inner p {
+    text-align: center;
+    font-size: 1em;
+    font-weight: bold;
+    line-height: 2;
+}
+
+/* optional: #inner[id] {position: static;} */
+
+/*
+ 
+ IE CONDITIONALS
+ 
+ */
+#mainContent {
+    _zoom: 1;
+}
+
+/* the above proprietary zoom property gives IE6 the hasLayout it needs to avoid several bugs */

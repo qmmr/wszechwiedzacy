@@ -1,0 +1,79 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/strict.dtd"
+    >
+<html lang="pl">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head>
+    <title>Rejestracja w serwisie wszechwiedzacy.com</title>
+    <style media="screen">
+    .log{
+	background: transparent url(http://wszechwiedzacy.com/images/logo.png) no-repeat 0 0;
+	margin: 2em 60px;
+	width: 330px;
+	height: 60px;
+    }
+    h1, div {
+	margin: 0;
+	padding: 0;
+	color: #0D1C33;
+	font-family: Arial, Helvetiva, sans-serif;
+    }
+    p {
+	margin: 1em 60px;
+    }
+    p.normal {
+	font-size: 0.95em;
+	line-height: 1;
+    }
+    a:link, a:visited {color:#0073ea; text-decoration:none;}
+    a:hover, a:active {color:#A1D700; text-decoration:underline;}
+    p.disable{
+	color:#2B6832;
+    }
+    p.disclaimer{
+	color: #d3d3d3;
+	font-size: 0.8em;
+	margin: 0 60px 2em 60px;
+    }
+    .code{
+	padding: 1em;
+	margin: 0 60px;
+	background-color: #f4f4f4;
+	width: 800px;
+    }
+    p.sig {
+	font-style: italic;
+	font-size: 0.9em;
+	font-weight: bold;
+    }
+    .quote_up {
+
+    }
+    blockquote {}
+    </style>
+</head>
+<body style="background-color: #A1D700;">
+    <div id="container" style="background-color: #ffffff;border: 5px solid #2B6832;margin:0 auto;">
+	<div id="logo">
+	    <img src="http://wszechwiedzacy.com/images/logo.png" alt="Header" width="330" height="60" />
+	</div>
+	<div class="quote_up" style="margin-left: 60px;	background: transparent url(quote_up.png) no-repeat scroll top left;">
+	    <blockquote style="margin: 0 0 0 40px;padding: 25px 10px;background: transparent url(quote_down.png) no-repeat scroll bottom right;width: 370px;font-size: 1.1em;font-style: italic;">Wiesz, czy nie wiesz? ... oto jest pytanie!</blockquote>
+	</div>
+	<div id="msg">
+	    <h1 style="font: normal 1.2em/1.2 Arial, Helvetica, Verdana, sans-serif;margin: 1em 60px;color: #17373C;">Witaj {USERNAME},</h1>
+	    <p style="margin: 1em 60px;">Dziękujemy, że zdecydowałeś się na rejestrację w serwisie <a href="http://wszechwiedzacy.com" target="_blank">wszechwiedzacy.com</a></p>
+	    <p style="margin: 1em 60px;">W tej chwili serwis jest w fazie beta testów, dlatego proszę o zgłaszanie wszystkich problemów w działaniu poprzez formularz <a href="http://wszechwiedzacy.com/kontakt" target="_blank">wszechwiedzacy.com/kontakt</a><br>Nie ukrywam, że zależy mi na Twojej pomocy i będę bardzo wdzięczny za rady, opinie i sugestie, które przyczynią się do poprawy funkcjonalności serwisu.</p>
+	    <p style="margin: 1em 60px;">Aby dokończyć proces rejestracji kliknij w poniższy link</p>
+	    <p style="margin: 1em 60px;"><a href="{SITEPATH}/confirm.php?email={EMAIL}&key={KEY}">{KEY}</a></p>
+	    <p class="disabled">Jeżeli link powyżej nie działa, proszę skopiować poniższy kod i wkleić do paska adresu w Twojej przeglądarce:</p>
+	    <div class="code">
+		<code>{SITEPATH}/confirm.php?email={EMAIL}&key={KEY}</code>
+	    </div>
+	    <p class="sig">Pozdrawiam,<br>qmmr</p>
+	    <p class="disclaimer">Otrzymałeś ten email, gdyż ktoś zażadał wysłania go na ten adres z serwisu wszechwiedzacy.com.<br> Jeżeli nie chciałeś otrzymać tej wiadomości proszę o kontakt <a href="mailto:kontakt@wszechwiedzacy.com">kontakt@wszechwiedzacy.com</a></p>
+	</div>
+    </div>
+</body>
+</html>

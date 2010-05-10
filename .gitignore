@@ -1,0 +1,5 @@
+.settings
+.project
+pytania.sql.gz
+scripts/
+includes/config.php
