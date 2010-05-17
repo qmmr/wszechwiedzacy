@@ -761,12 +761,37 @@ h3.gra.not {
 
 #saveScore {
 	position: absolute;
-	top: 80px;
-	left: 244px;
+	top: 70px;
+	left: 45px;
+	width: 780px;
+}
+
+#saveScore h3 {
+	font-size:50px;
+	font-weight:bold;
+	text-shadow:0 1px 0 #fff;
+	margin-top: 0;
+	width: 780px;
+	
+	background: #F9FFE8;
+	background: -moz-linear-gradient(left top, #F9FFE8, #A1D700);
+	background: -webkit-gradient(linear, left top, left bottom, from(#F9FFE8), to(#A1D700));
+	
+	-moz-box-shadow: 1px 1px 2px #3B4F00;
+	-webkit-box-shadow: 1px 1px 2px #3B4F00;
+    box-shadow: 1px 1px 2px #3B4F00;
 }
 
 #saveScore #save {
 	left: 0;
+}
+
+#saveScore #log {
+	position: relative;
+}
+
+#saveScore h4 span {
+	font-size: 85%;
 }
 
 #saveScore #anuluj {
@@ -775,7 +800,7 @@ h3.gra.not {
 	height: 48px;
 	width: 48px;
 	position: absolute;
-	right: -200px;
+	right: -30px;
 	top: -60px;
 	padding: 0;	
 }
