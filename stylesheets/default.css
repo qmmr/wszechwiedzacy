@@ -124,7 +124,7 @@ input, textarea, select {
 }
 
 input {
-	width: 200px;
+	width: 195px;
 	height: 18px;
 }
 
@@ -509,7 +509,8 @@ ul.browsers li a {	padding-left: 5px;}
 	overflow: hidden;
     display: none;
 	background-color: #fdfff9;
-	/* background: -moz-linear-gradient(left bottom, #FFFFFF, #f5ffd7);	background: -webkit-gradient(linear, 0 0, 0 100%, from(#FFFFFF), to(#f5ffd7)); */
+	/* background: -moz-linear-gradient(left bottom, #FFFFFF, #f5ffd7);
+	background: -webkit-gradient(linear, 0 0, 0 100%, from(#FFFFFF), to(#f5ffd7)); */
 }
 
 #startWrap {
@@ -844,7 +845,12 @@ h3.gra.not {
     /* z-index: 10000; */
 	
     /* CSS3 styling for latest browsers */
-    /* -moz-box-shadow: 6px 5px 15px 0 #17373C;    -webkit-box-shadow: 6px 5px 15px 0 #17373C;    -moz-border-radius-bottomleft: 10px;    -moz-border-radius-bottomright: 10px;    -moz-border-radius-topleft: 10px;    -moz-border-radius-topright: 10px; */
+    /* -moz-box-shadow: 6px 5px 15px 0 #17373C;
+    -webkit-box-shadow: 6px 5px 15px 0 #17373C;
+    -moz-border-radius-bottomleft: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px; */
 }
 
 .ia p {
@@ -1143,7 +1149,7 @@ label.highlighted {
 }
 
 .longInput {
-    width: 400px;
+    width: 455px;
 }
 
 form#frmKontakt {
@@ -1205,7 +1211,9 @@ input:focus, textarea:focus, select:focus {
 }
 
 #frmKontakt .formLast label.error {
-    /* margin-left: 130px;    display: inline-block;    	width: auto; */
+    /* margin-left: 130px;
+    display: inline-block;
+    	width: auto; */
 }
 
 .emailConfirmation {
@@ -1900,7 +1908,8 @@ form#login_form {
 }
 
 label.regulamin {
-    /* font-size: 0.7em;    font-weight: normal; */
+    /* font-size: 0.7em;
+    font-weight: normal; */
 }
 
 .error {
@@ -1943,7 +1952,7 @@ input.error, textarea.error, select.error {
     /*margin: 5px;*/
 }
 #frmQuestionAdd input.error, #frmQuestionAdd textarea.error, #frmQuestionAdd select.error {margin: 0;}
-#frmQuestionAdd input#link {width: 400px;}
+#frmQuestionAdd input#link {width: 455px;}
 #frmQuestionAdd button {margin-left: 400px;}
 form#frmQuestionAdd {
     width: 547px;

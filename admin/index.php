@@ -66,7 +66,7 @@
     </div>
     <div class="clearfloat"></div>
     
-    <form id="frmQuestionAdd" name="<?php echo $_SESSION['username']; ?>" method="post">
+    <form id="frmQuestionAdd" name="<?php echo $_SESSION['username']; ?>" method="post" action="">
 		<fieldset>
 		    <div class="fixWidth">
 				<label for="runda">Runda</label>
@@ -95,7 +95,7 @@
 		    
 		    <div class="fixWidth formBottom">
 				<label for="tresc">Treść</label>
-				<textarea id="tresc" class="defaultText" title="... treść ..." name="tresc" type="text"></textarea>
+                                <textarea id="tresc" class="defaultText" title="... treść ..." cols="" rows="" name="tresc" type="text"></textarea>
 		    </div>
 		    
 		    <div class="fixWidth">
