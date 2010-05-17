@@ -1579,6 +1579,18 @@ span.addQuestion {
 	width: 100%;
 }
 
+#faq {
+	position: absolute;
+	top: 50%;
+	width: 50px;
+	height: 50px;
+	background: #292929;
+}
+#faq a{
+	line-height: 50px;
+	color: #fff;
+}
+
 /**
  * 
  * -------------------------------------------------------------------------------------------------------

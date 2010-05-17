@@ -86,7 +86,9 @@ $czas .= " " . ileSekund($r['sec']);
 	<form id="saveScore" action="" method="post">
 		<h3>Gratulacje!<br />Twój wynik: <?php echo $score; ?> punktów</h3>
 		<label for="hs_name">Podaj nick:</label>
-		<input id="hs_name" name="name" type="text" value="" />				
+		<input id="hs_name" name="name" type="text" value="" />
+		<label for="hs_email">Twój email:</label>
+		<input id="hs_email" name="email" type="text" value="" />
 		<button id="save" title="menu główne" name="save" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all menu boxShadow">zapisz wynik</button>
 		<button id="anuluj" title="anuluj" name="save" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all"></button>
 	</form>

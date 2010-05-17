@@ -1,11 +1,3 @@
-$(window).load(function () {
-    // this loads after all elements on the page has been downloaded
-    //alert("done!");
-    $('#slider').nivoSlider({
-        pauseTime: 7500
-    });
-});
-
 // button states for the form buttons
 function hoverO() {
     $(this).addClass("ui-state-hover");
@@ -27,8 +19,7 @@ var wszechwiedzacy = {
     // placeholder for site URL
     site_url: {},
     // form placeholder
-    mForm: {},
-    
+    mForm: {},    
     // initialized on every page    
     init: function () {
         
@@ -350,8 +341,7 @@ var wszechwiedzacy = {
             buttons: {
                 Zarejestruj: function () {
                     $("#register_form").validate({
-                        rules: {
-                            
+                        rules: {                            
                             reg_username: {
                                 required: true,
                                 rangelength: [3, 14]
@@ -363,8 +353,7 @@ var wszechwiedzacy = {
                             email: {
                                 required: true,
                                 email: true
-                            }
-                            
+                            }                            
                         },
                         // errorElement: "div",
                         // wrapper: "div", // a wrapper around the error message
@@ -381,8 +370,7 @@ var wszechwiedzacy = {
                             // error.css('left', offset.left + element.outerWidth());
                             // error.css('top', offset.top);
                         },
-                        messages: {
-                            
+                        messages: {                            
                             reg_username: {
                                 required: "Proszę podać nick użytkownika.",
                                 rangelength: "Minimalna ilość znaków 3, max 14."
@@ -395,11 +383,8 @@ var wszechwiedzacy = {
                                 required: "Adres email jest wymagany.",
                                 email: "To nie jest poprawny adres email."
                             }
-                            
                         }
-                        
                     }).form();
-                    
                     // if the form is valid we can send the input to php
                     if (wszechwiedzacy.mForm.valid()) {
                         
@@ -542,7 +527,7 @@ var wszechwiedzacy = {
             
             //alert("captureKeys");
             
-            $(obj).keydown(function(e){
+            $(obj).keyup(function(e){
                 
                 // select radio buttons when 1,2,3,4 is pressed -> to do <-
                 switch (e.keyCode) {
@@ -608,26 +593,16 @@ var wszechwiedzacy = {
                         
                         case "submitButton":
                             // assigns scored points to hidden input so that it can be passed to php creates vars to store answer and correct answer
-                            $("#scored").val(wszechwiedzacy.time.pts); 
-                            
+                            $("#scored").val(wszechwiedzacy.time.pts);
                             var odp = $("input[selected]").val();
                             // if no answer was chosen we input text
-                            (odp == undefined) ? odp = "brak odpowiedzi" : false;                        
-                            
+                            (odp == undefined) ? odp = "brak odpowiedzi" : false;
                             var poprawna = $("input[name=\"poprawna\"]").val();
-                            var punkty = $("#scored").val();
-                            
+                            var punkty = $("#scored").val();                            
                             var odpowiedzi = "group=" + odp + "&poprawna=" + poprawna + "&punkty=" + punkty;
-                            // alert(odpowiedzi);
-                            
                             $("#pytanieWrap").remove();
-                            $("#loaderContainer").show(); // show the animation gif
-                            // we can receive data from php either by reading echo values or reading arrays in json
-                            // to specify we add dataType: "json" or "text" to set single value we make var some_value = data;
-                            // to set multiple values from json we specify key => value from associative array ... = data['some_value']                            
-                            
-                            var url = wszechwiedzacy.site_url + "includes/odpowiedz.php";
-                            
+                            $("#loaderContainer").show(); // show the animation gif                            
+                            var url = wszechwiedzacy.site_url + "includes/odpowiedz.php";                            
                             $.ajax({                                
                                 type: "POST",
                                 data: odpowiedzi,
@@ -646,11 +621,6 @@ var wszechwiedzacy = {
                                                     $("#rezultat").fadeIn(1000);
                                                     $("#loaderContainer").hide(); // hides the animation gif                                                    
                                                     wszechwiedzacy.gra.setButtons();
-                                                    //wszechwiedzacy.gra.mcExpose = $("#wrongAnswers").expose({
-                                                    //    color: "#000000",
-                                                    //    opacity: .75,
-                                                    //    api: true
-                                                    //}).load();
                                                 },
                                                 error: function (XMLHttpRequest, textStatus, errorThrown) {alert("ajax call to wynik.php failed, reason: " + textStatus);}
                                                 
@@ -672,7 +642,7 @@ var wszechwiedzacy = {
                                                 }
                                             });
                                             break;
-
+                                        
                                         default:
                                             // just another question
                                             wszechwiedzacy.gra.showNextQuestion();
@@ -708,7 +678,6 @@ var wszechwiedzacy = {
                             break;
                         
                         case "sts":
-                            // alert("zobacz moje statystyki");
                             $("#endWrap").fadeOut(250, function(){$("#statystyki").fadeIn(500);});
                             $("#out2").click(function(){
                                 $("#statystyki").fadeOut(250, function(){$("#endWrap").fadeIn(500);});
@@ -716,19 +685,17 @@ var wszechwiedzacy = {
                             break;
                         
                         case "again":
-                            // alert("zagraj jeszcze raz");
-                            $("#endWrap").hide();
+                            $("#rezultat, #endWrap, #statystyki, #wrongAnswers").remove();
+                            var lc = $("#loaderContainer").fadeIn(500);
                             $.ajax({
                                 url: wszechwiedzacy.site_url + "includes/clear_stats.php",
                                 dataType: "json",
                                 success: function (data) {
-                                    //alert(data['round']);
+                                    lc.hide();
                                     wszechwiedzacy.gra.showNextQuestion();
                                 },
                                 error: function (XMLHttpRequest, textStatus, errorThrown) {alert("nie mogłem wyczyścić statystyk via ajax, sorry, powód: " + textStatus);}
-                            });                            
-                            //$("#loaderContainer").fadeIn(500);
-                            //window.location.reload();
+                            });
                             break;
                         
                         case "save":
@@ -741,21 +708,28 @@ var wszechwiedzacy = {
                                         name: {
                                             required: true,
                                             rangelength: [3, 20]
-                                        }                                    
+                                        },
+                                        email: {
+                                            required: true,
+                                            email: true
+                                        }
                                     },
                                     messages: {
                                         name: {
                                             required: "Kto ma zostać wpisany do tabeli?",
                                             rangelength: "min. ilość znaków 3, max. 20"
-                                        }                                    
+                                        },
+                                        email: {
+                                            required: "Adres email jest wymagany.",
+                                            email: "To nie jest poprawny adres email."
+                                        }
                                     }
                                 }).form();
                                 //end validator
                                 
                                 if(form.valid()) {
-                                    // alert("valid");
                                     var url = wszechwiedzacy.site_url+"includes/zapisz_wynik.php";
-                                    var data = "name=" + $("#hs_name").val();
+                                    var data = "name=" + $("#hs_name").val() + "&email=" + $("#hs_email").val();
                                     $("#rezultat").hide();
                                     $("#loaderContainer").fadeIn(250);
                                     

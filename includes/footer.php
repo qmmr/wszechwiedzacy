@@ -24,37 +24,60 @@
 </div><!-- end #wrapper -->
 <a name="bottom"></a>
 
+<div id="faq">
+	<a href="#">F.A.Q</a>
+</div>
+
 <script src="http://www.google.com/jsapi"></script>
-<script>	google.load("jquery", "1.4.2");</script>
-    
+<script>
+	google.load("jquery", "1.4.2");
+</script>
+
 <!-- Tabs, Tooltip, Scrollable, Overlay, Expose. No jQuery. -->
 <script src="<?php echo SITE_URL; ?>js/jquery.tools.min.js"></script>
     
 <script>
 	// if u want to use both jquerytools and jqueryui you need to load tools first
-	google.load("jqueryui", "1.8");
+	google.load("jqueryui", "1.8.1");
 </script>
     
 <!-- jQuery validate plugin -->
 <script src="http://ajax.microsoft.com/ajax/jquery.validate/1.6/jquery.validate.js"></script>
-    
+
+<?php if($thisPage == 'ranking' || $thisPage == 'default'):?>
 <!-- jQuery ScrollTo -->
 <script src="<?php echo SITE_URL; ?>js/jquery.scrollTo-1.4.2-min.js"></script>
 <script src="<?php echo SITE_URL; ?>js/jquery.localscroll-1.2.7-min.js"></script>
-    
+<script>
+$(function(){
+	$.localScroll();
+});
+</script>
+<?php endif;?>
+
+<?php if($thisPage == 'default'):?>
 <!-- jQuery dataTables -->
 <script src="<?php echo SITE_URL; ?>js/jquery.dataTables.min.js"></script>
-    
+<?php endif;?>
+
+<?php if($thisPage == 'wszechwiedzacy'):?>
 <!-- nivo slider -->
 <script src="<?php echo SITE_URL; ?>js/jquery.nivo.slider.pack.js"></script>
+<script>
+$(window).load(function () {
+    // this loads after all elements on the page has been downloaded
+    $('#slider').nivoSlider({
+        pauseTime: 7500
+    });
+});
+</script>
+<?php endif;?>
     
 <!-- my own jQuery functions for wszechwiedzacy -->
 <script src="<?php echo SITE_URL; ?>js/wszechwiedzacy.js"></script>
 
 <script>
-
 	$(function(){
-
 	    wszechwiedzacy.init();
 	    <?php
 		// loads different js objects from wszechwiedzacy object
@@ -71,35 +94,24 @@
 		    default: break;
 		}
 	    ?>
-	    
-	    //alert(pts);
-		
+	    <?php if($thisPage == 'gra'):?>
 		// tutorial jQuery.tools
 		$(".slideContainer").scrollable({
 									size: 1,
 									clickable: true,
 									loop: true
 									}).navigator();
-
-		// page scroll
-		$.localScroll();		
-						
-	});
-	
-    <?php if(!TESTING_GROUND) : ?>
-        
+		<?php endif; ?>						
+	});	
+    <?php if(!TESTING_GROUND) : ?>        
     // google analytics code
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-    
-
     try{
 	    var pageTracker = _gat._getTracker("UA-7089533-2");
 	    pageTracker._trackPageview();
-    } catch(err) {}
-    
+    } catch(err) {}    
 	<?php endif; ?>
-
 </script>
 </body>
 </html>
