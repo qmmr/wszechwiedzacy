@@ -152,4 +152,4 @@ $secret = md5($question->poprawna);
 			<button id="submitButton" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all menu" type="submit" name="submit">Zatwierdź</button>
 		</div><!-- end .center_div -->
 	</form><!-- #odpowiedzi -->
-</div><!-- #pytanieWrap -->
+</div>

@@ -530,7 +530,7 @@ ul.browsers li a {	padding-left: 5px;}
 	right: 15px;
 }
 
-#tutorialWrap #tut_start {
+#tutorialWrap #tut_end {
 	position: relative;
 	font-size: 24px;
 	margin-top: 50px;
@@ -661,7 +661,7 @@ ul.browsers li a {	padding-left: 5px;}
 	left: 244px;
 }
 
-#wprowadzenie {	
+#show_tut {	
 	top: 135px;
 	left: 244px;
 }
@@ -709,11 +709,60 @@ button.menu {
 	text-align: center;
 }
 
-#rezultat h1 {
+.badge {
+    width: 800px;
+    padding: 0 0 20px;
+    margin: 50px auto 20px;
+    background: #666;
+    background: -moz-linear-gradient(left top, #F9FFE8, #A1D700);
+    background: -webkit-gradient(linear, left top, left bottom, from(#F9FFE8), to(#A1D700));
+    
+    text-shadow: 0px 1px 0 #efefef;
+    
+    -moz-border-radius: 5px;
+    
+    -moz-box-shadow: 1px 1px 2px #4F4F4F;
+    -webkit-box-shadow: 1px 1px 2px #4F4F4F;
+    box-shadow: 1px 1px 2px #4F4F4F;
+}
+
+#saveScore .badge {
+    margin: -20px auto 20px;
+    padding: 20px 0;
+}
+
+#rezultat .badge h1 {
+    margin: 0;
+    font-size: 60px;
+    line-height: 90px;
 	font-weight: bold;
-	margin: 110px 0 0 0;
-	color: #a1d700;
-	text-shadow: 0px 1px 1px #557100;
+	margin: 10px 0;
+	text-shadow: 0px 1px 0px #e8e8e8;
+}
+
+#rezultat .badge h1.punkty{
+    font-size: 180px;
+    line-height: 100px;
+margin-top: 20px;
+	text-shadow: 0px 2px 1px #e8e8e8;
+}
+
+#rezultat .badge h1.punkty span {
+    font-size: 40px;
+	font-weight: bold;
+    color: #fff;
+    margin: 40px 0 0;
+    line-height: 10px;
+    display: block;
+	text-shadow: 1px 1px 1px #292929;
+}
+
+#rezultat .badge h2 {
+    font-size: 40px;
+	font-weight: bold;
+    color: #fff;
+    margin: 20px 0;
+	text-shadow: 1px 1px 1px #292929;
 }
 
 h3.gra {
@@ -795,13 +844,13 @@ h3.gra.not {
 }
 
 #saveScore #anuluj {
-	background: transparent url(http://localhost/wszechwiedzacy/images/delete_48x48.png) no-repeat scroll 0 0;
+	background: transparent url(http://localhost/wszechwiedzacy/images/delete_24x24.png) no-repeat scroll 0 0;
 	border: none;
-	height: 48px;
-	width: 48px;
+	height: 24px;
+	width: 24px;
 	position: absolute;
-	right: -30px;
-	top: -60px;
+	right: -42px;
+	top: -65px;
 	padding: 0;	
 }
 

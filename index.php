@@ -25,9 +25,18 @@
 		</div>
 		
 		<hr class="main" />
+        
+        <div class="content">
+            <h3>Pytanie dnia</h3>
+            <h4>Kiedy urodził się Fryderyk Chopin, wielki kompozytor, nazywany romantykiem fortepianu?</h4>
+            <h5><a href="#">Znasz odpowiedź?</a></h5>
+        </div>        
+        
+        <hr class="main" />
 		
 	    <div class="content">
-	    	    	<div class="blog_excerpt">
+	    
+	    	<div class="blog_excerpt">
 				<h2><a href="<?php echo $nla['blog']; ?>">Blog</a></h2>
 				<?php while (have_posts()) : the_post(); ?>
 				
@@ -52,7 +61,8 @@
 					
 				<?php endwhile; ?>
 			</div><!-- .blog_excerpt -->
-					    </div><!-- end .content -->
-	    
+				
+	    </div><!-- end .content -->
+
     </div><!-- end #mainContent -->
 <?php require_once(LIB_PATH.DS."footer.php"); ?>

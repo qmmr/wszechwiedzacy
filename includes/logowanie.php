@@ -1,11 +1,12 @@
 <?php
 require_once("initialize.php");
-$ja = array("email" => "valid", "password" => "valid");
+$ja = array("email" => "valid","password" => "valid","logged" => "false","game" => "false");
 
 if(isset($_POST['email']) && isset($_POST['password'])) {
 	
 	$email = trim(mysql_prep($_POST['email']));
 	$password = trim(mysql_prep($_POST['password']));
+	$ja['game'] = $_POST['game'];
 	$found_user = User::authenticate($email, $password);
 	if($found_user) {
 		
@@ -13,6 +14,7 @@ if(isset($_POST['email']) && isset($_POST['password'])) {
 			
 			// login user if he was found in database and password is correct and active is set to 1
 			$session->login($found_user);
+			$ja['logged'] = "true";
 			
 		} else {
 			

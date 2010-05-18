@@ -308,13 +308,13 @@ function polOdmiana($word, $num) {
 	$a = array('2','3','4');
 	$b = array('12','13','14');
 	if($num == 1) {
-		return $num . " " .$word;
+		return $word;
 	} elseif(in_array($num, $b) || in_array(($num % 100), $b)){
-		return $num . " " . $word . "ów";
+		return $word . "ów";
 	} elseif(in_array($num,$a) || in_array(($num % 10),$a)){
-		return $num . " " . $word . "y";
+		return $word . "y";
 	} else {
-		return $num . " " . $word . "ów";
+		return $word . "ów";
 	}
 } // end pol odmiana
 

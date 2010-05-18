@@ -153,5 +153,5 @@ switch($php_location) {
 				?>
 			    </p>
 			</div>
-			<?php include_once( LIB_PATH . DS . "status.php" ); // shows if user is logged ?><div class="clear_float"></div>
+			<?php include_once( LIB_PATH . DS . "status.php" );?><div class="clear_float"></div>
 		    </div ><!-- end #header -->

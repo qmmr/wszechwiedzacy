@@ -17,8 +17,8 @@
    
 		<div id="startWrap" class="oknoGry">
 	    	<h2 id="menu" class="resultsBlock roundCorners menu boxShadow">Menu:</h2>
-			<button id="wprowadzenie" type="button" name="zasadyGry" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu">wprowadzenie</button>
-			<button id="start" type="button" name="startGame" rel="zaczynamy" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu">rozpocznij grę</button>
+			<button id="show_tut" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu">wprowadzenie</button>
+			<button id="start" type="button" name="startWrap" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu">rozpocznij grę</button>
 		</div><!--end of #startWrap -->
 		
 		<div id="loaderContainer" style="display: none">
@@ -43,7 +43,8 @@
 						<h4 class="text">trzecia runda odpowiadasz do końca (Twojego lub pytań)</h4>
 						<h4 class="text">ilość zdobywanych punktów zależna od czasu udzielenia odpowiedzi</h4>
 						<h4 class="text">na odpowiedź masz 10 sekund</h4>
-						<h3 class="center">dalej &raquo;</h3>					</div>
+						<h3 class="center">dalej &raquo;</h3>
+					</div>
 					<div class="item">
 						<h4 class="text">rozpoczynasz grę z trzema szansami</h4>
 						<h4 class="text">udzielenie złej odpowiedzi lub nie zaznaczenie odpowiedzi skutkuje utratą jednej szansy</h4>
@@ -54,7 +55,7 @@
 					<h4 class="text">aby dostać się do tabeli wszechwiedzących, musisz zdobyć więcej punktów niż osoba zajmująca ostatnie miejsce</h4>
 						<h4 class="text">jeśli nie jesteś zarejestrowany, możesz wpisać swój nick, jeśli masz już konto wynik zostanie zapisany automatycznie</h4>
 						<h4 class="text">masz możliwość analizy błędnych odpowiedzi oraz oglądnięcia swoich statystyk</h4>
-						<button id="tut_start" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu">wszystko wiem, grajmy!</button>						
+						<button id="tut_end" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu">wszystko wiem, grajmy!</button>						
 					</div>
 					
 				</div>

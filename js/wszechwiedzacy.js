@@ -15,32 +15,29 @@ function mUp() {
 // main object
 var wszechwiedzacy = {
     // placeholder to store session points
-    session_pts: {},
+    session_pts: 0,
     // placeholder for site URL
     site_url: {},
     // form placeholder
     mForm: {},    
     // initialized on every page    
     init: function () {
-        
+		
         // checks if we're developing on localhost or live online
         (window.location.hostname == "localhost") ? wszechwiedzacy.site_url = "http://localhost/wszechwiedzacy/" : wszechwiedzacy.site_url = "http://wszechwiedzacy.pl/";
         //alert("location is "+window.location.hostname+" so the url is "+wszechwiedzacy.site_url);
         
         // LOGIN / REGISTER
-        $("#login").bind("click", function (e) {
-            
+        $("#login, #log").live('click',function(e){
             e.preventDefault();
             $("#login_dialog").dialog("open");
             $(".dialogLink").show();
-            
+            console.log($(this).attr('id')+" pts: "+wszechwiedzacy.session_pts);
         });
         
-        $("#register").click(function (e) {
-            
+        $("#register, #reg2").live('click',function(e){            
             e.preventDefault();
-            $("#register_dialog").dialog("open");
-            
+            $("#register_dialog").dialog("open");            
         });
         
         // link to forgotDialog (recover forgotten nick or password)
@@ -61,28 +58,20 @@ var wszechwiedzacy = {
         // end changeDialog
         
         // LOGIN DIALOG
-        $("#login_dialog").dialog({
+        var ld = $("#login_dialog").dialog({
             
-            open: function (event, ui) {
-                
+            open: function (e, ui) {                
                 wszechwiedzacy.mForm = $("#login_form");
                 wszechwiedzacy.mForm.find("#login_email").focus();
-                $(this).keydown(function (e) {
-                    
+                $(this).keyup(function (e) {                    
                     var f = wszechwiedzacy.mForm.find("input:first").val();
                     var s = wszechwiedzacy.mForm.find("input:last").val();
-                    // alert(f+" "+s);
-                    if (e.keyCode == 13 && f != "" && s != "") {
-                        
+                    if (e.keyCode == 13 && f != "" && s != "") {                        
                         e.preventDefault();
-                        //alert("keyCode "+e.keyCode+" was pressed and we have no empty inputs");
+                        //console.log("keyCode "+e.keyCode+" was pressed and we have no empty inputs");
                         wszechwiedzacy.mForm.closest('.ui-dialog').find(".ui-dialog-buttonpane button:eq(0)").trigger("click");
-                        //wszechwiedzacy.mForm.submit();
-                        
-                    }
-                    
-                });
-                
+                    }                    
+                });                
             },
             autoOpen: false,
             draggable: false,
@@ -127,8 +116,13 @@ var wszechwiedzacy = {
                         $(".dialogLink").hide(); // hide link to change dialogs to register
                         var email = $("#login_email").val();
                         var pwd = $("#login_password").val();
-                        var user_data = "email=" + email + "&password=" + pwd;
-                        //alert(user_data);
+                        if(wszechwiedzacy.session_pts == 0){
+                            var game = "false";
+                        } else {
+                            var game = "true";
+                        }
+                        var user_data = "email=" + email + "&password=" + pwd + "&game=" + game;
+                        console.log(user_data);
                         
                         $.ajax({
                             type: "POST",
@@ -137,13 +131,27 @@ var wszechwiedzacy = {
                             dataType: "json",
                             success: function (data) {
                                 
+                                var logged = data.logged;
                                 var email = data.email;
                                 var pwd = data.password;
-                                // alert( email + " and " + pwd );
-                                if (email == "valid" && pwd == "valid") {
+                                
+                                // updates the login panel
+                                $.get(wszechwiedzacy.site_url+"includes/reg_head.php", function(data){
+                                   $("#log_head").replaceWith(data); 
+                                });
+                                
+                                if (data.game == "false" && logged == "true"){
+                                    // if we log in not during game
+                                    ld.dialog('close');
+                                    //window.location.reload();
                                     
-                                    // alert('user found -> proceed to login');
-                                    window.location.reload();
+                                } else if(data.game == "true" && logged == "true"){
+                                    // when player wants to log during the end game
+                                    ld.dialog('close');
+                                    console.log("the game is on so we do sth else");
+                                    $.get(wszechwiedzacy.site_url+"includes/in_game_login.php", function(data){
+                                        $("#rezultat").html(data); 
+                                    });
                                     
                                 } else {
                                     
@@ -151,22 +159,20 @@ var wszechwiedzacy = {
                                     $("#login_form").show(); // showing form// again
                                     // do sth when php don't find user
                                     
-                                    if (email == "inactive") {
-                                        
-                                        // alert("user not found");
-                                        var validator = $("#login_form").validate();
-                                        validator.showErrors({"email": "Konto nie zostało aktywowane!"});
-                                        
-                                    } else if (email == "invalid") {
+                                    if (email == "inactive"){
                                         
                                         var validator = $("#login_form").validate();
-                                        validator.showErrors({"email": "Nie ma takiego użytkownika!"});
+                                        validator.showErrors({"email":"Konto nie zostało aktywowane!"});
+                                        
+                                    } else if (email == "invalid"){
+                                        
+                                        var validator = $("#login_form").validate();
+                                        validator.showErrors({"email":"Nie ma takiego użytkownika!"});
                                         
                                     } else {
                                         
-                                        // alert("user != password");
                                         var validator = $("#login_form").validate();
-                                        validator.showErrors({"password": "Hasło nie pasuje do użytkownika!"});
+                                        validator.showErrors({"password":"Hasło nie pasuje do użytkownika!"});
                                         
                                     }
                                     
@@ -478,9 +484,23 @@ var wszechwiedzacy = {
         countdown: {},
         // mainContent expose container
         mcExpose: {},
+		// main view
+		mv: {},
+		// current view
+		cv: {},
+		// fadeInOut
+		fadeInOut: function(dir,mv,cv) {
+			if(dir == "in"){
+				mv.fadeOut(250, function(){cv.fadeIn(500);});
+			} else {
+				cv.fadeOut(250, function(){mv.fadeIn(500);});
+			}
+		},
         // initializes all stuff
         init: function () {            
             
+			// assign main view at the beggining
+			wszechwiedzacy.gra.mv = $("#startWrap");
             location.href = "#crumb"; // centers the game area
             /**
              * EXPOSE THE GAME AREA when we go to gra.php it will dimm out all
@@ -520,16 +540,81 @@ var wszechwiedzacy = {
             
             // initialize the setButtons
             wszechwiedzacy.gra.setButtons();
-            
+            // captureKeys
+            wszechwiedzacy.gra.captureKeys(document.documentElement);
+            // set live() buttons
+            var sbtn = $("#save").live('click',function(e){
+                var form = $("#saveScore");
+                if(form.length != 0) {
+                    
+                    var validator = form.validate({
+                        rules: {
+                            name: {
+                                required: true,
+                                rangelength: [3, 20]
+                            },
+                            email: {
+                                required: true,
+                                email: true
+                            }
+                        },
+                        messages: {
+                            name: {
+                                required: "Kto ma zostać wpisany do tabeli?",
+                                rangelength: "min. ilość znaków 3, max. 20"
+                            },
+                            email: {
+                                required: "Adres email jest wymagany.",
+                                email: "To nie jest poprawny adres email."
+                            }
+                        }
+                    }).form();
+                    //end validator
+                    
+                    if(form.valid()) {
+                        var url = wszechwiedzacy.site_url+"includes/zapisz_wynik.php";
+                        var data = "name=" + $("#hs_name").val() + "&email=" + $("#hs_email").val();
+                        $("#rezultat").hide();
+                        $("#loaderContainer").fadeIn(250);
+                        
+                        $.ajax({
+                            type: "POST",
+                            data: data,
+                            url: url,
+                            dataType: "json",
+                            success: function (data) {
+                                
+                                $("#loaderContainer").fadeOut(100, function(){$("#endWrap").fadeIn(500);});
+                                $("#position").text("Miejsce: " + data['key']);
+                                
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {alert("wynik nie został zapisany, powód: " + textStatus);}                            
+                        });
+                        
+                    } // end of form.valid
+                    
+                } else {
+                    
+                    $("#rezultat").fadeOut(100, function(){$("#endWrap").fadeIn(500);});
+                    
+                } // end of form.length 
+            });
+			$("button[name=back]").live('click',function(e){
+                e.preventDefault();				
+				wszechwiedzacy.gra.fadeInOut("out",wszechwiedzacy.gra.mv,wszechwiedzacy.gra.cv);
+				// $("#tutorialWrap").fadeOut(250,function(){wszechwiedzacy.gra.mv.fadeIn(500);}); 
+            });
+			$("#tut_end").live('click',function(e){
+				wszechwiedzacy.gra.cv.remove();                            
+                wszechwiedzacy.gra.showNextQuestion();                            
+				return false;
+			});
         },
         // end of gra.init
-        captureKeys: function(obj) {
-            
-            //alert("captureKeys");
-            
-            $(obj).keyup(function(e){
-                
-                // select radio buttons when 1,2,3,4 is pressed -> to do <-
+        
+        captureKeys: function(obj) {            
+            $(obj).keyup(function(e){                
+                // select radio buttons when 1,2,3,4 is pressed
                 switch (e.keyCode) {
                     case 49:
                     case 97:
@@ -551,30 +636,20 @@ var wszechwiedzacy = {
                         $("label:eq(3)").next().attr("selected", "selected");
                         $("#submitButton").trigger("click");
                         break;
-                    case 13:                    
-                        if ($("form label.radio_check").length != 0) {
-                            $("#submitButton").trigger("click");
+                    case 13:
+                        if($("#continue").length == 1){
+                            $("#continue").trigger('click');
                         }
                         break;
                     default:
                     break;
                 }
-                
-                //alert(e.keyCode + " was pressed");
-                
-            });
-            
+                //console.log(e.KeyCode);
+            });            
         },
         // end of captureKeys
         
         setButtons: function () {
-            // alert("setting Buttons!");
-            
-            // back button that hides tutorial page
-            $("#back").bind("click",function(e){
-                e.preventDefault();
-               $("#tutorialWrap").fadeOut(250, function(){$("#startWrap").fadeIn(500);}); 
-            });
             
             $("button").each(function () {
                 
@@ -601,7 +676,9 @@ var wszechwiedzacy = {
                             var punkty = $("#scored").val();                            
                             var odpowiedzi = "group=" + odp + "&poprawna=" + poprawna + "&punkty=" + punkty;
                             $("#pytanieWrap").remove();
-                            $("#loaderContainer").show(); // show the animation gif                            
+                            $("#loaderContainer").show(); // show the animation gif
+                            // stops the count down
+                            clearTimeout(wszechwiedzacy.gra.countdown);
                             var url = wszechwiedzacy.site_url + "includes/odpowiedz.php";                            
                             $.ajax({                                
                                 type: "POST",
@@ -650,8 +727,7 @@ var wszechwiedzacy = {
                                         
                                     } // end of swith(game)
                                 },
-                                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                    alert("ajax call to odpowiedz.php failed, reason: " + textStatus);
+                                error: function (XMLHttpRequest, textStatus, errorThrown) {alert("ajax to odpowiedz.php failed->" + textStatus);
                                 }
                             });
                             break;
@@ -661,13 +737,11 @@ var wszechwiedzacy = {
                             wszechwiedzacy.gra.showNextQuestion();
                             break;
                         
-                        case "wprowadzenie":
-                            $("#startWrap").hide();
-                            $("#tutorialWrap").fadeIn(250);
-                            break;
-                        
-                        case "back":                        
-                            $("#tutorialWrap").fadeOut(250, function(){$("#startWrap").fadeIn(500);});
+                        case "show_tut":
+							//wszechwiedzacy.gra.main_view = $("#"+$(this).attr('name'));
+							wszechwiedzacy.gra.cv = $("#tutorialWrap");
+							wszechwiedzacy.gra.fadeInOut("in",wszechwiedzacy.gra.mv,wszechwiedzacy.gra.cv);
+                            //$("#startWrap").fadeOut(250, function(){$("#tutorialWrap").fadeIn(500);});
                             break;
                         
                         case "wa":
@@ -694,68 +768,8 @@ var wszechwiedzacy = {
                                     lc.hide();
                                     wszechwiedzacy.gra.showNextQuestion();
                                 },
-                                error: function (XMLHttpRequest, textStatus, errorThrown) {alert("nie mogłem wyczyścić statystyk via ajax, sorry, powód: " + textStatus);}
+                                error: function (XMLHttpRequest, textStatus, errorThrown) {alert("stats not cleared via ajax, sorry: " + textStatus);}
                             });
-                            break;
-                        
-                        case "save":
-                            //alert("ajax zapisuje wynik i pokazuje się w tym czasie animacja");
-                            var form = $("#saveScore");
-                            if(form.length != 0) {
-                                
-                                var validator = form.validate({
-                                    rules: {
-                                        name: {
-                                            required: true,
-                                            rangelength: [3, 20]
-                                        },
-                                        email: {
-                                            required: true,
-                                            email: true
-                                        }
-                                    },
-                                    messages: {
-                                        name: {
-                                            required: "Kto ma zostać wpisany do tabeli?",
-                                            rangelength: "min. ilość znaków 3, max. 20"
-                                        },
-                                        email: {
-                                            required: "Adres email jest wymagany.",
-                                            email: "To nie jest poprawny adres email."
-                                        }
-                                    }
-                                }).form();
-                                //end validator
-                                
-                                if(form.valid()) {
-                                    var url = wszechwiedzacy.site_url+"includes/zapisz_wynik.php";
-                                    var data = "name=" + $("#hs_name").val() + "&email=" + $("#hs_email").val();
-                                    $("#rezultat").hide();
-                                    $("#loaderContainer").fadeIn(250);
-                                    
-                                    $.ajax({
-                                        type: "POST",
-                                        data: data,
-                                        url: url,
-                                        dataType: "json",
-                                        success: function (data) {
-                                            
-                                            //alert(data['key']);
-                                            $("#loaderContainer").fadeOut(100, function(){$("#endWrap").fadeIn(500);});
-                                            $("#position").text("Miejsce: " + data['key']);
-                                            
-                                        },
-                                        error: function (XMLHttpRequest, textStatus, errorThrown) {alert("wynik nie został zapisany, powód: " + textStatus);}
-                                        
-                                    });
-                                    
-                                } // end of form.valid
-                                
-                            } else {
-                                
-                                $("#rezultat").fadeOut(100, function(){$("#endWrap").fadeIn(500);});
-                                
-                            } // end of form.length
                             break;
                         
                         case "anuluj":
@@ -1407,27 +1421,22 @@ var wszechwiedzacy = {
     ranking: {
         init: function () {
             
-            var htr = $("tr:contains("+wszechwiedzacy.session_pts+")");
-            //alert( htr );
-            if(htr.length != 0) {
-                
-                $("tr:contains("+wszechwiedzacy.session_pts+")").expose({
+            var htr = $("tr:contains("+wszechwiedzacy.session_pts+")").attr('id');
+            console.log("pts: "+wszechwiedzacy.session_pts+"htr = "+htr);
+            if(htr.length != 0) {                
+                $("#"+htr).expose({
                     color: '#337b86',
                     opacity: 0.7,
                     loadSpeed: 250,
                     api: true          
-                }).load();
-                
-            } else {
-                
+                }).load();                
+            } else {                
                 $("tr:eq(1)").expose({
                     color: '#337b86',
                     opacity: 0.7,
                     loadSpeed: 250,
                     api: true          
                 }).load();
-                
-                //alert("not");
             }
             
             //alert("this is ranking page");
@@ -1667,8 +1676,6 @@ var wszechwiedzacy = {
                 clearTimeout(wszechwiedzacy.gra.countdown);
                 // starts the countdown
                 wszechwiedzacy.time.init();
-                // captureKeys
-                wszechwiedzacy.gra.captureKeys(document.documentElement);
             }
             
         }

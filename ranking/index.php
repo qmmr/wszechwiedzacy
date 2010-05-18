@@ -31,7 +31,7 @@
 			echo "\">";			
 			echo "<td class=\"position\">{$i}</td>";
 			$grav = GravatarClass::get_gravatar_hashed($player->hashed_email,30); // small gravatar
-			echo "<td class=\"gravatar\" title=\"gravatar\"><a href=\"http://pl.gravatar.com\" target=\"_blank\"><img src=\"".$grav."\"></img></a></td>";
+			echo "<td class=\"gravatar\" title=\"gravatar\"><a href=\"http://pl.gravatar.com\" target=\"_blank\"><img src=\"".$grav."\" /></a></td>";
 			echo "<td class=\"tla\" title=\"{$player->user_name}\">";
 			if(User::find_user($player->user_name)) {
 				
@@ -44,7 +44,7 @@
 				echo $player->user_name . "</td>";
 				
 			}			
-			echo "<td title=\"{$player->points}\">{$player->points}</td>";
+			echo "<td title=\"points\">{$player->points}</td>";
 			echo "<td title=\"{$player->czas}\">{$player->czas} sek.</td>";
 			echo "<td title=\"{$player->poprawne}\">{$player->poprawne} </td>";
 			echo "<td title=\"{$player->procent}\">{$player->procent} </td>";

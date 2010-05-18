@@ -2,7 +2,7 @@
     // if the user is not logged in
     if( !isset($_SESSION['id']) ) :
 ?>
-<p id="log_reg_head" class="fltrt">    
+<p id="log_head" class="fltrt">    
 	<a id="login" class="login_flt" href="#" target="_self">Logowanie</a>
 	<span class="login_flt"> | </span>
 	<a id="register" class="login_flt" href="#">Rejestracja</a>    
@@ -41,7 +41,7 @@
     <div class="ajaxLoader" style="display: none"></div>
 </div>
 <?php else : ?>
-<p id="log_reg_head" class="fltrt">    
+<p id="reg_head" class="fltrt">    
 	<span class="login_flt">Witaj,</span>
 	<a href="<?php echo SITE_URL; ?>gracze" target="_self" class="login_flt"><?php echo $session->username; ?></a>
 	<?php if($_SESSION['admin_rights'] == 1) : ?>
