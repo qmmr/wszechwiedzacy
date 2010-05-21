@@ -24,14 +24,14 @@
 </div><!-- end #wrapper -->
 <a name="bottom"></a>
 
+<!--
 <div id="faq">
 	<a href="#">F.A.Q</a>
 </div>
+-->
 
 <script src="http://www.google.com/jsapi"></script>
-<script>
-	google.load("jquery", "1.4.2");
-</script>
+<script>google.load("jquery", "1.4.2");</script>
 
 <!-- Tabs, Tooltip, Scrollable, Overlay, Expose. No jQuery. -->
 <script src="<?php echo SITE_URL; ?>js/jquery.tools.min.js"></script>
@@ -44,7 +44,7 @@
 <!-- jQuery validate plugin -->
 <script src="http://ajax.microsoft.com/ajax/jquery.validate/1.6/jquery.validate.js"></script>
 
-<?php if($thisPage == 'ranking' || $thisPage == 'default'):?>
+<?php if(in_array($thisPage, array('ranking','default','regulamin','polityka_prywatnosci','pomoc'))):?>
 <!-- jQuery ScrollTo -->
 <script src="<?php echo SITE_URL; ?>js/jquery.scrollTo-1.4.2-min.js"></script>
 <script src="<?php echo SITE_URL; ?>js/jquery.localscroll-1.2.7-min.js"></script>
@@ -99,7 +99,7 @@ $(window).load(function () {
 		$(".slideContainer").scrollable({
 									size: 1,
 									clickable: true,
-									loop: true
+									loop: false
 									}).navigator();
 		<?php endif; ?>						
 	});	

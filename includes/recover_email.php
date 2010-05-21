@@ -6,7 +6,7 @@
     
     if( isset($_POST['email']) ) {
 	
-		$email = trim(mysql_prep($_POST['email']));
+		$email = trim($db->escape_value($_POST['email']));
 		
 		// check email we = wrong email
 		$email_check = (isValidEmail($email)) ? true : $json_arr['email'] = "we";

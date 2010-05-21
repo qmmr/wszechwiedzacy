@@ -5,18 +5,11 @@
     // starting the game at difficulty round 1
     $_SESSION['current_round'] = 1;	
 ?>
-<?php 
-//$results = User::find_top_scores();	// selects the lowest score needed for getting into ranking (top 30 default)
-//$btm = end($results);		// lowest score in the ranking table
-//echo $btm;
-//print_r($results);
-//echo $key = array_search($btm, $results);
-?>
 <?php require_once(LIB_PATH.DS."header.php"); ?>
     <div id="mainContent">
    
 		<div id="startWrap" class="oknoGry">
-	    	<h2 id="menu" class="resultsBlock roundCorners menu boxShadow">Menu:</h2>
+	    	<h2 id="menu" class="resultsBlock roundCorners menu boxShadow">Menu</h2>
 			<button id="show_tut" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu">wprowadzenie</button>
 			<button id="start" type="button" name="startWrap" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu">rozpocznij grę</button>
 		</div><!--end of #startWrap -->
@@ -43,13 +36,13 @@
 						<h4 class="text">trzecia runda odpowiadasz do końca (Twojego lub pytań)</h4>
 						<h4 class="text">ilość zdobywanych punktów zależna od czasu udzielenia odpowiedzi</h4>
 						<h4 class="text">na odpowiedź masz 10 sekund</h4>
-						<h3 class="center">dalej &raquo;</h3>
+						<h3 class="center resultsBlock boxShadow roundCorners">dalej &raquo;</h3>
 					</div>
 					<div class="item">
 						<h4 class="text">rozpoczynasz grę z trzema szansami</h4>
 						<h4 class="text">udzielenie złej odpowiedzi lub nie zaznaczenie odpowiedzi skutkuje utratą jednej szansy</h4>
 						<h4 class="text">utrata trzeciej szansy kończy grę</h4>						
-						<h3 class="center">dalej &raquo;</h3>
+						<h3 class="center resultsBlock boxShadow roundCorners">dalej &raquo;</h3>
 					</div>
 					<div class="item">
 					<h4 class="text">aby dostać się do tabeli wszechwiedzących, musisz zdobyć więcej punktów niż osoba zajmująca ostatnie miejsce</h4>

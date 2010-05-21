@@ -4,23 +4,15 @@ $ja = array("email" => "valid","password" => "valid","logged" => "false","game" 
 
 if(isset($_POST['email']) && isset($_POST['password'])) {
 	
-	$email = trim(mysql_prep($_POST['email']));
-	$password = trim(mysql_prep($_POST['password']));
-	$ja['game'] = $_POST['game'];
+    $ja['game'] = $_POST['game'];
+	$email = trim($db->escape_value($_POST['email']));
+	$password = trim($db->escape_value($_POST['password']));
 	$found_user = User::authenticate($email, $password);
 	if($found_user) {
-		
-		if($found_user->active == 1) {
 			
-			// login user if he was found in database and password is correct and active is set to 1
+			// login user if he was found in database and password is correct
 			$session->login($found_user);
 			$ja['logged'] = "true";
-			
-		} else {
-			
-			$ja["email"] = "inactive";
-			
-		}
 		
 	} else {
 		

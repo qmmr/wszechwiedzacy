@@ -1,13 +1,11 @@
 <?php
-require_once 'lib/swift_required.php';
+require_once '../lib/swift_required.php';
   
 //Create the Transport the call setUsername() and setPassword()
-//$transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465)
-//  ->setUsername('bez.niczego@gmail.com')
-//  ->setPassword('+#3r3!zIVo*G0D')
-//  ;
-
-$transport = Swift_SmtpTransport::newInstance();
+$transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, 'ssl')
+    ->setUsername('bez.niczego@gmail.com')
+    ->setPassword('+#3r3!zIVo*G0D')
+    ;
 
 //Create the Mailer using your created Transport
 $mailer = Swift_Mailer::newInstance($transport);
@@ -20,8 +18,6 @@ $message = Swift_Message::newInstance('Testowo')
 //  ->setTo(array('kumeek@gmail.com' => 'qmmr', 'chory.katol@gmail.com' => 's!ckatol'))
   ;
 
-
-
 //$root = $_SERVER['DOCUMENT_ROOT'].'wszechwiedzacy/rejestracja';
 //$template = file_get_contents($root . '/template.html');
 //$cid = $message->embed(Swift_Image::fromPath('http://net.tutsplus.cdn.plus.org/wp-content/themes/tuts_theme/images/logo.gif'));
@@ -33,5 +29,5 @@ $message = Swift_Message::newInstance('Testowo')
 $result = $mailer->send($message);
 //$result = $mailer->batchSend($message);
 if($result) {
-    echo "email was sent!";
+    //echo "email was sent!";
 }

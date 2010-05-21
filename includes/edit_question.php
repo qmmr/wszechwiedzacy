@@ -4,16 +4,16 @@
     if(isset($_POST['id'])) {
 	$time = date("Y-m-j H:i:s", time());
 	$id = $_POST['id'];
-	$runda = trim(mysql_prep($_POST['runda']));
-	$autor = trim(mysql_prep($_POST['autor']));
-	$kategoria = trim(mysql_prep($_POST['kategoria']));
-	$tresc = trim(mysql_prep($_POST['tresc']));
-	$odp_a = trim(mysql_prep($_POST['odp_a']));
-	$odp_b = trim(mysql_prep($_POST['odp_b']));
-	$odp_c = trim(mysql_prep($_POST['odp_c']));
-	$odp_d = trim(mysql_prep($_POST['odp_d']));
-	$poprawna = trim(mysql_prep($_POST['poprawna']));
-	$link = trim(mysql_prep($_POST['link']));
+	$runda = trim($db->escape_value($_POST['runda']));
+	$autor = trim($db->escape_value($_POST['autor']));
+	$kategoria = trim($db->escape_value($_POST['kategoria']));
+	$tresc = trim($db->escape_value($_POST['tresc']));
+	$odp_a = trim($db->escape_value($_POST['odp_a']));
+	$odp_b = trim($db->escape_value($_POST['odp_b']));
+	$odp_c = trim($db->escape_value($_POST['odp_c']));
+	$odp_d = trim($db->escape_value($_POST['odp_d']));
+	$poprawna = trim($db->escape_value($_POST['poprawna']));
+	$link = trim($db->escape_value($_POST['link']));
 	$json_arr["id"] = $id;
 	$json_arr["runda"] = $runda;
 	$json_arr["kategoria"] = $kategoria;

@@ -1,0 +1,12 @@
+Witaj {USERNAME},
+
+Witam w comiesiêcznym newsletterze wszechwiedz¹cego!
+
+W tym miesi¹cu mamy sporo nowoœci, aby przeczytaæ wiêcej zapraszam na bloga http://wszechwiedzacy.pl/blog
+
+Pozdrawiam i ¿yczê mi³ego grania,
+Marcin 'qmmr' Kumorek
+
+Otrzyma³eœ ten email, gdy¿ jesteœ zarejestrowanym u¿ytkownikiem w serwisie wszechwiedzacy.pl.
+Je¿eli nie chcesz wiêcej otrzymywaæ wiadomoœci o nowoœciach w serwisie, mo¿esz wyrejestrowaæ siê u¿ywaj¹c tego linku
+{SITEPATH}/remove_email.php?email={EMAIL}&key={KEY}

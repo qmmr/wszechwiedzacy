@@ -31,29 +31,29 @@
 */
 /* Component containers
 ----------------------------------*/
-.ui-widget { font-family: Helvetica,Arial,sans-serif; font-size: 1em; }
-.ui-widget .ui-widget { font-size: 1em; }
+.ui-widget { font-family: Helvetica,Arial,sans-serif; font-size: 26px; text-transform: uppercase; }
+.ui-widget .ui-widget { font-size: 20px; }
 .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Helvetica,Arial,sans-serif;}
-.ui-widget-content { border: 1px solid #eeeeee; background: #ffffff url(images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x; color: #0d1c33; }
+.ui-widget-content { border: 1px solid #eeeeee; background: #ffffff url(http://localhost/wszechwiedzacy/stylesheets/images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x; color: #0d1c33; }
 .ui-widget-content a { color: #0d1c33; }
-.ui-widget-header { border: 1px solid #88b500; background: #a1d700 url(images/ui-bg_diagonals-small_50_a1d700_40x40.png) 50% 50% repeat; color: #ffffff; font-weight: bold; }
+.ui-widget-header { border: 1px solid #88b500; background: #a1d700 url(http://localhost/wszechwiedzacy/stylesheets/images/ui-bg_diagonals-small_50_a1d700_40x40.png) 50% 50% repeat; color: #ffffff; font-weight: bold; }
 .ui-widget-header a { color: #ffffff; }
 
 /* Interaction states
 ----------------------------------*/
-.ui-state-default, .ui-widget-content .ui-state-default { border: 1px solid #d8dcdf; background: #ededed url(images/ui-bg_highlight-hard_50_ededed_1x100.png) 50% 50% repeat-x; font-weight: bold; color: #336ec8; }
+.ui-state-default, .ui-widget-content .ui-state-default { border: 1px solid #d8dcdf; background: #ededed url(http://localhost/wszechwiedzacy/stylesheets/images/ui-bg_highlight-hard_50_ededed_1x100.png) 50% 50% repeat-x; font-weight: bold; color: #336ec8; }
 .ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #336ec8; text-decoration: none; }
-.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus { border: 1px solid #cdd5da; background: #f6f6f6 url(images/ui-bg_highlight-hard_100_f6f6f6_1x100.png) 50% 50% repeat-x; font-weight: bold; color: #a1d700; }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus { border: 1px solid #cdd5da; background: #f6f6f6 url(http://localhost/wszechwiedzacy/stylesheets/images/ui-bg_highlight-hard_100_f6f6f6_1x100.png) 50% 50% repeat-x; font-weight: bold; color: #a1d700; }
 .ui-state-hover a, .ui-state-hover a:hover { color: #a1d700; text-decoration: none; }
-.ui-state-active, .ui-widget-content .ui-state-active { border: 1px solid #88b500; background: #f5ffd7 url(images/ui-bg_diagonals-medium_65_f5ffd7_40x40.png) 50% 50% repeat; font-weight: bold; color: #618200; }
+.ui-state-active, .ui-widget-content .ui-state-active { border: 1px solid #88b500; background: #f5ffd7 url(http://localhost/wszechwiedzacy/stylesheets/images/ui-bg_diagonals-medium_65_f5ffd7_40x40.png) 50% 50% repeat; font-weight: bold; color: #618200; }
 .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #618200; text-decoration: none; }
 .ui-widget :active { outline: none; }
 
 /* Interaction Cues
 ----------------------------------*/
-.ui-state-highlight, .ui-widget-content .ui-state-highlight {border: 1px solid #a1d700; background: #f8ffe6 url(images/ui-bg_glass_55_f8ffe6_1x400.png) 50% 50% repeat-x; color: #444444; }
+.ui-state-highlight, .ui-widget-content .ui-state-highlight {border: 1px solid #a1d700; background: #f8ffe6 url(http://localhost/wszechwiedzacy/stylesheets/images/ui-bg_glass_55_f8ffe6_1x400.png) 50% 50% repeat-x; color: #444444; }
 .ui-state-highlight a, .ui-widget-content .ui-state-highlight a { color: #444444; }
-.ui-state-error, .ui-widget-content .ui-state-error {border: 1px solid #cc0000; background: #f3d8d8 url(images/ui-bg_diagonals-small_75_f3d8d8_40x40.png) 50% 50% repeat; color: #2e2e2e; }
+.ui-state-error, .ui-widget-content .ui-state-error {border: 1px solid #cc0000; background: #f3d8d8 url(http://localhost/wszechwiedzacy/stylesheets/images/ui-bg_diagonals-small_75_f3d8d8_40x40.png) 50% 50% repeat; color: #2e2e2e; }
 .ui-state-error a, .ui-widget-content .ui-state-error a { color: #2e2e2e; }
 .ui-state-error-text, .ui-widget-content .ui-state-error-text { color: #2e2e2e; }
 .ui-priority-primary, .ui-widget-content .ui-priority-primary { font-weight: bold; }
@@ -64,14 +64,14 @@
 ----------------------------------*/
 
 /* states and images */
-.ui-icon { width: 16px; height: 16px; background-image: url(images/ui-icons_17373c_256x240.png); }
-.ui-widget-content .ui-icon {background-image: url(images/ui-icons_17373c_256x240.png); }
-.ui-widget-header .ui-icon {background-image: url(images/ui-icons_ffffff_256x240.png); }
-.ui-state-default .ui-icon { background-image: url(images/ui-icons_0073ea_256x240.png); }
-.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: url(images/ui-icons_a1d700_256x240.png); }
-.ui-state-active .ui-icon {background-image: url(images/ui-icons_618200_256x240.png); }
-.ui-state-highlight .ui-icon {background-image: url(images/ui-icons_0073ea_256x240.png); }
-.ui-state-error .ui-icon, .ui-state-error-text .ui-icon {background-image: url(images/ui-icons_cc0000_256x240.png); }
+.ui-icon { width: 16px; height: 16px; background-image: url(http://localhost/wszechwiedzacy/stylesheets/images/ui-icons_17373c_256x240.png); }
+.ui-widget-content .ui-icon {background-image: url(http://localhost/wszechwiedzacy/stylesheets/images/ui-icons_17373c_256x240.png); }
+.ui-widget-header .ui-icon {background-image: url(http://localhost/wszechwiedzacy/stylesheets/images/ui-icons_ffffff_256x240.png); }
+.ui-state-default .ui-icon { background-image: url(http://localhost/wszechwiedzacy/stylesheets/images/ui-icons_0073ea_256x240.png); }
+.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: url(http://localhost/wszechwiedzacy/stylesheets/images/ui-icons_a1d700_256x240.png); }
+.ui-state-active .ui-icon {background-image: url(http://localhost/wszechwiedzacy/stylesheets/images/ui-icons_618200_256x240.png); }
+.ui-state-highlight .ui-icon {background-image: url(http://localhost/wszechwiedzacy/stylesheets/images/ui-icons_0073ea_256x240.png); }
+.ui-state-error .ui-icon, .ui-state-error-text .ui-icon {background-image: url(http://localhost/wszechwiedzacy/stylesheets/images/ui-icons_cc0000_256x240.png); }
 
 /* positioning */
 .ui-icon-carat-1-n { background-position: 0 0; }
@@ -262,7 +262,7 @@
 .ui-corner-all { -moz-border-radius: 4px; -webkit-border-radius: 4px; border-radius: 4px; }
 /* Overlays */
 .ui-widget-overlay { background: #f6ffdb url(http://localhost/wszechwiedzacy/stylesheets/images/ui-bg_diagonals-small_50_4f9300_40x40.png) 50% 50% repeat; opacity: .90;filter:Alpha(Opacity=90); }
-.ui-widget-shadow { margin: -8px 0 0 -8px; padding: 8px; background: #333333 url(images/ui-bg_flat_0_333333_40x100.png) 50% 50% repeat-x; opacity: .10;filter:Alpha(Opacity=10); -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; }
+.ui-widget-shadow { margin: -8px 0 0 -8px; padding: 8px; background: #333333 url(http://localhost/wszechwiedzacy/stylesheets/images/ui-bg_flat_0_333333_40x100.png) 50% 50% repeat-x; opacity: .10;filter:Alpha(Opacity=10); -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; }
 /* Resizable */
 .ui-resizable { position: relative;}
 .ui-resizable-handle { position: absolute;font-size: 0.1px;z-index: 99999; display: block;}
@@ -282,11 +282,11 @@
 .ui-accordion .ui-accordion-header a { display: block; font-size: 1em; padding: .5em .5em .5em .7em; }
 .ui-accordion-icons .ui-accordion-header a { padding-left: 2.2em; }
 .ui-accordion .ui-accordion-header .ui-icon { position: absolute; left: .5em; top: 50%; margin-top: -8px; }
-.ui-accordion .ui-accordion-content { padding: 1em 2.2em; border-top: 0; margin-top: -2px; position: relative; top: 1px; margin-bottom: 2px; overflow: auto; display: none; zoom: 1; }
+.ui-accordion .ui-accordion-content { padding: 5px; border-top: 0; margin-top: -2px; position: relative; top: 1px; margin-bottom: 2px; overflow: auto; display: none; zoom: 1; }
 .ui-accordion .ui-accordion-content-active { display: block; }
 /* Autocomplete */
 .ui-autocomplete { position: absolute; cursor: default; }	
-.ui-autocomplete-loading { background: white url('images/ui-anim_basic_16x16.gif') right center no-repeat; }
+.ui-autocomplete-loading { background: white url('http://localhost/wszechwiedzacy/stylesheets/images/ui-anim_basic_16x16.gif') right center no-repeat; }
 
 /* workarounds */
 * html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
@@ -343,15 +343,15 @@ input.ui-button { padding: .4em 1em; }
 /* workarounds */
 button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra padding in Firefox */
 /* Dialog */
-.ui-dialog { position: absolute; padding: .2em; width: 300px; overflow: hidden; }
+.ui-dialog { position: absolute; padding: 10px; overflow: hidden; }
 .ui-dialog .ui-dialog-titlebar { padding: .5em 1em .3em; position: relative;  }
-.ui-dialog .ui-dialog-title { float: left; margin: .1em 16px .2em 0; } 
+.ui-dialog .ui-dialog-title {} 
 .ui-dialog .ui-dialog-titlebar-close { position: absolute; right: .3em; top: 50%; width: 19px; margin: -10px 0 0 0; padding: 1px; height: 18px; }
 .ui-dialog .ui-dialog-titlebar-close span { display: block; margin: 1px; }
 .ui-dialog .ui-dialog-titlebar-close:hover, .ui-dialog .ui-dialog-titlebar-close:focus { padding: 0; }
-.ui-dialog .ui-dialog-content { border: 0; padding: .5em 1em; background: none; overflow: auto; zoom: 1; }
-.ui-dialog .ui-dialog-buttonpane { text-align: left; border-width: 1px 0 0 0; background-image: none; margin: .5em 0 0 0; padding: .3em 1em .5em .4em; }
-.ui-dialog .ui-dialog-buttonpane button { float: right; margin: .5em .4em .5em 0; cursor: pointer; padding: .2em .6em .3em .6em; line-height: 1.4em; width:auto; overflow:visible; }
+.ui-dialog .ui-dialog-content { border: 0; padding: 0; background: none; overflow: auto; zoom: 1; }
+.ui-dialog .ui-dialog-buttonpane { text-align: left; border-width: 1px 0 0 0; background-image: none; margin: .5em 0 0 0; }
+.ui-dialog .ui-dialog-buttonpane button { float: right; margin: 15px 0 10px; cursor: pointer; line-height: 1.4em; width: 100%; overflow:visible; }
 .ui-dialog .ui-resizable-se { width: 14px; height: 14px; right: 3px; bottom: 3px; }
 .ui-draggable .ui-dialog-titlebar { cursor: move; }
 /* Slider*/

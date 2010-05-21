@@ -25,7 +25,6 @@ var wszechwiedzacy = {
 		
         // checks if we're developing on localhost or live online
         (window.location.hostname == "localhost") ? wszechwiedzacy.site_url = "http://localhost/wszechwiedzacy/" : wszechwiedzacy.site_url = "http://wszechwiedzacy.pl/";
-        //alert("location is "+window.location.hostname+" so the url is "+wszechwiedzacy.site_url);
         
         // LOGIN / REGISTER
         $("#login, #log").live('click',function(e){
@@ -49,7 +48,7 @@ var wszechwiedzacy = {
         });
         
         // changeDialog (from login to register)
-        $("#changeDialog").click(function () {
+        $("#changeDialog").click(function(){
             
             $("#login_dialog").dialog("close");
             $("#register_dialog").dialog("open");
@@ -60,7 +59,7 @@ var wszechwiedzacy = {
         // LOGIN DIALOG
         var ld = $("#login_dialog").dialog({
             
-            open: function (e, ui) {                
+            open: function(e, ui){                
                 wszechwiedzacy.mForm = $("#login_form");
                 wszechwiedzacy.mForm.find("#login_email").focus();
                 $(this).keyup(function (e) {                    
@@ -68,7 +67,6 @@ var wszechwiedzacy = {
                     var s = wszechwiedzacy.mForm.find("input:last").val();
                     if (e.keyCode == 13 && f != "" && s != "") {                        
                         e.preventDefault();
-                        //console.log("keyCode "+e.keyCode+" was pressed and we have no empty inputs");
                         wszechwiedzacy.mForm.closest('.ui-dialog').find(".ui-dialog-buttonpane button:eq(0)").trigger("click");
                     }                    
                 });                
@@ -79,16 +77,16 @@ var wszechwiedzacy = {
             closeOnEscape: false,
             modal: true,
             zIndex: 9999,
+			width: 440,
             title: 'Logowanie',
-            beforeclose: function () {
-                // this function fires when close is pressed, resets warnings and clears input
+            beforeclose: function(){
                 var validator = $("#login_form").validate();
                 validator.resetForm();
                 $("input:filled").val("").removeClass("valid");
             },
             buttons: {
                 
-                Loguj: function () {
+                Loguj: function(){
                     
                     $("#login_form").validate({
                         
@@ -101,28 +99,25 @@ var wszechwiedzacy = {
                         },
                         messages: {
                             email: {
-                                required: "Adres email jest wymagany.",
+                                required: "Email jest wymagany.",
                                 email: "To nie jest poprawny adres email."
                             },
-                            password: "Proszę podać swoje hasło ..."
+                            password: "Podaj hasło."
                         }
                     }).form();
                     // if the form is valid we can send the input to php
                     
                     if(wszechwiedzacy.mForm.valid()){
                         
-                        $("#login_form").hide(); // hide form
-                        $("#login_dialog .ajaxLoader").show(); // show image ajax-loader.gif
-                        $(".dialogLink").hide(); // hide link to change dialogs to register
+                        $("#login_form").hide();
+                        $("#login_dialog .ajaxLoader").show();
+                        $(".dialogLink").hide();
                         var email = $("#login_email").val();
                         var pwd = $("#login_password").val();
-                        if(wszechwiedzacy.session_pts == 0){
-                            var game = "false";
-                        } else {
-                            var game = "true";
-                        }
+						var game;
+						(wszechwiedzacy.session_pts == 0) ? game = "false" : game = "true";
                         var user_data = "email=" + email + "&password=" + pwd + "&game=" + game;
-                        console.log(user_data);
+                        // console.log(user_data);
                         
                         $.ajax({
                             type: "POST",
@@ -133,31 +128,31 @@ var wszechwiedzacy = {
                                 
                                 var logged = data.logged;
                                 var email = data.email;
-                                var pwd = data.password;
-                                
-                                // updates the login panel
-                                $.get(wszechwiedzacy.site_url+"includes/reg_head.php", function(data){
-                                   $("#log_head").replaceWith(data); 
-                                });
+                                var pwd = data.password;                                
                                 
                                 if (data.game == "false" && logged == "true"){
+									// updates the login panel
+									$.get(wszechwiedzacy.site_url+"includes/reg_head.php", function(data){
+									   $("#log_head").replaceWith(data); 
+									});
                                     // if we log in not during game
                                     ld.dialog('close');
-                                    //window.location.reload();
                                     
                                 } else if(data.game == "true" && logged == "true"){
+									// updates the login panel
+									$.get(wszechwiedzacy.site_url+"includes/reg_head.php", function(data){
+									   $("#log_head").replaceWith(data); 
+									});
                                     // when player wants to log during the end game
                                     ld.dialog('close');
-                                    console.log("the game is on so we do sth else");
                                     $.get(wszechwiedzacy.site_url+"includes/in_game_login.php", function(data){
                                         $("#rezultat").html(data); 
                                     });
                                     
                                 } else {
                                     
-                                    $("#login_dialog .ajaxLoader").hide(); // hide ajax-loader.gif
-                                    $("#login_form").show(); // showing form// again
-                                    // do sth when php don't find user
+                                    $("#login_dialog .ajaxLoader").hide();
+                                    $("#login_form").show();
                                     
                                     if (email == "inactive"){
                                         
@@ -179,7 +174,7 @@ var wszechwiedzacy = {
                                 } // end if/else valid
                                 
                             },
-                            error: function (XMLHttpRequest, textStatus, errorThrown) {alert("błąd podczas logowania: " + textStatus);}
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {console.log("błąd podczas logowania: " + textStatus);}
                             
                         }); // end ajax
                         
@@ -225,7 +220,7 @@ var wszechwiedzacy = {
                 $("input:filled").val("");
                 
             },
-            width: 320,
+            width: 440,
             buttons: {
                 
                 Odzyskaj: function () {
@@ -240,13 +235,11 @@ var wszechwiedzacy = {
                             }
                             
                         },
-                        messages: {
-                            
+                        messages: {                            
                             email: {
-                                required: "Musisz podać swój adres email.",
-                                email: "To nie jest poprawny adres email."
-                            }
-                            
+                                required: "Podaj adres email",
+                                email: "Niepoprawny adres email"
+                            }                            
                         }
                         
                     }).form();
@@ -313,24 +306,8 @@ var wszechwiedzacy = {
         
         // REGISTER DIALOG
         $("#register_dialog").dialog({
-            open: function (event, ui) {
-                
-                wszechwiedzacy.mForm = $("#register_form");
-                wszechwiedzacy.mForm.find("#reg_username").focus();
-                $(this).keydown(function(e) {
-                    
-                    //alert(e.keyCode);
-                    var filled = wszechwiedzacy.mForm.find("input:filled").length;
-                    if (e.keyCode == 13 && filled == 3) {
-                        
-                        e.preventDefault();
-                        alert("keyCode "+e.keyCode+" was pressed and we have no empty inputs");
-                        //wszechwiedzacy.mForm.closest('.ui-dialog').find(".ui-dialog-buttonpane button:eq(0)").trigger("click");
-                        
-                    }
-                    
-                });
-                
+            open: function(e, ui){                
+                $("#reg_username").focus();
             },
             autoOpen: false,
             draggable: false,
@@ -338,14 +315,14 @@ var wszechwiedzacy = {
             modal: true,
             zIndex: 9999,
             title: 'Rejestracja',
-            beforeclose: function () {
+            beforeclose: function(){
                 var validator = $("#register_form").validate();
                 validator.resetForm();
                 $("input:filled").val("").removeClass("valid");
             },
-            width: 350,
+            width: 440,
             buttons: {
-                Zarejestruj: function () {
+                Rejestruj: function(){
                     $("#register_form").validate({
                         rules: {                            
                             reg_username: {
@@ -360,97 +337,79 @@ var wszechwiedzacy = {
                                 required: true,
                                 email: true
                             }                            
-                        },
-                        // errorElement: "div",
-                        // wrapper: "div", // a wrapper around the error message
-                        errorPlacement: function (error, element) {
-                            
-                            if (element.attr('type') == 'checkbox') {
-                                element = element.parent();
-                                element.css("border", "1px solid #820F00");
-                            }
-                            offset = element.offset();
-                            error.insertAfter(element);
-                            error.addClass('checkbox_error');
-                            // error.css('position', 'absolute');
-                            // error.css('left', offset.left + element.outerWidth());
-                            // error.css('top', offset.top);
-                        },
+                        },                        
                         messages: {                            
                             reg_username: {
-                                required: "Proszę podać nick użytkownika.",
-                                rangelength: "Minimalna ilość znaków 3, max 14."
+                                required: "Podaj swój nick",
+                                rangelength: "Minimalna ilość znaków 3, max 14"
                             },
                             reg_password: {
-                                required: "Proszę podać hasło.",
-                                rangelength: "Minimalna ilość znaków 4, max 14."
+                                required: "Podaj hasło",
+                                rangelength: "Minimalna ilość znaków 4, max 14"
                             },
                             email: {
-                                required: "Adres email jest wymagany.",
-                                email: "To nie jest poprawny adres email."
+                                required: "Email jest wymagany",
+                                email: "Niepoprawny adres email"
                             }
                         }
                     }).form();
-                    // if the form is valid we can send the input to php
-                    if (wszechwiedzacy.mForm.valid()) {
+					
+                    if ($("#register_form").valid()){
                         
-                        $("#register_dialog .ajaxLoader").show(); // ajax-loader.gif
+                        $("#register_dialog .ajaxLoader").show();
                         $("#register_form").hide();
                         var usr = $("#reg_username").val();
                         var pwd = $("#reg_password").val();
-                        var email = $("#reg_email").val();                        
+                        var email = $("#reg_email").val();						
                         var data = "username=" + usr + "&password=" + pwd + "&email=" + email;
-                        //alert(data);
-                        
+                        // console.log(data);						
+						
                         $.ajax({
                             type: "POST",
                             data: data,
                             url: wszechwiedzacy.site_url + "includes/rejestracja.php",
                             dataType: "json",
-                            success: function (data) {
+                            success: function(data){
                                 
-                                //alert(data.user+" | "+data.password+" | "+data.email+" | "+data.mysql);
-                                // ajax-loader.gif
+                                // console.log(data.user+" | "+data.password+" | "+data.email+" | "+data.mysql);
                                 $("#register_dialog .ajaxLoader").hide();
                                 $("#register_form").show();
-                                if (data.user == "valid" && data.password == "valid" && data.email == "sent" && data.mysql == "valid") {
-                                    
-                                    // alert(data.mysql);
-                                    $("#register_dialog").dialog('close');
-                                    $("#header").after("<div class=\"info_block\"><p>Wiadomość z kodem aktywacyjnym wysłaliśmy na adres <a href=\"mailto:" + email + "\">" + email + "</a></p><p>Aby dokończyć proces aktywacji, kliknij na link znajdujący się w wiadomości.</p></div>");
-                                    $(".info_block").animate({
-                                        "height": "toggle",
-                                        "opacity": "toggle"
-                                    }, 1000, "easeOutQuint");
-                                    var cd = setTimeout(function () {
-                                        $(".info_block").animate({
-                                            "height": "toggle",
-                                            "opacity": "toggle"
-                                        }, 2000, "easeInQuint", function () {
-                                            $(this).remove();
-                                        });
-                                    }, 5000);
+                                if (data.user == "valid" && data.password == "valid" && data.email == "sent" && data.mysql == "valid"){
+									
+									if(wszechwiedzacy.session_pts != 0){
+									
+										$("#register_dialog").dialog('close');
+										$("#log").next("h4").hide().html("<span>Na adres "+email+" zostal wyslany email z kluczem aktywacyjnym.<br />Prosze aktywowac konto w ciagu nastepnych 24h w przeciwnym razie zostanie usuniete.<br />Teraz mozesz sie zalogowac uzywajac adresu email i hasla</h4>").fadeIn(1500).next().remove();
+									
+									} else {
+										
+										$("#register_dialog").dialog('close');
+										$("#header").after("<div class=\"info_block\"><p>Aby dokończyć proces aktywacji, przeczytaj wiadomość, wyslana na adres <a href=\"mailto:" + email + "\">" + email + "</a></p><a name=\"close\" href=\"#\"></a></div>");
+										$(".info_block").slideDown(1000);
+										$("a[name=close]").click(function(){
+											clearTimeout(cd);
+											$(".info_block").slideToggle(500);
+										});
+										var cd = setTimeout(function () {
+											$(".info_block").slideToggle(1000);
+										}, 10000);
+										
+									}                                    
                                     
                                 } else {
                                     
                                     $("#register_dialog .ajaxLoader").hide();
                                     $("#register_form").show();
                                     var validator = $("#register_form").validate();
-                                    if (data.user == "taken") {
-                                        validator.showErrors({
-                                            "reg_username": "Ten nick jest już zarejestrowany!"
-                                        });
-                                    }
-                                    if (data.email == "taken") {
-                                        validator.showErrors({"email": "Adres email jest już zarejestrowany!"});
-                                    }
-                                    if (data.email == "error") {alert("Przepraszamy! Wystąpił błąd podczas rejestracji i email z kluczem potwierdzającym nie został wysłany. Aby aktywować konto proszę skontaktować się z nami pod adresem kontakt@wszechwiedzacy.pl");}
-                                    if (data.mysql != "valid") {alert("Oops! Wystąpił błąd podczas przetwarzania informacji w bazie MySQL, spróbuj jeszcze raz lub skontaktuj się z nami pod adresem kontakt@wszechwiedzacy.cpl");}
+                                    (data.user == "taken") ? validator.showErrors({"reg_username": "Ten nick jest już zarejestrowany!"}) : false;                                    
+                                    (data.email == "taken") ? validator.showErrors({"email": "Adres email jest już zarejestrowany!"}) : false;
+                                    (data.email == "error") ? alert("Oops! Email z kluczem aktywacyjnym nie został wysłany. Aby aktywować konto wyślij email do kontakt@wszechwiedzacy.pl") : false;
+                                    (data.mysql != "valid") ? alert("Oops! Błąd MySQL, spróbuj jeszcze raz lub napisz do nas na adres kontakt@wszechwiedzacy.pl") : false;
                                     
                                 } // end of data validation
                                 
                             },
-                            error: function (XMLHttpRequest, textStatus, errorThrown) {alert("Błąd podczas rejestracji: " + textStatus);}
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {console.log("Błąd podczas rejestracji: " + textStatus);}
                             
                         }); // end of ajax call
                     } // end of if(client_valid)
@@ -460,18 +419,17 @@ var wszechwiedzacy = {
         // end of register dialog
         
         // LOGOUT via AJAX
-        $("#logout").click(function (e) {
-            e.preventDefault();
-            // alert("Logout");
+        $("#logout").live('click',function(e){
+            e.preventDefault();            
             $.ajax({
                 type: "POST",
                 url: wszechwiedzacy.site_url + "includes/logowanie.php",
-                success: function (data) {
+                success: function(){
+					// console.log("Logged out");
                     window.location = wszechwiedzacy.site_url;
                 },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {alert("błąd podczas wylogowania: " + textStatus);}
-            })
-            
+                error: function (XMLHttpRequest, textStatus, errorThrown) {console.log("błąd podczas wylogowania: "+textStatus);}
+            });            
         }); // end #logout.click
         
     },
@@ -524,6 +482,7 @@ var wszechwiedzacy = {
                 modal: true,
                 resizable: false,
                 closeOnEscape: false,
+				dialogClass: 'dialogClose',
                 zIndex: 9999,
                 width: 320,
                 title: 'Uwaga!',
@@ -542,73 +501,49 @@ var wszechwiedzacy = {
             wszechwiedzacy.gra.setButtons();
             // captureKeys
             wszechwiedzacy.gra.captureKeys(document.documentElement);
-            // set live() buttons
-            var sbtn = $("#save").live('click',function(e){
-                var form = $("#saveScore");
-                if(form.length != 0) {
-                    
-                    var validator = form.validate({
-                        rules: {
-                            name: {
-                                required: true,
-                                rangelength: [3, 20]
-                            },
-                            email: {
-                                required: true,
-                                email: true
-                            }
-                        },
-                        messages: {
-                            name: {
-                                required: "Kto ma zostać wpisany do tabeli?",
-                                rangelength: "min. ilość znaków 3, max. 20"
-                            },
-                            email: {
-                                required: "Adres email jest wymagany.",
-                                email: "To nie jest poprawny adres email."
-                            }
-                        }
-                    }).form();
-                    //end validator
-                    
-                    if(form.valid()) {
-                        var url = wszechwiedzacy.site_url+"includes/zapisz_wynik.php";
-                        var data = "name=" + $("#hs_name").val() + "&email=" + $("#hs_email").val();
-                        $("#rezultat").hide();
-                        $("#loaderContainer").fadeIn(250);
-                        
-                        $.ajax({
-                            type: "POST",
-                            data: data,
-                            url: url,
-                            dataType: "json",
-                            success: function (data) {
-                                
-                                $("#loaderContainer").fadeOut(100, function(){$("#endWrap").fadeIn(500);});
-                                $("#position").text("Miejsce: " + data['key']);
-                                
-                            },
-                            error: function (XMLHttpRequest, textStatus, errorThrown) {alert("wynik nie został zapisany, powód: " + textStatus);}                            
-                        });
-                        
-                    } // end of form.valid
-                    
-                } else {
-                    
-                    $("#rezultat").fadeOut(100, function(){$("#endWrap").fadeIn(500);});
-                    
-                } // end of form.length 
-            });
+            // set live() buttons            
 			$("button[name=back]").live('click',function(e){
-                e.preventDefault();				
+                e.preventDefault();
+				// console.log("mv -> "+wszechwiedzacy.gra.mv.attr('id')+" cv -> "+wszechwiedzacy.gra.cv.attr('id'));
 				wszechwiedzacy.gra.fadeInOut("out",wszechwiedzacy.gra.mv,wszechwiedzacy.gra.cv);
-				// $("#tutorialWrap").fadeOut(250,function(){wszechwiedzacy.gra.mv.fadeIn(500);}); 
             });
 			$("#tut_end").live('click',function(e){
 				wszechwiedzacy.gra.cv.remove();                            
                 wszechwiedzacy.gra.showNextQuestion();                            
 				return false;
 			});
+			$("#continue").live('click',function(e){
+				$("#breakWrap").remove();
+				wszechwiedzacy.gra.showNextQuestion();
+			});
+			$("#sts").live('click',function(e){
+				wszechwiedzacy.gra.cv = $("#statystyki");
+				wszechwiedzacy.gra.fadeInOut("in",wszechwiedzacy.gra.mv,wszechwiedzacy.gra.cv);
+			});
+			$("#wa").live('click',function(e){
+				wszechwiedzacy.gra.cv = $("#wrongAnswers");
+				wszechwiedzacy.gra.fadeInOut("in",wszechwiedzacy.gra.mv,wszechwiedzacy.gra.cv);
+			});
+			$("#show_tut").live('click',function(e){
+				wszechwiedzacy.gra.cv = $("#tutorialWrap");
+				wszechwiedzacy.gra.fadeInOut("in",wszechwiedzacy.gra.mv,wszechwiedzacy.gra.cv);
+			});
+			$("#showRank").live('click',function(e){
+				alert("szefie, mamy problem ...");
+			});
+			$("button[name=again]").live('click',function(e){
+				$("#rezultat, #endWrap, #statystyki, #wrongAnswers").remove();
+				var lc = $("#loaderContainer").fadeIn(500);
+				$.ajax({
+					url: wszechwiedzacy.site_url + "includes/clear_stats.php",
+					dataType: "json",
+					success: function() {
+						lc.hide();
+						wszechwiedzacy.gra.showNextQuestion();
+					},
+					error: function (XMLHttpRequest, textStatus, errorThrown) {console.log("stats not cleared via ajax -> " + textStatus);}
+				});
+			});			
         },
         // end of gra.init
         
@@ -695,11 +630,13 @@ var wszechwiedzacy = {
                                                 url: wszechwiedzacy.site_url + "includes/wynik.php",
                                                 success: function (data) {
                                                     $("#mainContent").append(data);
+													// assigns endWrap as the main view
+													wszechwiedzacy.gra.mv = $("#endWrap");
                                                     $("#rezultat").fadeIn(1000);
                                                     $("#loaderContainer").hide(); // hides the animation gif                                                    
                                                     wszechwiedzacy.gra.setButtons();
                                                 },
-                                                error: function (XMLHttpRequest, textStatus, errorThrown) {alert("ajax call to wynik.php failed, reason: " + textStatus);}
+                                                error: function (XMLHttpRequest, textStatus, errorThrown) {console.log("ajax call to wynik.php failed -> " + textStatus);}
                                                 
                                             });
                                             break;
@@ -714,9 +651,7 @@ var wszechwiedzacy = {
                                                     wszechwiedzacy.gra.setButtons();
                                                     $("#loaderContainer").hide(); // hides the animation gif
                                                 },
-                                                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                                                    alert("ajax call to runda.php failed, reason: " + textStatus);
-                                                }
+                                                error: function (XMLHttpRequest, textStatus, errorThrown) {console.log("ajax to runda.php failed -> " + textStatus);}
                                             });
                                             break;
                                         
@@ -727,53 +662,8 @@ var wszechwiedzacy = {
                                         
                                     } // end of swith(game)
                                 },
-                                error: function (XMLHttpRequest, textStatus, errorThrown) {alert("ajax to odpowiedz.php failed->" + textStatus);
-                                }
+                                error: function (XMLHttpRequest, textStatus, errorThrown) {console.log("ajax to odpowiedz.php failed->" + textStatus);}
                             });
-                            break;
-                        
-                        case "continue":
-                            $("#breakWrap").remove();
-                            wszechwiedzacy.gra.showNextQuestion();
-                            break;
-                        
-                        case "show_tut":
-							//wszechwiedzacy.gra.main_view = $("#"+$(this).attr('name'));
-							wszechwiedzacy.gra.cv = $("#tutorialWrap");
-							wszechwiedzacy.gra.fadeInOut("in",wszechwiedzacy.gra.mv,wszechwiedzacy.gra.cv);
-                            //$("#startWrap").fadeOut(250, function(){$("#tutorialWrap").fadeIn(500);});
-                            break;
-                        
-                        case "wa":
-                            $("#endWrap").fadeOut(250, function(){$("#wrongAnswers").fadeIn(500);});
-                            $("#out").click(function(){
-                                $("#wrongAnswers").fadeOut(250, function(){$("#endWrap").fadeIn(500);});
-                            })
-                            break;
-                        
-                        case "sts":
-                            $("#endWrap").fadeOut(250, function(){$("#statystyki").fadeIn(500);});
-                            $("#out2").click(function(){
-                                $("#statystyki").fadeOut(250, function(){$("#endWrap").fadeIn(500);});
-                            })
-                            break;
-                        
-                        case "again":
-                            $("#rezultat, #endWrap, #statystyki, #wrongAnswers").remove();
-                            var lc = $("#loaderContainer").fadeIn(500);
-                            $.ajax({
-                                url: wszechwiedzacy.site_url + "includes/clear_stats.php",
-                                dataType: "json",
-                                success: function (data) {
-                                    lc.hide();
-                                    wszechwiedzacy.gra.showNextQuestion();
-                                },
-                                error: function (XMLHttpRequest, textStatus, errorThrown) {alert("stats not cleared via ajax, sorry: " + textStatus);}
-                            });
-                            break;
-                        
-                        case "anuluj":
-                            $("#rezultat").fadeOut(100, function(){$("#endWrap").fadeIn(500);});
                             break;
                         
                         default:
@@ -1229,6 +1119,7 @@ var wszechwiedzacy = {
                 // this.innerHTML = 'clicked';
             });
         },
+		// end init
         addRow: function (id, runda, kategoria, tresc) {
             wszechwiedzacy.admin.oTable.fnAddData(["<td name=\"numer\">" + id + "</td>", "<td name=\"runda\">" + runda + "</td>", "<td class=\"tla\" name=\"" + kategoria + "\">" + kategoria + "</td>", "<td class=\"tla\" name=\"" + tresc + "\">" + tresc + "</td>", "<td class=\"edit\"><a id=\"" + id + "\" class=\"edit\" href=\"\"><span class=\"edit\" title=\"Edytuj pytanie\"></span></a></td>", "<td class=\"delete\"><a id=\"" + id + "\" class=\"delete\" href=\"\"><span class=\"delete\" title=\"Skasuj pytanie\"></span></a></td>"]);
         },
@@ -1309,28 +1200,10 @@ var wszechwiedzacy = {
     
     kontakt: {
         init: function () {
-            //alert("sir, I think we made contact ...");
             $("#frmKontakt").find("#name").focus();
             $("#kontakt_submit").click(function (e) {
                 e.preventDefault();
                 var validator = $("#frmKontakt").validate({
-                    //errorPlacement: function(error, element) {
-                    //  error.appendTo( element.parent().prev() );
-                    //},
-                    // highlight: function(element, errorClass) {
-                    //    
-                    // $(element).fadeOut(250, function() {
-                    // $(element).addClass(errorClass).fadeIn(500);
-                    // $(element.form).find("label[for=" + element.id +"]:last").addClass(errorClass).fadeIn(250);
-                    // });
-                    //    
-                    // },
-                    // unhighlight: function(element, errorClass) {
-                    //    
-                    // $(element).removeClass(errorClass);
-                    // $(element.form).find("label[for=" + element.id +"]:last").removeClass(errorClass);
-                    //    
-                    // },
                     rules: {
                         name: "required",
                         email: {
@@ -1352,27 +1225,21 @@ var wszechwiedzacy = {
                         temat: "Wybierz jeden z tematów",
                         mainMessage: {
                             required: "Co chcesz nam przekazać?",
-                            rangelength: "Minimalna ilość znaków 15, max 255."
+                            rangelength: "Min 15 znaków, max 255"
                         }
                     },
                     success: function (label) {
                         label.text("").addClass("success");
                     }
                 }).form();
+				
                 if ($("#frmKontakt").valid()) {
                     var name = $("#kontakt_name").val();
                     var email = $("#kontakt_email").val();
                     var subject = $("#temat :selected").text();
-                    var msg = $("#mainMessage").val();
-                    //var rcf = $("#frmKontakt #recaptcha_challenge_field").val();
-                    //var rrf = $("#frmKontakt #recaptcha_response_field").val();
+                    var msg = $("#mainMessage").val();                    
                     var values = "name=" + name + "&email=" + email + "&temat=" + subject + "&msg=" + msg;
-                    //+ "&recaptcha_challenge_field=" + rcf + "&recaptcha_response_field=" + rrf;
-                    //alert(values);
-                    
-                    //$("#mainContent").html("<div class=\"emailConfirmation\"><span class=\"checkmark\"></span><h1>Email został wysłany.</h1><p>Dziękuję za kontakt. Spodziewaj się odpowiedzi w przeciągu 24h!</p><div class=\"clearfloat\"></div></div>").hide().fadeIn(500, function () {
-                    //    $(".checkmark").animate({top: +70}, 750, "easeOutBounce");
-                    //}); // end of animate
+                    // console.log(values);
                     
                     $.ajax({
                         type: "POST",
@@ -1381,32 +1248,17 @@ var wszechwiedzacy = {
                         dataType: "json",
                         success: function (data) {
                             // alert(data.msg);
-                            if (data.msg == "valid" && data.recaptcha == "none") {
-                                // when recaptcha is valid and email was sent (recaptcha is inactive right now so instead valid we use none)
+                            if (data.msg == "valid") {
                                 $(".formWrap").fadeOut(1000, function () {
-                                    // this function is run when fadeOut finishes
-                                    // alert("Hidden");
                                     $("#mainContent").html("<div class=\"emailConfirmation\"><span class=\"checkmark\"></span><h1>Email został wysłany.</h1><p>Dziękuję za kontakt. Spodziewaj się odpowiedzi w przeciągu 24h!</p><div class=\"clearfloat\"></div></div>").hide().fadeIn(500, function () {
                                         $(".checkmark").animate({top: +70}, 750, "easeOutBounce");
                                     }); // end of animate
                                 });
-                            }
-                            else {
-                                // alert("email was not sent! "+data.msg+" | "+data.recaptcha);
-                                // $("#recaptcha_msg").show(500);
-                                var n = $("#recaptcha_msg").length;
-                                if (n != 0) {
-                                    $("#recaptcha_msg").css({"height": "0px"}).animate({height: "24px"}, 500, "easeOutBounce");
-                                }
-                                else {
-                                    $("div.clear_float:last").after("<div id=\"recaptcha_msg\"><p><span class=\"ui-icon-alert\"></span>Ops! Przepisane wyrazy nie pasują, spróbuj ponownie lub przeładuj obrazek!</p></div>");
-                                    $("#recaptcha_msg").css({"height": "0px"}).animate({height: "24px"}, 750, "easeOutBounce");
-                                }
+                            } else {
+                                console.log(data.msg);
                             }
                         },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {
-                            alert("błąd podczas przesyłania wiadomości: " + textStatus);
-                        } // end of error
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {console.log("błąd podczas przesyłania wiadomości: " + textStatus);}
                     }); // end of ajax
                     
                 } // end of #frmKontakt valid
@@ -1423,62 +1275,13 @@ var wszechwiedzacy = {
             
             var htr = $("tr:contains("+wszechwiedzacy.session_pts+")").attr('id');
             console.log("pts: "+wszechwiedzacy.session_pts+"htr = "+htr);
-            if(htr.length != 0) {                
-                $("#"+htr).expose({
-                    color: '#337b86',
-                    opacity: 0.7,
-                    loadSpeed: 250,
-                    api: true          
-                }).load();                
-            } else {                
-                $("tr:eq(1)").expose({
-                    color: '#337b86',
-                    opacity: 0.7,
-                    loadSpeed: 250,
-                    api: true          
-                }).load();
-            }
             
-            //alert("this is ranking page");
-            // $("tr:contains('agn0stic')&tr:contains(11)").expose({api: true,
-            // onBeforeClose: function(e) {
-            // //e.preventDefault();
-            // //alert("Do you want to quit?");
-            // //$("#quit").dialog("open");
-            // }
-            // }).load();
-            
-            $("tr").each(function(){
-                
-                $(this).click(function(){                    
-                    //alert("tr");
-                    $(this).expose({
-                        api: true,
-                        color: "#A1D700",
-                        opacity: 0.75,
-                        loadSpeed: 500
-                    }).load();
-                    
-                });
-                
-            });
-            
-            //$("tr:contains('agn0stic')").expose({
-            //    api: true,
-            //    onBeforeClose: function(e) {
-            //        //e.preventDefault();
-            //        //alert("Do you want to quit?");
-            //        //$("#quit").dialog("open");
-            //    }
-            //}).load();
-            
-        } // end of ranking.init()
-        
+        } // end of ranking.init()        
     },
     // end of ranking
     
     twojaStrona: {
-        init: function () {
+        init: function(){
             
             $("#edytuj_profil").click(function (e) {
                 e.preventDefault();
@@ -1491,13 +1294,9 @@ var wszechwiedzacy = {
                 resizable: false,
                 bgiframe: true,
                 modal: true,
-                width: 430,
+				dialogClass: 'profil',
+                width: 550,
                 title: 'Edycja profilu',
-                beforeclose: function () {
-                    // var validator = $("#profile_form").validate();
-                    // validator.resetForm();
-                    // $("input:filled").val("").removeClass("valid");
-                },
                 buttons: {
                     Aktualizuj: function () {
                         var wiek = $("#wiek:checked");
@@ -1505,11 +1304,8 @@ var wszechwiedzacy = {
                         var newsletter = $("#newsletter:checked");
                         var passwords = $("input:password");
                         var collected = "username=" + $("#userName").val() + "&wiek=" + wiek.val() + "&sex=" + sex.val() + "&city=" + $("#city").val() + "&degree=" + $("#degree").val() + "&newsletter=" + newsletter.val() + "&old_pass=" + passwords.eq(0).val() + "&new_pass=" + passwords.eq(1).val() + "&new_pass2=" + passwords.eq(2).val();
-                        // alert(collected);
-                        // if password fields are not empty we run validator else we submit
-                        // query via ajax
-                        if (passwords.val() != "") {
-                            
+                        // console.log(collected);
+                        if (passwords.val() != "") {                            
                             var validator = $("#profile_form").validate({
                                 rules: {
                                     old_pass: {
@@ -1540,12 +1336,11 @@ var wszechwiedzacy = {
                                     },
                                 }
                                 
-                            }).form();
-                            
-                        }
+                            }).form();                            
+                        } // end passwords.val() != ""
                         
                         if ($("#profile_form").valid()) {
-                            $("#edit_profile .ajaxLoader").show(); // ajax-loader.gif
+                            $("#edit_profile .ajaxLoader").show();
                             $("#profile_form").hide();
                             
                             $.ajax({                                
@@ -1560,29 +1355,21 @@ var wszechwiedzacy = {
                                         window.location.reload();
                                         
                                     } else {
-                                        // hides animation git and shows form
                                         $("#edit_profile .ajaxLoader").hide();
                                         $("#profile_form").show();
                                         
                                         if (data.msg == "wrong old password") {
                                             
-                                            // alert(data.msg);
                                             var validator = $("#profile_form").validate();
-                                            validator.showErrors({
-                                                "old_pass": "Obecne hasło jest niepoprawne!"
-                                            });
+                                            validator.showErrors({"old_pass": "Obecne hasło jest niepoprawne!"});
                                             
                                         } else if (data.msg == "old equals new") {
                                             
-                                            // alert(data.msg);
                                             var validator = $("#profile_form").validate();
-                                            validator.showErrors({
-                                                "new_pass": "To jest stare hasło!"
-                                            });
+                                            validator.showErrors({"new_pass": "To jest stare hasło!"});
                                             
                                         } else {
-                                            alert(data.msg);
-                                            // window.location.reload();
+                                            console.log(data.msg);
                                         }
                                         
                                     }
@@ -1595,19 +1382,16 @@ var wszechwiedzacy = {
                         }
                         
                     },
-                    // end of aktualizuj button
-                    Anuluj: function () {$(this).dialog("close");}
+                    Anuluj: function() {$(this).dialog("close");}
                     
                 } // end of buttons
             }); // end of edit_profile dialog
             
             $link_sfs = $("#show_full_stats");
-            $link_sfs.click(function () {
-                
-                $("#full_stats").toggle(1000, function () {
+            $link_sfs.click(function(){                
+                $("#full_stats").slideToggle(1000, function () {
                     ($link_sfs.text() == "pokaż dodatkowe statystyki") ? $link_sfs.text("ukryj dodatkowe statystyki") : $link_sfs.text("pokaż dodatkowe statystyki");
-                });
-                
+                });                
             });
             
         }

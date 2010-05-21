@@ -4,13 +4,13 @@ require_once("initialize.php");
 
 $ja = array("user" => "valid", "password" => "valid", "email" => "valid", "mysql" => "valid");
 
-if(isset($_POST["username"])) {
+if(isset($_POST)) {
 
 	$errors = array();
-	$username = trim(mysql_prep($_POST['username']));
-	$password = trim(mysql_prep($_POST['password']));
+	$username = trim($db->escape_value($_POST['username']));
+	$password = trim($db->escape_value($_POST['password']));
 	$hashed_password = sha1($password);
-	$email = trim(mysql_prep($_POST['email']));
+	$email = trim($db->escape_value($_POST['email']));
 
 	// check if user name hasn't been taken
 	$user_exists = User::user_exists($username);
@@ -45,7 +45,9 @@ if(isset($_POST["username"])) {
 		$result = mysql_query($query);
 		if ($result) {
 				
-			// we are going to send letter with confirmation
+			/**
+			 * we are going to send letter with confirmation
+			 */
 			$user_id = mysql_insert_id();
 			$key = $username . $email . date("H:i:s");
 			$skey = sha1($key);
@@ -62,23 +64,25 @@ if(isset($_POST["username"])) {
 				include_once '../lib/swift_required.php';
 				//put info into an array to send to the function
 				$info = array(
+                            'temat' => 'Witamy w gronie użytkowników wszechwiedzacy.pl',
 							'username' => $username,
 							'email' => $email,
 							'key' => $skey
 				);
 				 
 				//send the email
-				if(send_email($info, 'register')) {
-
-					//email sent
-					$ja['email'] = "sent";
-
-				} else {
-
-					// email was not sent
-					$ja['email'] = "error";
-
-				}
+//				if(send_email($info, 'register')) {
+//
+//					//email sent
+//					$ja['email'] = "sent";
+//
+//				} else {
+//
+//					// email was not sent
+//					$ja['email'] = "error";
+//
+//				}
+                $ja['email'] = "sent";
 				 
 			} else {
 				 
@@ -92,13 +96,6 @@ if(isset($_POST["username"])) {
 			$ja['mysql'] = "Błąd podczas rejestracji użytkownika: " . mysql_error();
 				
 		} // end of $result if/else
-
-	} else {
-
-		// notify the user that the nick has been taken
-		// $ja['user'] = "name taken";
-		// there were errors in length
-		// $ja['password'] = "length";
 
 	} // end of empty($errors) if/else
 

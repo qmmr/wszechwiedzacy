@@ -16,7 +16,7 @@
 	<input id="login_password" class="required" name="password" type="password" value="" />
     </form>
     <div class="ajaxLoader" style="display: none"></div>
-    <a href="#" id="changeDialog" class="dialogLink" title="Nie masz konta? Zarejestruj się zupełnie za darmo.">Nowy użytkownik? Zarejestruj się!</a>
+    <a href="#" id="changeDialog" class="dialogLink" title="Nie masz konta? Zarejestruj się za darmo!">Nowy użytkownik? Zarejestruj się!</a>
     <a href="#" id="forgot" class="dialogLink" title="Odzyskaj hasło, nowe hasło wyślemy na adres mailowy.">Nie pamiętasz hasła?</a>
 </div>
 
@@ -36,17 +36,16 @@
     <form id="forgot_form" method="post" action="">
 	<label for="lost_email">Email:</label>
 	<input id="lost_email" class="required" name="email" title="Podaj adres email" type="text" value="" />
-	<p class="info">Podaj adres email na który zarejestrowane zostało konto w serwisie, a my wyślemy Ci nowe hasło.</p>
+	<p class="info">Podaj adres email na który zarejestrowane zostało konto w serwisie.</p>
     </form>
     <div class="ajaxLoader" style="display: none"></div>
 </div>
 <?php else : ?>
 <p id="reg_head" class="fltrt">    
-	<span class="login_flt">Witaj,</span>
-	<a href="<?php echo SITE_URL; ?>gracze" target="_self" class="login_flt"><?php echo $session->username; ?></a>
+	<span class="login_flt"><?php echo $session->username; ?></span>
 	<?php if($_SESSION['admin_rights'] == 1) : ?>
 	<span class="login_flt">|</span>
-	<a class="login_flt" href="<?php echo SITE_URL; ?>admin" target="_self">admin panel</a>
+	<a class="login_flt" href="<?php echo SITE_URL; ?>admin" target="_self">admin</a>
 	<?php endif; ?>
 	<span class="login_flt">|</span>
 	<a href="<?php echo SITE_URL; ?>gracze" target="_self" class="login_flt">moje konto</a>

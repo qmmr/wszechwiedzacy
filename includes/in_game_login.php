@@ -23,15 +23,23 @@ $r = User::find_top_scores(50);
 // finds the position based on the points player scored
 $key = array_search($score, $r) + 1;
 ?>
-<div class="badge">
+<div class="badge big">
     <h1>Gratulacje <?php echo $username; ?>!</h1>
     <h1 class="punkty"><?php echo $score; ?>
         <span><?php echo polOdmiana('punkt', $score); ?></span>
     </h1>
 </div>
-<button  id="save" title="menu główne" name="save" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all menu boxShadow">powrót do menu</button>
+<button title="menu główne" name="back" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all menu boxShadow">powrót do menu</button>
 <script>
 $(function(){
-	$("#position").text("Miejsce: <?php echo $key;?>");
+    wszechwiedzacy.gra.cv = $("#rezultat");
+    var txt = "<span id=\"position\" class=\"high miejsce\">Miejsce: <?php echo $key; ?></span>";
+    txt += "<span class=\"high score\">Punkty: <?php echo $score; ?></span>";
+    txt += "<span class=\"tick\"></span>";
+	$("#yourResult").html(txt);
+    var h = "Twój wynik to <?php echo $score; ?> punktów, czas: <?php echo ileSekund($time); ?>.<br>";
+    h += "Sprawdź swoją pozycję w <a id=\"showRank\" href=\"#\">rankingu</a> zwycięzców.<br>";
+    h += "Poprawne odpowiedzi: <?php echo $_SESSION['odp_poprawne']; ?><br>Procent poprawnych odpowiedzi: <?php echo $perc;?>%";
+    $("#statystyki h3").replaceWith(h);
 });
 </script>

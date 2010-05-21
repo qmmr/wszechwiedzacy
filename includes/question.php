@@ -15,8 +15,9 @@ class Question
 	public $odpowiedz_d;
 	public $poprawna;
 	public $link;
+    
 	function __construct() {
-		// ???
+		
 	}
 	
 	public static function how_many_questions() {
@@ -25,7 +26,7 @@ class Question
 		$sql = ("SELECT COUNT(*) FROM pytania");
 		$count = $database->query( $sql );
 		$result = mysql_fetch_row($count);
-		//self::$total_questions = $result[0];
+		return $result[0];
 	}
 	
 	public static function find_all() {

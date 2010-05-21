@@ -15,8 +15,8 @@ if($_POST) {
 		$hashed_email = $_SESSION['hashed_email'];
 		
 	} else {
-		$email = trim(mysql_prep($_POST['email']));
-		$name =  trim( mysql_prep( $_POST['name'] ) );
+		$email = trim($db->escape_value($_POST['email']));
+		$name =  trim( $db->escape_value($_POST['name'] ) );
 		$hashed_email = md5($email);
 		
 	}

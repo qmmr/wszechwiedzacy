@@ -56,41 +56,6 @@ function output_message( $message = "" ) {
 
 }
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// until now it is almost the same as function escape_values in $database
-// but I don't know how to fix it now so I have this function repeat itself ...
-function mysql_prep( $value ) {
-
-	$magic_quotes_active = get_magic_quotes_gpc();
-	$new_enough_php = function_exists( "mysql_real_escape_string" ); // i.e. PHP >= v4.3.0
-
-	if ( $new_enough_php ) {
-
-		// PHP v4.3.0 or higher undo any magic quote effects so mysql_real_escape_string can do the work
-		if ( $magic_quotes_active ) {
-			 
-			$value = stripslashes( $value );
-			 
-		}
-
-		$value = mysql_real_escape_string( $value );
-
-	} else {
-
-		// before PHP v4.3.0 if magic quotes aren't already on then add slashes manually
-		if ( !$magic_quotes_active ) {
-			 
-			$value = addslashes( $value );
-			 
-		}
-		// if magic quotes are active, then the slashes already exist
-
-	}
-
-	return $value;
-
-}
-
 // ---------------------------------------------
 // form fields -------------------------------
 // ---------------------------------------------
@@ -121,7 +86,7 @@ function check_form_length($lengths, $max = true) {
 
 		foreach($lengths as $field => $max_length) {
 			 
-			if(strlen(trim(mysql_prep($_POST[$field]))) > $max_length) {
+			if(strlen(trim($_POST[$field])) > $max_length) {
 
 				$fields_errors[] = translate_field($field) . " jest zbyt długi(e) (max. {$max_length} znaków).";
 				//echo "Error max length: {$field}";
@@ -134,7 +99,7 @@ function check_form_length($lengths, $max = true) {
 
 		foreach($lengths as $field => $min_length) {
 			 
-			if(strlen(trim(mysql_prep($_POST[$field]))) < $min_length) {
+			if(strlen(trim($_POST[$field])) < $min_length) {
 
 				$fields_errors[] = translate_field($field) . " jest za krótki(e) (min. {$min_length} znaki).";
 				//echo "Error min length: {$field}";
@@ -324,7 +289,7 @@ function polOdmiana($word, $num) {
 function format_email($info, $format, $type) {
 
 	//set the root
-	$root = $_SERVER['DOCUMENT_ROOT'].'/rejestracja';
+	$root = '/home/wszechwi/public_html/rejestracja';
 
 	//grab the type of template content
 	if($type == "register") {
@@ -343,6 +308,7 @@ function format_email($info, $format, $type) {
 	} else {
 
 		$template = file_get_contents($root . '/newsletter.'. $format);
+        $template = ereg_replace('{USERNAME}', $info['username'], $template);
 
 	}
 
@@ -363,7 +329,7 @@ function send_email($info, $type) {
 	$transport = Swift_MailTransport::newInstance();
 	$mailer = Swift_Mailer::newInstance($transport);
 	$message = Swift_Message::newInstance();
-	$message ->setSubject('Witamy w gronie użytkowników wszechwiedzacy.pl');
+	$message ->setSubject($info['temat']);
 	$message ->setFrom(array('kontakt@wszechwiedzacy.pl' => 'wszechwiedzacy.pl'));
 	$message ->setTo(array($info['email'] => $info['username']));
 	$message ->setBody($body_plain_txt);

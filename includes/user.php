@@ -66,7 +66,7 @@ class User{
 
 	public static function find_user ( $user ) {
 		$query = "SELECT * FROM users WHERE user_name = '{$user}' LIMIT 1";
-		$results =self::find_by_sql($query);
+		$results = self::find_by_sql($query);
 		return !empty($results) ? array_shift($results) : false;
 	}
 

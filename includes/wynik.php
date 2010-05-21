@@ -56,28 +56,29 @@ $czas .= " " . ileSekund($r['sec']);
 		<span class="<?php echo $color; ?> score">Punkty: <?php echo $score; ?></span>
 		<span class="tick"></span>
 		<?php elseif($beaten && !$logged) : ?>
-		<span class="<?php echo $color; ?> score">Zdobytych punktow: <?php echo $score . " " . polOdmiana('punkt',$score); ?></span>
+		<span class="<?php echo $color; ?> miejsce"><?php echo $score . " " . polOdmiana('punkt',$score); ?></span>
 		<span class="tick"></span>
         <?php else : ?>
 		<span class="<?php echo $color; ?> miejsce">Aby dostać się na listę zwycięzców trzeba zdobyć conajmniej <?php echo $btm+1; ?> pkt.</span>
 		<span class="wa"></span>
 		<?php endif; ?>
 	</div>
-	<h2 id="menu" class="resultsBlock roundCorners boxShadow menu">Menu:</h2>
+	<h2 id="menu" class="resultsBlock roundCorners boxShadow menu">Menu</h2>
 	<!-- zmo - zobacz moje odpowiedzi zsw - zapisz swój wynik -->
-	<button id="wa" name="wa" type="button" rel="wrongAnswers" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu">błędne odpowiedzi</button>
+	<button id="wa" name="wa" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu">błędne odpowiedzi</button>
 	<button id="sts" name="sts" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu">statystki</button>
 	<button id="again" name="again" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu">zagraj jeszcze raz</button>
-</div><!-- /breakWrap -->
+</div><!-- /#endWrap -->
 	
 <div id="statystyki" class="oknoGry">
 	<h3 class="gra not">
-		Twój wynik to <?php echo polOdmiana('punkt', $score); ?><br />w czasie <?php echo $czas; ?><br />
-		Sprawdź swoją pozycję w <a id="showResults" href="<?php echo SITE_URL; ?>ranking" target="_blank">rankingu</a> zwycięzców.<br />
+		Twój wynik to <?php echo $score . " " . polOdmiana('punkt', $score); ?>.<br />
+        Czas: <?php echo $czas; ?><br />
+		Sprawdź swoją pozycję w <a id="showRank" href="#">rankingu</a> zwycięzców.<br />
 		Poprawne odpowiedzi: <?php echo $_SESSION['odp_poprawne']; ?><br />
 		Procent poprawnych odpowiedzi: <?php echo $perc; ?>%
 	</h3>
-	<button name="out" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu" id="out2">powrót do menu</button>
+	<button name="back" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu">powrót do menu</button>
 </div><!--end #statystyki-->
 
 <?php if($score != 0 && $score >= $btm) : ?>
@@ -91,21 +92,19 @@ $czas .= " " . ileSekund($r['sec']);
             <span><?php echo polOdmiana('punkt', $score); ?></span>
         </h1>
     </div>
-	<button  id="save" title="menu główne" name="save" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all menu boxShadow">powrót do menu</button>
+	<button title="menu główne" name="back" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all menu boxShadow">powrót do menu</button>
 		
 	<?php else : ?>
 	
-	<form id="saveScore" action="" method="post">
-        <div class="badge">
-            <h1 class="punkty"><?php echo $score; ?>
-                <span><?php echo polOdmiana('punkt', $score); ?></span>
-            </h1>
-        </div>
-		<h4>Chcesz wpisać się na listę wszechwiedzących?</h4>
-		<button id="log" title="menu główne" name="save" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all menu boxShadow">zaloguj się</button>
-		<h4><span>albo <a id="reg2" href="#">zarejestruj</a> jeśli jeszcze nie masz konta</span></h4>				
-		<button id="anuluj" title="anuluj" name="save" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all"></button>
-	</form>
+    <div class="badge">
+        <h1 class="punkty"><?php echo $score; ?>
+            <span><?php echo polOdmiana('punkt', $score); ?></span>
+        </h1>
+    </div>
+	<h4>Chcesz wpisać się na listę wszechwiedzących?</h4>
+	<button id="log" title="menu główne" name="save" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all menu boxShadow">zaloguj się</button>
+	<h4><span>albo <a id="reg2" href="#">zarejestruj</a> jeśli jeszcze nie masz konta</span></h4>				
+	<button title="anuluj" name="back" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all menu boxShadow">powrót do menu</button>
 		
 	<?php endif; ?>
 	
@@ -116,24 +115,25 @@ $czas .= " " . ileSekund($r['sec']);
 <div id="rezultat" class="oknoGry">
 	<h3 class="gra not">
 		Twój wynik: <?php echo $score; ?> punktów.<br />
-		Przykro mi, zabrakło Ci <span class=""><?php echo ($btm-$score)+1; ?></span> punktów, aby móc wpisać się na listę zwycięzców.<br />
-		Zobacz Swoje błędy i zagraj jeszcze raz!<br />
-		Pamiętaj, trening czyni mistrza!
-	</h3>		
-	<button name="save" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all menu boxShadow" id="save">powrót do menu</button>	
+		Przykro mi, zabrakło Ci <span class=""><?php echo ($btm-$score)+1; ?></span> punktów, aby móc wpisać się na listę zwycięzców, ale ...<br />
+        "trening czyni mistrza!" więc ...<br />
+        zobacz Swoje błędy i ...
+	</h3>
+    <button name="again" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all menu boxShadow">zagraj jeszcze raz</button>
+	<button name="back" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all menu boxShadow">powrót do menu</button>	
 </div>
 
 <?php endif; ?>
 
 <div id="wrongAnswers" class="oknoGry">
 	 
-	 <h3 class="gra first">Twoje błędne odpowiedzi:</h3>	
+    <h3 class="gra first">Twoje błędne odpowiedzi:</h3>	
 	<div id="accordion">	
 		
 		<h3><a href="#section1">Pytanie #1</a></h3>
 		
 		<!-- tooltip1 id matches selector  with id="wrong1" -->
-		<div class="ia" id="">	
+		<div class="ia">	
 			<p class="pytanie">Treść:</p>
 			<p class="question">"<?php echo (isset($_SESSION['first_wrong'])) ? $_SESSION['first_wrong']['tresc'] : false; ?>"</p>
 			<p class="wrong"><span class="wrong"></span> Twoja odpowiedź: <?php echo $_SESSION['first_wrong']['ya']; ?></p>
@@ -144,7 +144,7 @@ $czas .= " " . ileSekund($r['sec']);
 		<h3><a href="#section2">Pytanie #2</a></h3>
 		
 		<!-- tooltip2 id matches selector  with id="wrong2" -->
-		<div class="ia" id="">	
+		<div class="ia">	
 			<p class="pytanie">Treść:</p>
 			<p class="question">"<?php echo (isset($_SESSION['second_wrong'])) ? $_SESSION['second_wrong']['tresc'] : false; ?>"</p>
 			<p class="wrong"><span class="wrong"></span> Twoja odpowiedź: <?php echo $_SESSION['second_wrong']['ya']; ?></p>
@@ -155,7 +155,7 @@ $czas .= " " . ileSekund($r['sec']);
 		<h3><a href="#section3">Pytanie #3</a></h3>
 		
 		<!-- tooltip3 id matches selector  with id="wrong3" -->
-		<div class="ia" id="">	
+		<div class="ia">	
 			<p class="pytanie">Treść:</p>
 			<p class="question">"<?php echo (isset($_SESSION['third_wrong'])) ? $_SESSION['third_wrong']['tresc'] : false; ?>"</p>
 			<p class="wrong"><span class="wrong"></span> Twoja odpowiedź: <?php echo $_SESSION['third_wrong']['ya']; ?></p>
@@ -165,12 +165,17 @@ $czas .= " " . ileSekund($r['sec']);
 		
 	</div><!-- end of #accordion -->
 	
-	<button name="out" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu" id="out">powrót do menu</button>
+	<button name="back" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu">powrót do menu</button>
 	
 	<script type="text/javascript">
 		$(function() {
 			<?php
-				// assigns php var to javascript
+                // assigns endWrap as the main view
+                if($beaten || (!$beaten && !$logged)) {
+                    echo "wszechwiedzacy.gra.cv = $(\"#rezultat\");";   
+                } else {
+                    echo "wszechwiedzacy.gra.cv = $(\"#statystyki\");";
+                }				
 				echo (isset($_SESSION['zdobyte_punkty'])) ? "wszechwiedzacy.session_pts = {$_SESSION['zdobyte_punkty']};" : false;
 			?>
 			$("#accordion").accordion({

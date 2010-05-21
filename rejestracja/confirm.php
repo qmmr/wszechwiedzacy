@@ -9,8 +9,8 @@
     //check if the $_GET variables are present
     if(!empty($_GET['email']) && !empty($_GET['key'])) {
 	
-	$email = mysql_prep( $_GET['email']);
-	$key = mysql_prep( $_GET['key']);
+	$email = $db->escape_value($_GET['email']);
+	$key = $db->escape_value($_GET['key']);
 	$query = "SELECT * FROM confirm WHERE email = '{$email}' AND confirm_key = '{$key}' LIMIT 1";
 	
 	$result = mysql_query($query);

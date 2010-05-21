@@ -7,23 +7,23 @@ if(isset($_POST)) {
 
 	global $database;
 
-	$username = trim(mysql_prep($_POST['username']));
+	$username = trim($db->escape_value($_POST['username']));
 	// finds user and stores values as object
 	$cu = User::find_user($username);
 
 	(isset($_POST['wiek']) && $_POST['wiek'] != "undefined") ? $wiek = 1 : $wiek = 0;
-	(isset($_POST['sex']) && $_POST['sex'] != "undefined") ? $sex = trim(mysql_prep($_POST['sex'])) : $sex = 0;
-	(isset($_POST['city']) && $_POST['city'] != "") ? $city = trim(mysql_prep($_POST['city'])) : $city = "";
-	(isset($_POST['degree']) && $_POST['degree'] != "wybierz") ? $degree = trim(mysql_prep($_POST['degree'])) : $degree = "";
+	(isset($_POST['sex']) && $_POST['sex'] != "undefined") ? $sex = trim($db->escape_value($_POST['sex'])) : $sex = 0;
+	(isset($_POST['city']) && $_POST['city'] != "") ? $city = trim($db->escape_value($_POST['city'])) : $city = "";
+	(isset($_POST['degree']) && $_POST['degree'] != "wybierz") ? $degree = trim($db->escape_value($_POST['degree'])) : $degree = "";
 	(isset($_POST['newsletter']) && $_POST['newsletter'] != "undefined") ? $newsletter = 1 : $newsletter = 0;
 	if ($_POST['old_pass'] != "") {
 	  
-		$old_pass = trim(mysql_prep($_POST['old_pass']));
+		$old_pass = trim($db->escape_value($_POST['old_pass']));
 		$oph = sha1($old_pass);
 	  
 	}
-	($_POST['new_pass'] != "") ? $new_pass = trim(mysql_prep($_POST['new_pass'])) : false;
-	($_POST['new_pass2'] != "") ? $new_pass2 = trim(mysql_prep($_POST['new_pass2'])) : false;
+	($_POST['new_pass'] != "") ? $new_pass = trim($db->escape_value($_POST['new_pass'])) : false;
+	($_POST['new_pass2'] != "") ? $new_pass2 = trim($db->escape_value($_POST['new_pass2'])) : false;
 
 	/**
 	 *	check if old pass is not the same as new, new pass and new pass2 match and if old pass is same as in db

@@ -24,13 +24,15 @@
 			<a href="<?php echo SITE_URL; ?>ranking"><img src="<?php echo SITE_URL; ?>images/slides/slide_4.png" alt="Sprawdź ranking!" /></a>
 		</div>
 		
-		<hr class="main" />
+		<!--
+<hr class="main" />
         
         <div class="content">
             <h3>Pytanie dnia</h3>
             <h4>Kiedy urodził się Fryderyk Chopin, wielki kompozytor, nazywany romantykiem fortepianu?</h4>
             <h5><a href="#">Znasz odpowiedź?</a></h5>
-        </div>        
+        </div>
+-->        
         
         <hr class="main" />
 		
