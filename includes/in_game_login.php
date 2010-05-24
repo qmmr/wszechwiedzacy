@@ -37,9 +37,9 @@ $(function(){
     txt += "<span class=\"high score\">Punkty: <?php echo $score; ?></span>";
     txt += "<span class=\"tick\"></span>";
 	$("#yourResult").html(txt);
-    var h = "Twój wynik to <?php echo $score; ?> punktów, czas: <?php echo ileSekund($time); ?>.<br>";
+    var h = "<h3 class=\"gra not\">Twój wynik to <?php echo $score; ?> punktów, czas: <?php echo ileSekund($time); ?>.<br>";
     h += "Sprawdź swoją pozycję w <a id=\"showRank\" href=\"#\">rankingu</a> zwycięzców.<br>";
-    h += "Poprawne odpowiedzi: <?php echo $_SESSION['odp_poprawne']; ?><br>Procent poprawnych odpowiedzi: <?php echo $perc;?>%";
+    h += "Poprawne odpowiedzi: <?php echo $_SESSION['odp_poprawne']; ?><br>Procent poprawnych odpowiedzi: <?php echo $perc;?>%</h3>";
     $("#statystyki h3").replaceWith(h);
 });
 </script>

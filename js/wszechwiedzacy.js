@@ -34,7 +34,7 @@ var wszechwiedzacy = {
             console.log($(this).attr('id')+" pts: "+wszechwiedzacy.session_pts);
         });
         
-        $("#register, #reg2").live('click',function(e){            
+        $("#register, #reg2, #reg3").live('click',function(e){
             e.preventDefault();
             $("#register_dialog").dialog("open");            
         });
@@ -126,9 +126,7 @@ var wszechwiedzacy = {
                             dataType: "json",
                             success: function (data) {
                                 
-                                var logged = data.logged;
-                                var email = data.email;
-                                var pwd = data.password;                                
+                                var logged = data.logged;                               
                                 
                                 if (data.game == "false" && logged == "true"){
 									// updates the login panel
@@ -146,7 +144,7 @@ var wszechwiedzacy = {
                                     // when player wants to log during the end game
                                     ld.dialog('close');
                                     $.get(wszechwiedzacy.site_url+"includes/in_game_login.php", function(data){
-                                        $("#rezultat").html(data); 
+                                        $("#rezultat").html(data).hide().fadeIn(1000); 
                                     });
                                     
                                 } else {
@@ -507,7 +505,7 @@ var wszechwiedzacy = {
 				// console.log("mv -> "+wszechwiedzacy.gra.mv.attr('id')+" cv -> "+wszechwiedzacy.gra.cv.attr('id'));
 				wszechwiedzacy.gra.fadeInOut("out",wszechwiedzacy.gra.mv,wszechwiedzacy.gra.cv);
             });
-			$("#tut_end").live('click',function(e){
+			$("button[name=start]").live('click',function(e){
 				wszechwiedzacy.gra.cv.remove();                            
                 wszechwiedzacy.gra.showNextQuestion();                            
 				return false;
@@ -538,7 +536,7 @@ var wszechwiedzacy = {
 					url: wszechwiedzacy.site_url + "includes/clear_stats.php",
 					dataType: "json",
 					success: function() {
-						lc.hide();
+						lc.stop(true,true).hide();
 						wszechwiedzacy.gra.showNextQuestion();
 					},
 					error: function (XMLHttpRequest, textStatus, errorThrown) {console.log("stats not cleared via ajax -> " + textStatus);}
@@ -632,7 +630,7 @@ var wszechwiedzacy = {
                                                     $("#mainContent").append(data);
 													// assigns endWrap as the main view
 													wszechwiedzacy.gra.mv = $("#endWrap");
-                                                    $("#rezultat").fadeIn(1000);
+                                                    wszechwiedzacy.gra.cv = $("#rezultat").fadeIn(1000);
                                                     $("#loaderContainer").hide(); // hides the animation gif                                                    
                                                     wszechwiedzacy.gra.setButtons();
                                                 },
@@ -696,6 +694,9 @@ var wszechwiedzacy = {
                         "borderBottomColor": "#58742b",
                         "borderLeftColor": "#58742b"
                     }, 250, "easeOutSine");
+					$(this).find("span").stop(true,true).animate({
+						opacity:.35
+					}, 250, 'easeOutSine');
                 }, function () {
                     $(this).stop().animate({
                         "backgroundColor": "#FFFFFF",
@@ -704,6 +705,9 @@ var wszechwiedzacy = {
                         "borderBottomColor": "#DFDFDF",
                         "borderLeftColor": "#DFDFDF"
                     }, 250, "easeOutSine");
+					$(this).find("span").stop(true,true).animate({
+						opacity:0
+					}, 250, 'easeOutSine');
                 }
             ).bind("click", function (e) {
                     // check if any other answer was chosen and deselect it
@@ -1450,7 +1454,9 @@ var wszechwiedzacy = {
         showLabels: function () {
             // alert("callback");
             if (wszechwiedzacy.gra.cdnum < 4) {
-                $("p.answer:eq(" + wszechwiedzacy.gra.cdnum + ")").fadeIn(300);
+                $("p.answer:eq(" + wszechwiedzacy.gra.cdnum + ")").fadeIn(300, function(){
+					$(this).find("span").stop(true,true).animate({opacity:0}, 750, 'easeOutSine');
+				});
                 wszechwiedzacy.gra.cdnum++;
                 if (wszechwiedzacy.gra.cdnum < 4) {
                     wszechwiedzacy.gra.countdown = setTimeout("wszechwiedzacy.time.showLabels()", 300);

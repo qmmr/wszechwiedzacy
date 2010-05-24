@@ -121,12 +121,12 @@ $secret = md5($question->poprawna);
 	<form id="odpowiedzi" method="post">
 		<div class="fltlft">
 			<p class="answer">
-				<label class="radio_empty" for="odp_a"><?php echo "$question->odpowiedz_a"; ?></label>
+				<label class="radio_empty" for="odp_a"><?php echo "$question->odpowiedz_a"; ?><span>1</span></label>
 				<input class="radioHidden" id="odp_a" type="radio" name="group" value="<?php echo "$question->odpowiedz_a"; ?>" />
 			</p>
 		
 			<p class="answer">
-				<label class="radio_empty" for="odp_b"><?php echo "$question->odpowiedz_b"; ?></label>
+				<label class="radio_empty" for="odp_b"><?php echo "$question->odpowiedz_b"; ?><span>2</span></label>
 				<input class="radioHidden" id="odp_b" type="radio" name="group" value="<?php echo "$question->odpowiedz_b"; ?>" />
 			</p>
 			<span id="tick"></span>
@@ -134,12 +134,12 @@ $secret = md5($question->poprawna);
 		
 		<div class="fltlftZero">
 			<p class="answer">
-				<label class="radio_empty" for="odp_c"><?php echo "$question->odpowiedz_c"; ?></label>
+				<label class="radio_empty" for="odp_c"><?php echo "$question->odpowiedz_c"; ?><span>3</span></label>
 				<input class="radioHidden" id="odp_c" type="radio" name="group" value="<?php echo "$question->odpowiedz_c"; ?>" />
 			</p>
 			
 			<p class="answer">
-				<label class="radio_empty" for="odp_d"><?php echo "$question->odpowiedz_d"; ?></label>
+				<label class="radio_empty" for="odp_d"><?php echo "$question->odpowiedz_d"; ?><span>4</span></label>
 				<input class="radioHidden" id="odp_d" type="radio" name="group" value="<?php echo "$question->odpowiedz_d"; ?>" />
 			</p>
 		</div><!-- end of .fltlftZero -->

@@ -1,0 +1,16 @@
+Witaj {USERNAME},
+
+Dziêkujemy, ¿e zdecydowa³eœ siê na rejestracjê w serwisie wszechwiedzacy.pl
+
+W tej chwili serwis jest w fazie beta testów, dlatego proszê o zg³aszanie wszystkich problemów w dzia³aniu poprzez formularz na stronie http://wszechwiedzacy.pl/kontakt
+Nie ukrywam, ¿e zale¿y mi na Twojej pomocy i bêdê bardzo wdziêczny za rady, opinie i sugestie, które przyczyni¹ siê do poprawy funkcjonalnoœci serwisu.
+
+W celu zakoñczenia procesu rejestracji proszê skopiowaæ poni¿szy kod i wkleiæ do paska adresu w Twojej przegl¹darce.
+
+{SITEPATH}/confirm.php?email={EMAIL}&key={KEY}
+
+Pozdrawiam i ¿yczê mi³ego grania,
+qmmr
+
+Otrzyma³eœ ten email, gdy¿ ktoœ za¿ada³ wys³ania go na ten adres z serwisu wszechwiedzacy.pl.
+Je¿eli nie chcia³eœ otrzymaæ tej wiadomoœci proszê o kontakt: kontakt@wszechwiedzacy.pl

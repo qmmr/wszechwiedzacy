@@ -14,20 +14,22 @@ $mailer = Swift_Mailer::newInstance($transport);
 $message = Swift_Message::newInstance('Testowo')
   ->setFrom(array('bez.niczego@gmail.com' => 'i dont care'))
   ->setTo(array('kumeek@gmail.com' => 'qmmr'))
-  ->setBody('Testowa wiadomość jest trochę długa, ale muszę zobaczyć jak to wygląda. Wstawię jeszcze jakiś html <b>To jest bold</b>')
+  //->setBody('Testowa wiadomość jest trochę długa, ale muszę zobaczyć jak to wygląda. Wstawię jeszcze jakiś html <b>To jest bold</b>')
 //  ->setTo(array('kumeek@gmail.com' => 'qmmr', 'chory.katol@gmail.com' => 's!ckatol'))
   ;
 
-//$root = $_SERVER['DOCUMENT_ROOT'].'wszechwiedzacy/rejestracja';
-//$template = file_get_contents($root . '/template.html');
-//$cid = $message->embed(Swift_Image::fromPath('http://net.tutsplus.cdn.plus.org/wp-content/themes/tuts_theme/images/logo.gif'));
-//$cid = $message->embed(Swift_Image::fromPath('images/soon.png'));
-//$message->setBody($template, 'text/html');
+$root = $_SERVER['DOCUMENT_ROOT'].'/rejestracja';
+$template = file_get_contents($root . '/newsletter_template.html');
+
+$template = ereg_replace('{USERNAME}', 'Darwin\'s amstaff', $template);
+$template = ereg_replace('{TOPPLAYER}', 'Darwin\'s amstaff', $template);
+
+$message->setBody($template, 'text/html');
 //$message->attach(Swift_Attachment::fromPath('http://wszechwiedzacy.com/rejestracja/header.gif'));
 
 //Send the message
 $result = $mailer->send($message);
 //$result = $mailer->batchSend($message);
 if($result) {
-    //echo "email was sent!";
+    echo "email was sent!";
 }

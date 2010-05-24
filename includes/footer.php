@@ -33,13 +33,11 @@
 <script src="http://www.google.com/jsapi"></script>
 <script>google.load("jquery", "1.4.2");</script>
 
-<!-- Tabs, Tooltip, Scrollable, Overlay, Expose. No jQuery. -->
-<script src="<?php echo SITE_URL; ?>js/jquery.tools.min.js"></script>
+<!-- Tabs, Tooltip, Scrollable, Overlay, Expose. No jQuery. --> 
+<script src="http://cdn.jquerytools.org/1.2.2/all/jquery.tools.min.js"></script>
     
-<script>
-	// if u want to use both jquerytools and jqueryui you need to load tools first
-	google.load("jqueryui", "1.8.1");
-</script>
+<!-- if u want to use both jquerytools and jqueryui you need to load tools first -->
+<script>google.load("jqueryui", "1.8.1");</script>
     
 <!-- jQuery validate plugin -->
 <script src="http://ajax.microsoft.com/ajax/jquery.validate/1.6/jquery.validate.js"></script>

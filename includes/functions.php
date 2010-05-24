@@ -294,7 +294,7 @@ function format_email($info, $format, $type) {
 	//grab the type of template content
 	if($type == "register") {
 
-		$template = file_get_contents($root . '/template.'. $format);
+		$template = file_get_contents($root . '/register_template.'. $format);
 		//replace all the tags
 		$template = ereg_replace('{USERNAME}', $info['username'], $template);
 		$template = ereg_replace('{KEY}', $info['key'], $template);
@@ -307,8 +307,9 @@ function format_email($info, $format, $type) {
 
 	} else {
 
-		$template = file_get_contents($root . '/newsletter.'. $format);
+		$template = file_get_contents($root . '/newsletter_template.'. $format);
         $template = ereg_replace('{USERNAME}', $info['username'], $template);
+        $template = ereg_replace('{TOPPLAYER}', 'Darwin\'s amstaff', $template);
 
 	}
 

@@ -71,18 +71,17 @@ if(isset($_POST)) {
 				);
 				 
 				//send the email
-//				if(send_email($info, 'register')) {
-//
-//					//email sent
-//					$ja['email'] = "sent";
-//
-//				} else {
-//
-//					// email was not sent
-//					$ja['email'] = "error";
-//
-//				}
-                $ja['email'] = "sent";
+				if(send_email($info, 'register')) {
+
+					//email sent
+					$ja['email'] = "sent";
+
+				} else {
+
+					// email was not sent
+					$ja['email'] = "error";
+
+				}
 				 
 			} else {
 				 

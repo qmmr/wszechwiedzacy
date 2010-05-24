@@ -31,7 +31,10 @@
     }
 
 ?>
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head>    <meta charset="utf-8" />
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta charset="utf-8" />
     <meta name="Description" content="'Wiesz, czy nie wiesz? oto jest pytanie?' - wszechwiedzacy.pl to gra w przglądarce, w której zawodnik staje przed zadaniem odpowiadania na pytania z najróżniejszych kategorii, sprawdź czy zasługujesz na tytuł wszechwiedzącego!" />
     <title>wszechwiedzacy.pl :: wiesz czy nie wiesz, oto jest pytanie?</title>
     <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />

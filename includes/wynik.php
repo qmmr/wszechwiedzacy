@@ -134,7 +134,6 @@ $czas .= " " . ileSekund($r['sec']);
 		
 		<!-- tooltip1 id matches selector  with id="wrong1" -->
 		<div class="ia">	
-			<p class="pytanie">Treść:</p>
 			<p class="question">"<?php echo (isset($_SESSION['first_wrong'])) ? $_SESSION['first_wrong']['tresc'] : false; ?>"</p>
 			<p class="wrong"><span class="wrong"></span> Twoja odpowiedź: <?php echo $_SESSION['first_wrong']['ya']; ?></p>
 			<p class="correct"><span class="correct"></span> Poprawna odpowiedź: <?php echo $_SESSION['first_wrong']['poprawna']; ?></p>
@@ -145,7 +144,6 @@ $czas .= " " . ileSekund($r['sec']);
 		
 		<!-- tooltip2 id matches selector  with id="wrong2" -->
 		<div class="ia">	
-			<p class="pytanie">Treść:</p>
 			<p class="question">"<?php echo (isset($_SESSION['second_wrong'])) ? $_SESSION['second_wrong']['tresc'] : false; ?>"</p>
 			<p class="wrong"><span class="wrong"></span> Twoja odpowiedź: <?php echo $_SESSION['second_wrong']['ya']; ?></p>
 			<p class="correct"><span class="correct"></span> Poprawna odpowiedź: <?php echo $_SESSION['second_wrong']['poprawna']; ?></p>
@@ -155,8 +153,7 @@ $czas .= " " . ileSekund($r['sec']);
 		<h3><a href="#section3">Pytanie #3</a></h3>
 		
 		<!-- tooltip3 id matches selector  with id="wrong3" -->
-		<div class="ia">	
-			<p class="pytanie">Treść:</p>
+		<div class="ia">
 			<p class="question">"<?php echo (isset($_SESSION['third_wrong'])) ? $_SESSION['third_wrong']['tresc'] : false; ?>"</p>
 			<p class="wrong"><span class="wrong"></span> Twoja odpowiedź: <?php echo $_SESSION['third_wrong']['ya']; ?></p>
 			<p class="correct"><span class="correct"></span> Poprawna odpowiedź: <?php echo $_SESSION['third_wrong']['poprawna']; ?></p>

@@ -3,7 +3,7 @@
     // zeroes stats
     $session->clear_stats();
     // starting the game at difficulty round 1
-    $_SESSION['current_round'] = 1;	
+    $_SESSION['current_round'] = 1;
 ?>
 <?php require_once(LIB_PATH.DS."header.php"); ?>
     <div id="mainContent">
@@ -25,36 +25,59 @@
 		
 		<div id="tutorialWrap" class="oknoGry">
 		
-			<div class="slideContainer">
+            <a class="prev browse left resultsBlock">&laquo;</a>
+			<div class="slideContainer">            
 				
-				<div class="pics">	
+				<div class="pics">
+                	
 					<div class="item">
 						<h2>Wprowadzenie</h2>
-						<h4 class="text">3 rundy</h4>
-						<h4 class="text">pierwsza runda 5 łatwych pytań</h4>
-						<h4 class="text">druga runda 10 trudniejszych pytań</h4>
-						<h4 class="text">trzecia runda odpowiadasz do końca (Twojego lub pytań)</h4>
-						<h4 class="text">ilość zdobywanych punktów zależna od czasu udzielenia odpowiedzi</h4>
-						<h4 class="text">na odpowiedź masz 10 sekund</h4>
-						<h3 class="center resultsBlock boxShadow roundCorners">dalej &raquo;</h3>
+                        <h3><span class="wrong">nie</span> dla wszechwiedzących ...</h3>												
 					</div>
+                    
+                    <div class="item">
+                        <div style="margin-top: 25px;">
+                            <span class="bigSpan">3</span>
+                            <h4 class="fltlft">rundy</h4>
+                        </div>
+                        <div>
+                            <span class="bigSpan">3</span>
+                            <h4 class="fltlft">szanse</h4>
+                        </div>
+                        <div>
+                            <span class="bigSpan">20</span>
+                            <h4 class="fltlft">sekund<span style="font-size: 70px; color: #999;position: absolute; top: -20px;">*</span><span class="bleak">*na odpowiedź</span></h4>
+                        </div>                        						
+                    </div>
+                    
+                    <div class="item">
+                        <h5 class="center first">odpowiadasz klikając myszką</h5>
+                        <h6 class="center" style="color: #a1d700;">albo</h6>
+                        <h5 class="center">naciskasz klawisz danej odpowiedzi<span style="font-size: 60px; color: #999;position: absolute;">*</span><br /><span class="bleak">* cyfry po prawej stronie odpowiedzi</span></h5>                        
+					</div>
+                    
 					<div class="item">
-						<h4 class="text">rozpoczynasz grę z trzema szansami</h4>
-						<h4 class="text">udzielenie złej odpowiedzi lub nie zaznaczenie odpowiedzi skutkuje utratą jednej szansy</h4>
-						<h4 class="text">utrata trzeciej szansy kończy grę</h4>						
-						<h3 class="center resultsBlock boxShadow roundCorners">dalej &raquo;</h3>
+						<h4 class="center sml">1 błąd<br /><span class="color wrong">strata szansy</span></h4>
+						<h4 class="center sml">3 błędy<br /><span class="color wrong">koniec gry</span></h4>
 					</div>
+                    
 					<div class="item">
-					<h4 class="text">aby dostać się do tabeli wszechwiedzących, musisz zdobyć więcej punktów niż osoba zajmująca ostatnie miejsce</h4>
-						<h4 class="text">jeśli nie jesteś zarejestrowany, możesz wpisać swój nick, jeśli masz już konto wynik zostanie zapisany automatycznie</h4>
-						<h4 class="text">masz możliwość analizy błędnych odpowiedzi oraz oglądnięcia swoich statystyk</h4>
-						<button id="tut_end" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu">wszystko wiem, grajmy!</button>						
-					</div>
+                        <p class="center">w menu końcowym możesz:</p>                        
+                        <ul>                            
+                            <li>sprawdzić błędne odpowiedzi</li>
+                            <li>zobaczyć statystyki</li>
+                            <li>wpisać się na listę zwycięzców<span>*</span><span class="bleak">* dla zarejestrowanych graczy</span></li>
+                            <li>sprawdzić swoją pozycję w rankingu</li>
+                        </ul>
+                        <button name="start" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu">zaczynajmy!</button>
+					</div>                    
 					
-				</div>
+				</div>                
 				
 			</div>
-			<div class="navi"></div>			
+            <a class="next browse right resultsBlock">&raquo;</a>
+			<div class="navi"></div>
+            
 			<button id="back" title="powrót do menu" type="button" name="back"></button>
 			
 		</div><!-- end of #tutorialWrap -->		
