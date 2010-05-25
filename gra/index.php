@@ -11,13 +11,13 @@
 		<div id="startWrap" class="oknoGry">
 	    	<h2 id="menu" class="resultsBlock roundCorners menu boxShadow">Menu</h2>
 			<button id="show_tut" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu">wprowadzenie</button>
-			<button id="start" type="button" name="startWrap" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu">rozpocznij grę</button>
+			<button type="button" name="start" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu">rozpocznij grę</button>
 		</div><!--end of #startWrap -->
 		
 		<div id="loaderContainer" style="display: none">
 		    <div id="outer">
 			<div id="inner">
-			    <p>Trwa ładowanie strony ...</p>
+			    <p>Losuję następne pytanie ...</p>
 			    <div class="ajaxLoader"></div>
 			</div>
 		    </div>

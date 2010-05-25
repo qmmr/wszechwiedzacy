@@ -68,18 +68,53 @@ $secret = md5($question->poprawna);
 // updates database sets number of started quizes ++
 ($_SESSION['question_number'] == 1) ? User::start_game($_SESSION['username']) : false;
 
+//"Zapomniałeś(aś) się <a href='#' name='login'>zalogować</a>? Nie masz jeszcze konta? <a href='#' name='register'>Zarejestruj się!</a>",
+
+$at = array(    
+    "Jeśli podoba Ci się gra możesz <a href='http://paypal.com' target='_blank' name='kawa'>postawić mi kawę</a> :)",
+    "Po zakończeniu gry masz możliwość analizy błędnych odpowiedzi oraz oglądnięcia swoich statystyk.",
+    "Nie chcesz oglądać tych reklam? <a href='#' name='login'>Zaloguj się</a> albo <a href='#' name='register'>zarejestruj</a> jeśli jeszcze nie masz konta!",
+    "Podoba się gra? Możesz mi podziękować przesyłając linka do gry swoim znajomym!",
+    "Do rankingu dostaniesz się jeśli jesteś zarejestrowanym graczem i zdobędziesz więcej punktów niż osoba zajmująca ostatnie miejsce.",
+    "Podoba się gra? Dodaj mnie do swoich znajomych na <a href='http://facebook.com/qmeek' target='_blank'>facebook.com</a>",
+    "Podoba się gra? Dodaj wszechwiedzacy.pl do rzeczy które lubisz na <a href='http://www.facebook.com/pages/wszechwiedzacypl/125747624111861' target='_blank'>facebook.com</a>",
+    "Zapraszam na moją stronę/portfolio <a href='http://qmmr.pl' target='_blank'>qmmr.pl</a>",
+    "Podoba się gra? Dodaj mnie do obserwowanych na <a href='http://twitter.com/qmmr' target='_blank'>twitter.com</a>",
+    "Zauważyłeś(aś) jakiś błąd? <a href='http://wszechwiedzacy.pl/kontakt' target='_blank'>Daj mi znać</a>!",
+    "Masz pomysł na pytanie? <a href='http://wszechwiedzacy.pl/kontakt' target='_blank'>Daj mi znać</a>!",
+    "Chcesz aktywnie pomagać w ulepszeniu gry? <a href='http://wszechwiedzacy.pl/kontakt' target='_blank'>Daj mi znać</a>!"
+);
+
 ?>
 <div id="pytanieWrap" class="oknoGry">
-	<div class="floatContainer">
-		<p class="runda">Runda: <?php echo $_SESSION['current_round']; ?></p>
-		<p class="numerPytania">Pytanie numer: <?php  echo $_SESSION['question_number']; ?></p>
-		<p class="kategoria">Kategoria: <?php echo $question->kategoria; ?></p>
+    <?php if(!$session->is_logged_in()) : ?>
+    <div id="advert" class="roundCorners errmsg">
+        <p><?php echo $at[array_rand($at,1)]; ?></p>
+        <span></span>
+    </div>
+    <script>
+    $(function(){
+        
+        var $advert = $("#advert");
+        $advert.find("span").click(function(){
+           $(this).parent().slideToggle(500);
+           $(".floatContainer").css({marginTop:'35px'});
+        });
+        
+    });
+    </script>
+    <?php endif; ?>
+    
+	<div class="floatContainer fltCtrLft">
+		<p class="pytHead upper">Runda: <?php echo $_SESSION['current_round']; ?></p>
+		<p class="pytHead upper">Pytanie numer: <?php  echo $_SESSION['question_number']; ?></p>
+		<p class="pytHead upper">Kategoria: <?php echo $question->kategoria; ?></p>
 	</div><!-- end of .floatContainer -->
 	
 	<div class="floatContainer">
-		<p class="punkty fltlft">Punkty: <?php  echo $_SESSION['zdobyte_punkty']; ?></p>
-		<div class="stars fltlft">
-		<p class="szanse fltlft">Szanse:</p>
+		<p class="pytHead fltlft upper" style="width: 250px;">Punkty: <?php  echo $_SESSION['zdobyte_punkty']; ?></p>
+		<div class="fltlft upper">
+		<p class="pytHead fltlft upper">Szanse:</p>
 		<?php
 		if($_SESSION['chances'] == 3) {
 		
@@ -106,7 +141,7 @@ $secret = md5($question->poprawna);
 		?>
 	</div>
 	<div class="fltlft">
-		<p class="szanse fltlft">Czas:</p>
+		<p class="pytHead upper fltlft">Czas:</p>
 		<div id="progressbar"></div>
 	</div>
 	<div class="clearfloat"></div>
@@ -119,37 +154,36 @@ $secret = md5($question->poprawna);
 	
 	<p class="wybor">Wybierz odpowiedź:</p>
 	<form id="odpowiedzi" method="post">
-		<div class="fltlft">
-			<p class="answer">
-				<label class="radio_empty" for="odp_a"><?php echo "$question->odpowiedz_a"; ?><span>1</span></label>
-				<input class="radioHidden" id="odp_a" type="radio" name="group" value="<?php echo "$question->odpowiedz_a"; ?>" />
-			</p>
 		
-			<p class="answer">
-				<label class="radio_empty" for="odp_b"><?php echo "$question->odpowiedz_b"; ?><span>2</span></label>
-				<input class="radioHidden" id="odp_b" type="radio" name="group" value="<?php echo "$question->odpowiedz_b"; ?>" />
-			</p>
-			<span id="tick"></span>
-		</div>
+		<p class="answer">
+			<label class="radio_empty" for="odp_a"><?php echo "$question->odpowiedz_a"; ?><span>1</span></label>
+			<input class="radioHidden" id="odp_a" type="radio" name="group" value="<?php echo "$question->odpowiedz_a"; ?>" />
+		</p>
+	
+		<p class="answer odd">
+			<label class="radio_empty" for="odp_b"><?php echo "$question->odpowiedz_b"; ?><span>2</span></label>
+			<input class="radioHidden" id="odp_b" type="radio" name="group" value="<?php echo "$question->odpowiedz_b"; ?>" />
+		</p>
+        
+		<p class="answer">
+			<label class="radio_empty" for="odp_c"><?php echo "$question->odpowiedz_c"; ?><span>3</span></label>
+			<input class="radioHidden" id="odp_c" type="radio" name="group" value="<?php echo "$question->odpowiedz_c"; ?>" />
+		</p>
 		
-		<div class="fltlftZero">
-			<p class="answer">
-				<label class="radio_empty" for="odp_c"><?php echo "$question->odpowiedz_c"; ?><span>3</span></label>
-				<input class="radioHidden" id="odp_c" type="radio" name="group" value="<?php echo "$question->odpowiedz_c"; ?>" />
-			</p>
-			
-			<p class="answer">
-				<label class="radio_empty" for="odp_d"><?php echo "$question->odpowiedz_d"; ?><span>4</span></label>
-				<input class="radioHidden" id="odp_d" type="radio" name="group" value="<?php echo "$question->odpowiedz_d"; ?>" />
-			</p>
-		</div><!-- end of .fltlftZero -->
+		<p class="answer odd">
+			<label class="radio_empty" for="odp_d"><?php echo "$question->odpowiedz_d"; ?><span>4</span></label>
+			<input class="radioHidden" id="odp_d" type="radio" name="group" value="<?php echo "$question->odpowiedz_d"; ?>" />
+		</p>
+		
 		<div class="clearfloat"></div>
-		
+        
+		<span id="tick"></span>
+        
 		<input type="hidden" name="poprawna" value="<?php echo "$secret"; ?>" />
 		<input type="hidden" id="scored" name="score" value="0" />
 		
 		<div class="center_div">
-			<button id="submitButton" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all menu" type="submit" name="submit">Zatwierdź</button>
+			<button id="submitBtn" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all menu" type="submit" name="submit">Zatwierdź</button>
 		</div><!-- end .center_div -->
 	</form><!-- #odpowiedzi -->
 </div>

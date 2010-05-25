@@ -1,18 +1,3 @@
-// button states for the form buttons
-function hoverO() {
-    $(this).addClass("ui-state-hover");
-}
-function hoverT() {
-    $(this).removeClass("ui-state-hover");
-}
-function mDown() {
-    $(this).addClass("ui-state-active");
-}
-function mUp() {
-    $(this).removeClass("ui-state-active");
-}
-
-// main object
 var wszechwiedzacy = {
     // placeholder to store session points
     session_pts: 0,
@@ -20,21 +5,28 @@ var wszechwiedzacy = {
     site_url: {},
     // form placeholder
     mForm: {},    
-    // initialized on every page    
+    // button hover and mouse down/up states
+	mHover: function(){
+		$(this).toggleClass("ui-state-hover");
+	},
+	mDownUp: function(){
+		$(this).toggleClass("ui-state-active");
+	},
+	// initialized on every page
     init: function () {
 		
         // checks if we're developing on localhost or live online
         (window.location.hostname == "localhost") ? wszechwiedzacy.site_url = "http://localhost/wszechwiedzacy/" : wszechwiedzacy.site_url = "http://wszechwiedzacy.pl/";
         
         // LOGIN / REGISTER
-        $("#login, #log").live('click',function(e){
+        $("#login, button[name=login], a[name=login]").live('click',function(e){
             e.preventDefault();
             $("#login_dialog").dialog("open");
             $(".dialogLink").show();
-            console.log($(this).attr('id')+" pts: "+wszechwiedzacy.session_pts);
+            // console.log($(this).attr('id')+" pts: "+wszechwiedzacy.session_pts);
         });
         
-        $("#register, #reg2, #reg3").live('click',function(e){
+        $("#register, #reg2, button[name=register], a[name=register]").live('click',function(e){
             e.preventDefault();
             $("#register_dialog").dialog("open");            
         });
@@ -138,14 +130,20 @@ var wszechwiedzacy = {
                                     
                                 } else if(data.game == "true" && logged == "true"){
 									// updates the login panel
-									$.get(wszechwiedzacy.site_url+"includes/reg_head.php", function(data){
+									$.get(wszechwiedzacy.site_url+"includes/reg_head.php",function(data){
 									   $("#log_head").replaceWith(data); 
 									});
                                     // when player wants to log during the end game
                                     ld.dialog('close');
-                                    $.get(wszechwiedzacy.site_url+"includes/in_game_login.php", function(data){
-                                        $("#rezultat").html(data).hide().fadeIn(1000); 
-                                    });
+									if($("#rezultat").length == 1) {
+									
+										$.get(wszechwiedzacy.site_url+"includes/in_game_login.php",function(data){
+											$("#rezultat").hide().html(data).fadeIn(1000); 
+										});
+										
+									} else {
+										alert("loguje ale bez zmiany rezultatu");
+									}
                                     
                                 } else {
                                     
@@ -444,6 +442,8 @@ var wszechwiedzacy = {
 		mv: {},
 		// current view
 		cv: {},
+		// gamestatus
+		gameStatus: {},
 		// fadeInOut
 		fadeInOut: function(dir,mv,cv) {
 			if(dir == "in"){
@@ -455,6 +455,9 @@ var wszechwiedzacy = {
         // initializes all stuff
         init: function () {            
             
+			// assign data to #mainContent
+			wszechwiedzacy.gra.gameStatus = $("#mainContent").data('game','on');
+			
 			// assign main view at the beggining
 			wszechwiedzacy.gra.mv = $("#startWrap");
             location.href = "#crumb"; // centers the game area
@@ -486,11 +489,13 @@ var wszechwiedzacy = {
                 title: 'Uwaga!',
                 buttons: {
                     Tak: function () {
+						// clears game data
+						wszechwiedzacy.gra.gameStatus.removeData();
                         window.location.replace(wszechwiedzacy.site_url);
                     },
                     Nie: function () {
                         qd.dialog("close");
-                        wszechwiedzacy.gra.mcExpose.load();
+                        wszechwiedzacy.gra.mcExpose.expose().load();
                     } // mc.load loads expose tool		     
                 } // end of buttons
             }); // end of quit dialog            
@@ -499,20 +504,31 @@ var wszechwiedzacy = {
             wszechwiedzacy.gra.setButtons();
             // captureKeys
             wszechwiedzacy.gra.captureKeys(document.documentElement);
-            // set live() buttons            
+			
+			// can be clicked only once
+            $("button[name=start]").click(function(){
+				wszechwiedzacy.gra.mv.remove();
+                wszechwiedzacy.gra.showNextQuestion();
+				// console.log(wszechwiedzacy.gra.gameStatus.data());
+				return false;
+			});
+			
+            // set live() buttons
+			
+			// !!! zobaczymy czy zostanie
+			$("a[name=reasons]").live('click',function(){
+				alert("powody dla których warto się zarejestrować!");
+			});
+			
 			$("button[name=back]").live('click',function(e){
                 e.preventDefault();
 				// console.log("mv -> "+wszechwiedzacy.gra.mv.attr('id')+" cv -> "+wszechwiedzacy.gra.cv.attr('id'));
 				wszechwiedzacy.gra.fadeInOut("out",wszechwiedzacy.gra.mv,wszechwiedzacy.gra.cv);
             });
-			$("button[name=start]").live('click',function(e){
-				wszechwiedzacy.gra.cv.remove();                            
-                wszechwiedzacy.gra.showNextQuestion();                            
-				return false;
-			});
-			$("#continue").live('click',function(e){
+			$("button[name=continue]").live('click',function(e){
+				// console.log("bc.length = " + $("button[name=continue]").length);
 				$("#breakWrap").remove();
-				wszechwiedzacy.gra.showNextQuestion();
+				wszechwiedzacy.gra.showNextQuestion();				
 			});
 			$("#sts").live('click',function(e){
 				wszechwiedzacy.gra.cv = $("#statystyki");
@@ -541,7 +557,71 @@ var wszechwiedzacy = {
 					},
 					error: function (XMLHttpRequest, textStatus, errorThrown) {console.log("stats not cleared via ajax -> " + textStatus);}
 				});
-			});			
+			});
+			$("#submitBtn").live('click',function(e){
+				// assigns scored points to hidden input so that it can be passed to php creates vars to store answer and correct answer
+				$("#scored").val(wszechwiedzacy.time.pts);
+				var odp = $("input[selected]").val();
+				// if no answer was chosen we input text
+				(odp == undefined) ? odp = "brak odpowiedzi" : false;
+				var poprawna = $("input[name=\"poprawna\"]").val();
+				var punkty = $("#scored").val();                            
+				var odpowiedzi = "group=" + odp + "&poprawna=" + poprawna + "&punkty=" + punkty;
+				$("#pytanieWrap").remove();
+				$("#loaderContainer").show(); // show the animation gif
+				// stops the count down
+				clearTimeout(wszechwiedzacy.gra.countdown);
+				var url = wszechwiedzacy.site_url + "includes/odpowiedz.php";                            
+				$.ajax({                                
+					type: "POST",
+					data: odpowiedzi,
+					url: url,
+					dataType: "json",
+					success: function (data) {
+						
+						var game = data['game_state']; // data from php dictates what to show next
+						switch (game) {
+							case "over":                                            
+								// game over
+								$.ajax({
+									url: wszechwiedzacy.site_url + "includes/wynik.php",
+									success: function (data) {
+										$("#mainContent").append(data);
+										// assigns endWrap as the main view
+										wszechwiedzacy.gra.mv = $("#endWrap");
+										wszechwiedzacy.gra.cv = $("#rezultat").fadeIn(1000);
+										$("#loaderContainer").hide(); // hides the animation gif                                                    
+										wszechwiedzacy.gra.setButtons();
+									},
+									error: function (XMLHttpRequest, textStatus, errorThrown) {console.log("ajax call to wynik.php failed -> " + textStatus);}
+									
+								});
+								break;
+								
+							case "advance":
+								// game advance (we load the summary after finished round)
+								$.ajax({
+									url: wszechwiedzacy.site_url + "includes/runda.php",
+									success: function (data) {
+										$("#mainContent").append(data);
+										$("#breakWrap").fadeIn(1000);
+										wszechwiedzacy.gra.setButtons();
+										$("#loaderContainer").hide(); // hides the animation gif
+									},
+									error: function (XMLHttpRequest, textStatus, errorThrown) {console.log("ajax to runda.php failed -> " + textStatus);}
+								});
+								break;
+							
+							default:
+								// just another question
+								wszechwiedzacy.gra.showNextQuestion();
+								break;
+							
+						} // end of swith(game)
+					},
+					error: function (XMLHttpRequest, textStatus, errorThrown) {console.log("ajax to odpowiedz.php failed->" + textStatus);}
+				});
+			}); // end of #submit
         },
         // end of gra.init
         
@@ -552,27 +632,26 @@ var wszechwiedzacy = {
                     case 49:
                     case 97:
                         $("label:eq(0)").next().attr("selected", "selected");
-                        $("#submitButton").trigger("click");
+                        $("#submitBtn").trigger("click");
                         break;
                     case 50:
                     case 98:
                         $("label:eq(1)").next().attr("selected", "selected");
-                        $("#submitButton").trigger("click");
+                        $("#submitBtn").trigger("click");
                         break;
                     case 51:
                     case 99:
                         $("label:eq(2)").next().attr("selected", "selected");
-                        $("#submitButton").trigger("click");
+                        $("#submitBtn").trigger("click");
                         break;
                     case 52:
                     case 100:
                         $("label:eq(3)").next().attr("selected", "selected");
-                        $("#submitButton").trigger("click");
+                        $("#submitBtn").trigger("click");
                         break;
-                    case 13:
-                        if($("#continue").length == 1){
-                            $("#continue").trigger('click');
-                        }
+                    case 13:				
+						($("button[name=continue]").length == 1) ? $("button[name=continue]").trigger('click') : false;
+
                         break;
                     default:
                     break;
@@ -583,96 +662,7 @@ var wszechwiedzacy = {
         // end of captureKeys
         
         setButtons: function () {
-            
-            $("button").each(function () {
-                
-                $(this).click(function (e) {
-                    
-                    e.preventDefault();
-                    // current button
-                    var cb = $(this);                    
-                    
-                    switch (cb.attr("id")) {
-                        
-                        case "start":
-                            $("#startWrap").remove();                            
-                            wszechwiedzacy.gra.showNextQuestion();                            
-                            break;
-                        
-                        case "submitButton":
-                            // assigns scored points to hidden input so that it can be passed to php creates vars to store answer and correct answer
-                            $("#scored").val(wszechwiedzacy.time.pts);
-                            var odp = $("input[selected]").val();
-                            // if no answer was chosen we input text
-                            (odp == undefined) ? odp = "brak odpowiedzi" : false;
-                            var poprawna = $("input[name=\"poprawna\"]").val();
-                            var punkty = $("#scored").val();                            
-                            var odpowiedzi = "group=" + odp + "&poprawna=" + poprawna + "&punkty=" + punkty;
-                            $("#pytanieWrap").remove();
-                            $("#loaderContainer").show(); // show the animation gif
-                            // stops the count down
-                            clearTimeout(wszechwiedzacy.gra.countdown);
-                            var url = wszechwiedzacy.site_url + "includes/odpowiedz.php";                            
-                            $.ajax({                                
-                                type: "POST",
-                                data: odpowiedzi,
-                                url: url,
-                                dataType: "json",
-                                success: function (data) {
-                                    
-                                    var game = data['game_state']; // data from php dictates what to show next
-                                    switch (game) {
-                                        case "over":                                            
-                                            // game over
-                                            $.ajax({
-                                                url: wszechwiedzacy.site_url + "includes/wynik.php",
-                                                success: function (data) {
-                                                    $("#mainContent").append(data);
-													// assigns endWrap as the main view
-													wszechwiedzacy.gra.mv = $("#endWrap");
-                                                    wszechwiedzacy.gra.cv = $("#rezultat").fadeIn(1000);
-                                                    $("#loaderContainer").hide(); // hides the animation gif                                                    
-                                                    wszechwiedzacy.gra.setButtons();
-                                                },
-                                                error: function (XMLHttpRequest, textStatus, errorThrown) {console.log("ajax call to wynik.php failed -> " + textStatus);}
-                                                
-                                            });
-                                            break;
-                                            
-                                        case "advance":
-                                            // game advance (we load the summary after finished round)
-                                            $.ajax({
-                                                url: wszechwiedzacy.site_url + "includes/runda.php",
-                                                success: function (data) {
-                                                    $("#mainContent").append(data);
-                                                    $("#breakWrap").fadeIn(1000);
-                                                    wszechwiedzacy.gra.setButtons();
-                                                    $("#loaderContainer").hide(); // hides the animation gif
-                                                },
-                                                error: function (XMLHttpRequest, textStatus, errorThrown) {console.log("ajax to runda.php failed -> " + textStatus);}
-                                            });
-                                            break;
-                                        
-                                        default:
-                                            // just another question
-                                            wszechwiedzacy.gra.showNextQuestion();
-                                            break;
-                                        
-                                    } // end of swith(game)
-                                },
-                                error: function (XMLHttpRequest, textStatus, errorThrown) {console.log("ajax to odpowiedz.php failed->" + textStatus);}
-                            });
-                            break;
-                        
-                        default:
-                            break;
-                    } // end of swich(id)
-                    
-                }); // /(this).click
-                
-            }).hover(hoverO, hoverT).mouseup(mUp).mousedown(mDown);
-            // end button.each
-            
+            $("button").hover(wszechwiedzacy.mHover, wszechwiedzacy.mHover).mousedown(wszechwiedzacy.mDownUp).mouseup(wszechwiedzacy.mDownUp);
         },
         // end of wszechwiedzacy.gra.setButtons
         
@@ -687,7 +677,7 @@ var wszechwiedzacy = {
             // next all labels receive click function that checks if they have class radio_check            			
             labels.hover(                
                 function () {
-                    $(this).stop().animate({
+                    $(this).stop(true,true).animate({
                         "backgroundColor": "#e6f6cd",
                         "borderTopColor": "#58742b",
                         "borderRightColor": "#58742b",
@@ -698,7 +688,7 @@ var wszechwiedzacy = {
 						opacity:.35
 					}, 250, 'easeOutSine');
                 }, function () {
-                    $(this).stop().animate({
+                    $(this).stop(true,true).animate({
                         "backgroundColor": "#FFFFFF",
                         "borderTopColor": "#DFDFDF",
                         "borderRightColor": "#DFDFDF",
@@ -721,7 +711,7 @@ var wszechwiedzacy = {
                     if (thisLabel.hasClass("radio_check")) {
                         thisLabel.next().attr("selected", "selected");
                         thisInput.after(tick);
-                        $("#submitButton").fadeIn(500);
+                        $("#submitBtn").fadeIn(500);
                         tick.css({
                             "top": -10
                         }).stop().animate({
@@ -755,11 +745,11 @@ var wszechwiedzacy = {
             // adjust visual style of input radio buttons
             wszechwiedzacy.gra.setupRadioButtons();
             // store the button in var and hide
-            $("#submitButton").hide();
+            $("#submitBtn").hide();
             // set up function that runs code depending on what button was pressed
             wszechwiedzacy.gra.setButtons();
             // next fades in #pytanieWrap and after finishes it starts the counter (callback)
-            $("#pytanieWrap").fadeIn(500, function () {
+            $("#pytanieWrap").fadeIn(1500, function () {
                 pytanie.fadeIn(500, callback);
             });
             // hides the animation gif
@@ -1267,7 +1257,7 @@ var wszechwiedzacy = {
                     
                 } // end of #frmKontakt valid
                 
-            }).hover(hoverO, hoverT).mouseup(mUp).mousedown(mDown);
+            });
             
         } // end of kontakt.init()
         
@@ -1419,7 +1409,7 @@ var wszechwiedzacy = {
         
         newInt: {},
         // interval for counting time
-        sms: 2000,
+        sms: 20000,
         // starting value for miliseconds
         ms: {},
         // miliseconds used for counting
@@ -1442,7 +1432,7 @@ var wszechwiedzacy = {
                 clearInterval(wszechwiedzacy.time.newInt);
                 wszechwiedzacy.time.ms = 0;
                 // alert("Koniec!");
-                $("#submitButton").trigger("click");
+                $("#submitBtn").trigger("click");
             }
             else {
                 wszechwiedzacy.time.ms -= 10;
@@ -1452,9 +1442,8 @@ var wszechwiedzacy = {
         },
         
         showLabels: function () {
-            // alert("callback");
             if (wszechwiedzacy.gra.cdnum < 4) {
-                $("p.answer:eq(" + wszechwiedzacy.gra.cdnum + ")").fadeIn(300, function(){
+                $("p.answer:eq(" + wszechwiedzacy.gra.cdnum + ")").fadeIn(750, function(){
 					$(this).find("span").stop(true,true).animate({opacity:0}, 750, 'easeOutSine');
 				});
                 wszechwiedzacy.gra.cdnum++;

@@ -102,7 +102,7 @@ $czas .= " " . ileSekund($r['sec']);
         </h1>
     </div>
 	<h4>Chcesz wpisać się na listę wszechwiedzących?</h4>
-	<button id="log" title="menu główne" name="save" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all menu boxShadow">zaloguj się</button>
+	<button name="login" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all menu boxShadow">zaloguj się</button>
 	<h4><span>albo <a id="reg2" href="#">zarejestruj</a> jeśli jeszcze nie masz konta</span></h4>				
 	<button title="anuluj" name="back" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all menu boxShadow">powrót do menu</button>
 		

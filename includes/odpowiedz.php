@@ -40,9 +40,9 @@ if(isset($_POST['group'])) {
 }
 
 $ja = array(
-				"game_state" => "false",
-				"current_round" => 1
-				);
+    "game_state" => "false",
+    "current_round" => 1
+);
 				
 switch($_SESSION['question_number']) {
 
