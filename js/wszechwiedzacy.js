@@ -6,6 +6,8 @@
 	author's uri: http://qmmr.pl
 */
 var wszechwiedzacy = {
+	// placeholder for the #mainContent
+	mc: $("#mainContent"),
     // placeholder to store session points
     session_pts: 0,
     // placeholder for site URL
@@ -22,7 +24,7 @@ var wszechwiedzacy = {
         (window.location.hostname == "localhost") ? wszechwiedzacy.site_url = "http://localhost/wszechwiedzacy/" : wszechwiedzacy.site_url = "http://wszechwiedzacy.pl/";
 		
 		// game if off -> for the login purpose
-        wszechwiedzacy.gra.gameStatus = $("#mainContent").data('game','off');
+        wszechwiedzacy.gra.gameStatus = wszechwiedzacy.mc.data('game','off');
 		
         // LOGIN / REGISTER
         $("#login, button[name=login], a[name=login]").live('click',function(e){
@@ -139,13 +141,12 @@ var wszechwiedzacy = {
 									
 										// when player wants to log in during the end game										
 										ld.dialog('close');
-										if($("#rezultat").length == 1) {
-										
-											$.get(wszechwiedzacy.site_url+"includes/end_game_login.php",function(data){
-												$("#rezultat").hide().html(data).fadeIn(1000); 
-											});
-											
-										}
+										var $r = $("#rezultat").hide();
+										wszechwiedzacy.gra.lc.fadeIn(250);
+										$.get(wszechwiedzacy.site_url+"includes/end_game_login.php",function(data){
+											wszechwiedzacy.gra.lc.hide();
+											$r.html(data).fadeIn(750);
+										});
 										
 									}
                                     
@@ -448,6 +449,8 @@ var wszechwiedzacy = {
 		cv: {},
 		// gamestatus
 		gameStatus: {},
+		// loader git animation div
+		lc: {},
 		// fadeInOut
 		fadeInOut: function(dir,mv,cv) {
 			if(dir == "in"){
@@ -460,7 +463,9 @@ var wszechwiedzacy = {
         init: function () {            
             
 			// game starts
-			wszechwiedzacy.gra.gameStatus = $("#mainContent").data('game','on');
+			wszechwiedzacy.gra.gameStatus = wszechwiedzacy.mc.data('game','on');
+			// store $("#loaderContainer")
+			wszechwiedzacy.gra.lc = $("#loaderContainer");
 			
 			// assign main view at the beggining
 			wszechwiedzacy.gra.mv = $("#startWrap");
@@ -470,7 +475,7 @@ var wszechwiedzacy = {
              * but the #mainContent just to make sure the player focuses on the
              * questions
              */
-            wszechwiedzacy.gra.mcExpose = $("#mainContent").expose({
+            wszechwiedzacy.gra.mcExpose = wszechwiedzacy.mc.expose({
                 color: '#2A6731',
                 opacity: 0.75,
                 loadSpeed: 250,
@@ -555,7 +560,7 @@ var wszechwiedzacy = {
 			});
 			$("button[name=again]").live('click',function(e){
 				$("#rezultat, #endWrap, #statystyki, #wrongAnswers").remove();
-				var lc = $("#loaderContainer").fadeIn(500);
+				wszechwiedzacy.gra.lc.fadeIn(500);
 				$.ajax({
 					url: wszechwiedzacy.site_url + "includes/clear_stats.php",
 					dataType: "json",
@@ -576,7 +581,8 @@ var wszechwiedzacy = {
 				var punkty = $("#scored").val();                            
 				var odpowiedzi = "group=" + odp + "&poprawna=" + poprawna + "&punkty=" + punkty;
 				$("#pytanieWrap").remove();
-				$("#loaderContainer").show(); // show the animation gif
+				// show the animation loading gif
+				wszechwiedzacy.gra.lc.show();
 				// stops the count down
 				clearTimeout(wszechwiedzacy.gra.countdown);
 				var url = wszechwiedzacy.site_url + "includes/odpowiedz.php";                            
@@ -597,11 +603,13 @@ var wszechwiedzacy = {
 										// sets the game to end so that when you log in the points will be updated -> see login dialog
 										wszechwiedzacy.gra.gameStatus.data('game', 'end');
 										// console.log('gameStatus is '+wszechwiedzacy.gra.gameStatus.data('game'));
-										$("#mainContent").append(data);
+										// appends data to #mainContent
+										wszechwiedzacy.mc.append(data);
 										// assigns endWrap as the main view
 										wszechwiedzacy.gra.mv = $("#endWrap");
 										wszechwiedzacy.gra.cv = $("#rezultat").fadeIn(1000);
-										$("#loaderContainer").hide(); // hides the animation gif                                                    
+										// hides the animation gif
+										wszechwiedzacy.gra.lc.hide();
 									},
 									error: function (XMLHttpRequest, textStatus, errorThrown) {console.log("ajax call to wynik.php failed -> " + textStatus);}
 									
@@ -613,9 +621,10 @@ var wszechwiedzacy = {
 								$.ajax({
 									url: wszechwiedzacy.site_url + "includes/runda.php",
 									success: function (data) {
-										$("#mainContent").append(data);
+										// appends data to #mainContent
+										wszechwiedzacy.mc.append(data);
 										$("#breakWrap").fadeIn(1000);
-										$("#loaderContainer").hide(); // hides the animation gif
+										wszechwiedzacy.gra.lc.hide();
 									},
 									error: function (XMLHttpRequest, textStatus, errorThrown) {console.log("ajax to runda.php failed -> " + textStatus);}
 								});
@@ -727,7 +736,7 @@ var wszechwiedzacy = {
         // end of wszechwiedzacy.gra.setupRadioButtons
         
         showNextQuestion: function () {
-            $("#loaderContainer").fadeIn(250); // show the animation gif
+            wszechwiedzacy.gra.lc.fadeIn(250); // show the animation gif
             clearInterval(wszechwiedzacy.time.newInt);
             
             var url = wszechwiedzacy.site_url + "includes/pytanie.php";
@@ -744,8 +753,8 @@ var wszechwiedzacy = {
         // end of wszechwiedzacy.gra.showNextQuestion
         
         loadTheQuestion: function (data) {
-            // insert html generated by pytanie.php
-            $("#mainContent").append(data);
+            // appends data to #mainContent
+            wszechwiedzacy.mc.append(data);
             // adjust visual style of input radio buttons
             wszechwiedzacy.gra.setupRadioButtons();
             $("#submitBtn").hide();
@@ -755,7 +764,7 @@ var wszechwiedzacy = {
                 pytanie.fadeIn(500, callback);
             });
             // hides the animation gif
-            $("#loaderContainer").hide();
+            wszechwiedzacy.gra.lc.hide();
             var pytanie = $("#tresc > p").hide();
             var odpowiedzi = $("p.answer").hide();
             $("#progressbar").progressbar({value: 100});
@@ -1249,7 +1258,7 @@ var wszechwiedzacy = {
                             // alert(data.msg);
                             if (data.msg == "valid") {
                                 $(".formWrap").fadeOut(1000, function () {
-                                    $("#mainContent").html("<div class=\"emailConfirmation\"><span class=\"checkmark\"></span><h1>Email został wysłany.</h1><p>Dziękuję za kontakt. Spodziewaj się odpowiedzi w przeciągu 24h!</p><div class=\"clearfloat\"></div></div>").hide().fadeIn(500, function () {
+                                    wszechwiedzacy.mc.html("<div class=\"emailConfirmation\"><span class=\"checkmark\"></span><h1>Email został wysłany.</h1><p>Dziękuję za kontakt. Spodziewaj się odpowiedzi w przeciągu 24h!</p><div class=\"clearfloat\"></div></div>").hide().fadeIn(500, function () {
                                         $(".checkmark").animate({top: +70}, 750, "easeOutBounce");
                                     }); // end of animate
                                 });
