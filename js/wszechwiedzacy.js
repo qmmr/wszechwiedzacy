@@ -1,3 +1,10 @@
+/*
+	wszechwiedzacy.pl main Object
+	ver beta 0.8
+	site uri: http://wszechwiedzacy.pl
+	author Marcin Kumorek
+	author's uri: http://qmmr.pl
+*/
 var wszechwiedzacy = {
     // placeholder to store session points
     session_pts: 0,
