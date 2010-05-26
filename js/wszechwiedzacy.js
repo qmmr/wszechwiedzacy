@@ -122,7 +122,7 @@ var wszechwiedzacy = {
                                 
                                 if (data.logged == "true"){
 								
-									console.log('gameStatus is '+wszechwiedzacy.gra.gameStatus.data('game'));
+									// console.log('gameStatus is '+wszechwiedzacy.gra.gameStatus.data('game'));
 									
 									// updates the login panel
 									$.get(wszechwiedzacy.site_url+"includes/reg_head.php",function(data){
@@ -142,10 +142,15 @@ var wszechwiedzacy = {
 										// when player wants to log in during the end game										
 										ld.dialog('close');
 										var $r = $("#rezultat").hide();
-										wszechwiedzacy.gra.lc.fadeIn(250);
+										wszechwiedzacy.gra.lc.show();
 										$.get(wszechwiedzacy.site_url+"includes/end_game_login.php",function(data){
-											wszechwiedzacy.gra.lc.hide();
-											$r.html(data).fadeIn(750);
+										
+											wszechwiedzacy.gra.lc.hide(0, function(){
+											
+												$r.html(data).fadeIn(1000);
+												
+											});
+											
 										});
 										
 									}
@@ -155,12 +160,12 @@ var wszechwiedzacy = {
                                     $("#login_dialog .ajaxLoader").hide();
                                     $("#login_form").show();
                                     
-                                    if (email == "inactive"){
+                                    if (data.email == "inactive"){
                                         
                                         var validator = $("#login_form").validate();
                                         validator.showErrors({"email":"Konto nie zostało aktywowane!"});
                                         
-                                    } else if (email == "invalid"){
+                                    } else if (data.email == "invalid"){
                                         
                                         var validator = $("#login_form").validate();
                                         validator.showErrors({"email":"Nie ma takiego użytkownika!"});
@@ -476,13 +481,13 @@ var wszechwiedzacy = {
              * questions
              */
             wszechwiedzacy.gra.mcExpose = wszechwiedzacy.mc.expose({
+			
                 color: '#2A6731',
                 opacity: 0.75,
                 loadSpeed: 250,
                 api: true,
-                onBeforeClose: function (e) {
-                    qd.dialog("open");
-                } // if we click on the grey area a quit dialog pops
+                onBeforeClose: function(){qd.dialog("open");}
+				
             }).load(); // loads expose tool
             
             // QUIT DIALOG
@@ -498,8 +503,7 @@ var wszechwiedzacy = {
                 title: 'Uwaga!',
                 buttons: {
                     Tak: function () {
-						// clears game data
-						wszechwiedzacy.gra.gameStatus.removeData();
+						wszechwiedzacy.gra.gameStatus = wszechwiedzacy.mc.data('game','off');
                         window.location.replace(wszechwiedzacy.site_url);
                     },
                     Nie: function () {
@@ -507,8 +511,7 @@ var wszechwiedzacy = {
                         wszechwiedzacy.gra.mcExpose.expose().load();
                     } // mc.load loads expose tool		     
                 } // end of buttons
-            }); // end of quit dialog            
-            
+            }); // end of quit dialog
 			
             // captureKeys
             wszechwiedzacy.gra.captureKeys(document.documentElement);
@@ -517,7 +520,6 @@ var wszechwiedzacy = {
             $("button[name=start]").click(function(){
 				wszechwiedzacy.gra.mv.remove();
                 wszechwiedzacy.gra.showNextQuestion();
-				// console.log(wszechwiedzacy.gra.gameStatus.data());
 				return false;
 			});
 			
@@ -602,7 +604,6 @@ var wszechwiedzacy = {
 									success: function (data) {
 										// sets the game to end so that when you log in the points will be updated -> see login dialog
 										wszechwiedzacy.gra.gameStatus.data('game', 'end');
-										// console.log('gameStatus is '+wszechwiedzacy.gra.gameStatus.data('game'));
 										// appends data to #mainContent
 										wszechwiedzacy.mc.append(data);
 										// assigns endWrap as the main view

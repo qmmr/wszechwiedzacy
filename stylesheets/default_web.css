@@ -7,7 +7,7 @@
  *   author: Marcin Kumorek
  *   author URI: http://qmmr.pl
  *   
- *   http://localhost/wszechwiedzacy
+ *   http://localhost/wszechwiedzacy/
  *
  * 							COLORS
  * --------------------------------------------------------------
@@ -886,7 +886,7 @@ h2.menu {
 
 .badge h1 {
     margin: 0;
-    font-size: 60px;
+    font-size: 55px;
     line-height: 90px;
 	font-weight: bold;
 	margin: 10px 0;
@@ -1299,7 +1299,8 @@ span.user {
 #gra .dialogClose .ui-dialog-buttonpane button {
     padding: 0;
     margin: 10px 0 10px 10px;
-    width: 120px;
+    width: 150px;
+    float: left;
 }
 
 #ui-dialog-title-quit_dialog {
