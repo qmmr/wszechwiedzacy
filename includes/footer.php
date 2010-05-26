@@ -86,7 +86,6 @@ $(window).load(function () {
 		    case "/admin/index.php": echo "wszechwiedzacy.admin.init();"; break;
 		    case "/ranking/index.php":	    	
 		    	echo (isset($_SESSION['zdobyte_punkty'])) ? "wszechwiedzacy.session_pts = {$_SESSION['zdobyte_punkty']};" : false;
-		    	//echo "alert(wszechwiedzacy.session_pts);";
 		    	echo "wszechwiedzacy.ranking.init();";
 		    	break;
 		    default: break;

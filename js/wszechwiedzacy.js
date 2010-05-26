@@ -109,14 +109,10 @@ var wszechwiedzacy = {
                         $("#login_form").hide();
                         $("#login_dialog .ajaxLoader").show();
                         $(".dialogLink").hide();
-                        var email = $("#login_email").val();
-                        var pwd = $("#login_password").val();						
-                        var user_data = "email=" + email + "&password=" + pwd;
-                        // console.log(user_data);
                         
                         $.ajax({
                             type: "POST",
-                            data: user_data,
+                            data: "email=" + $("#login_email").val() + "&password=" + $("#login_password").val(),
                             url: wszechwiedzacy.site_url + "includes/logowanie.php",
                             dataType: "json",
                             success: function (data) {
@@ -128,7 +124,8 @@ var wszechwiedzacy = {
 									
 									// updates the login panel
 									$.get(wszechwiedzacy.site_url+"includes/reg_head.php",function(data){
-									   $("#log_head").replaceWith(data); 
+									   $("#log_head").hide().replaceWith(data);
+									   $("#reg_head").hide().fadeIn(500); 
 									});
 									
 									if(wszechwiedzacy.gra.gameStatus.data('game') == 'on'){
@@ -144,7 +141,7 @@ var wszechwiedzacy = {
 										ld.dialog('close');
 										if($("#rezultat").length == 1) {
 										
-											$.get(wszechwiedzacy.site_url+"includes/in_game_login.php",function(data){
+											$.get(wszechwiedzacy.site_url+"includes/end_game_login.php",function(data){
 												$("#rezultat").hide().html(data).fadeIn(1000); 
 											});
 											
@@ -597,8 +594,9 @@ var wszechwiedzacy = {
 								$.ajax({
 									url: wszechwiedzacy.site_url + "includes/wynik.php",
 									success: function (data) {
+										// sets the game to end so that when you log in the points will be updated -> see login dialog
 										wszechwiedzacy.gra.gameStatus.data('game', 'end');
-										console.log('gameStatus is '+wszechwiedzacy.gra.gameStatus.data('game'));
+										// console.log('gameStatus is '+wszechwiedzacy.gra.gameStatus.data('game'));
 										$("#mainContent").append(data);
 										// assigns endWrap as the main view
 										wszechwiedzacy.gra.mv = $("#endWrap");
@@ -1274,8 +1272,8 @@ var wszechwiedzacy = {
     ranking: {
         init: function () {
             
-            var htr = $("tr:contains("+wszechwiedzacy.session_pts+")").attr('id');
-            console.log("pts: "+wszechwiedzacy.session_pts+"htr = "+htr);
+            // var htr = $("tr:contains("+wszechwiedzacy.session_pts+")").attr('id');
+            // console.log("pts: "+wszechwiedzacy.session_pts+"htr = "+htr);
             
         } // end of ranking.init()        
     },
@@ -1416,7 +1414,7 @@ var wszechwiedzacy = {
         
         newInt: {},
         // interval for counting time
-        sms: 20000,
+        sms: 2000,
         // starting value for miliseconds
         ms: {},
         // miliseconds used for counting
