@@ -70,10 +70,10 @@ $secret = md5($question->poprawna);
 
 //"Zapomniałeś(aś) się <a href='#' name='login'>zalogować</a>? Nie masz jeszcze konta? <a href='#' name='register'>Zarejestruj się!</a>",
 
-$at = array(    
+$at = array(
+    "Nie chcesz oglądać tych reklam? <a href='#' name='login'>Zaloguj się</a> albo <a href='#' name='register'>zarejestruj</a> jeśli jeszcze nie masz konta!",    
     "Jeśli podoba Ci się gra możesz <a href='http://paypal.com' target='_blank' name='kawa'>postawić mi kawę</a> :)",
-    "Po zakończeniu gry masz możliwość analizy błędnych odpowiedzi oraz oglądnięcia swoich statystyk.",
-    "Nie chcesz oglądać tych reklam? <a href='#' name='login'>Zaloguj się</a> albo <a href='#' name='register'>zarejestruj</a> jeśli jeszcze nie masz konta!",
+    "Po zakończeniu gry masz możliwość analizy błędnych odpowiedzi oraz oglądnięcia swoich statystyk.",    
     "Podoba się gra? Możesz mi podziękować przesyłając linka do gry swoim znajomym!",
     "Do rankingu dostaniesz się jeśli jesteś zarejestrowanym graczem i zdobędziesz więcej punktów niż osoba zajmująca ostatnie miejsce.",
     "Podoba się gra? Dodaj mnie do swoich znajomych na <a href='http://facebook.com/qmeek' target='_blank'>facebook.com</a>",
@@ -184,6 +184,8 @@ $at = array(
 		
 		<div class="center_div">
 			<button id="submitBtn" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all menu" type="submit" name="submit">Zatwierdź</button>
-		</div><!-- end .center_div -->
+		</div>
+        
 	</form><!-- #odpowiedzi -->
+
 </div>

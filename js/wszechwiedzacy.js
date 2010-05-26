@@ -6,24 +6,22 @@ var wszechwiedzacy = {
     // form placeholder
     mForm: {},    
     // button hover and mouse down/up states
-	mHover: function(){
-		$(this).toggleClass("ui-state-hover");
-	},
-	mDownUp: function(){
-		$(this).toggleClass("ui-state-active");
-	},
+	mHover: function(){$(this).toggleClass("ui-state-hover");},
+	mDownUp: function(){$(this).toggleClass("ui-state-active");},
 	// initialized on every page
     init: function () {
 		
         // checks if we're developing on localhost or live online
         (window.location.hostname == "localhost") ? wszechwiedzacy.site_url = "http://localhost/wszechwiedzacy/" : wszechwiedzacy.site_url = "http://wszechwiedzacy.pl/";
-        
+		
+		// game if off -> for the login purpose
+        wszechwiedzacy.gra.gameStatus = $("#mainContent").data('game','off');
+		
         // LOGIN / REGISTER
         $("#login, button[name=login], a[name=login]").live('click',function(e){
             e.preventDefault();
             $("#login_dialog").dialog("open");
             $(".dialogLink").show();
-            // console.log($(this).attr('id')+" pts: "+wszechwiedzacy.session_pts);
         });
         
         $("#register, #reg2, button[name=register], a[name=register]").live('click',function(e){
@@ -74,7 +72,7 @@ var wszechwiedzacy = {
             beforeclose: function(){
                 var validator = $("#login_form").validate();
                 validator.resetForm();
-                $("input:filled").val("").removeClass("valid");
+                $("input:filled").val("").toggleClass("valid");
             },
             buttons: {
                 
@@ -105,10 +103,8 @@ var wszechwiedzacy = {
                         $("#login_dialog .ajaxLoader").show();
                         $(".dialogLink").hide();
                         var email = $("#login_email").val();
-                        var pwd = $("#login_password").val();
-						var game;
-						(wszechwiedzacy.session_pts == 0) ? game = "false" : game = "true";
-                        var user_data = "email=" + email + "&password=" + pwd + "&game=" + game;
+                        var pwd = $("#login_password").val();						
+                        var user_data = "email=" + email + "&password=" + pwd;
                         // console.log(user_data);
                         
                         $.ajax({
@@ -118,31 +114,35 @@ var wszechwiedzacy = {
                             dataType: "json",
                             success: function (data) {
                                 
-                                var logged = data.logged;                               
                                 
-                                if (data.game == "false" && logged == "true"){
-									// updates the login panel
-									$.get(wszechwiedzacy.site_url+"includes/reg_head.php", function(data){
-									   $("#log_head").replaceWith(data); 
-									});
-                                    // if we log in not during game
-                                    ld.dialog('close');
-                                    
-                                } else if(data.game == "true" && logged == "true"){
+                                if (data.logged == "true"){
+								
+									console.log('gameStatus is '+wszechwiedzacy.gra.gameStatus.data('game'));
+									
 									// updates the login panel
 									$.get(wszechwiedzacy.site_url+"includes/reg_head.php",function(data){
 									   $("#log_head").replaceWith(data); 
 									});
-                                    // when player wants to log during the end game
-                                    ld.dialog('close');
-									if($("#rezultat").length == 1) {
 									
-										$.get(wszechwiedzacy.site_url+"includes/in_game_login.php",function(data){
-											$("#rezultat").hide().html(data).fadeIn(1000); 
-										});
+									if(wszechwiedzacy.gra.gameStatus.data('game') == 'on'){
+									
+										// when player wants to log in during the game
+										$("#advert").slideToggle(250);
+										$(".floatContainer").css({marginTop:'35px'});
+										ld.dialog('close');
 										
 									} else {
-										alert("loguje ale bez zmiany rezultatu");
+									
+										// when player wants to log in during the end game										
+										ld.dialog('close');
+										if($("#rezultat").length == 1) {
+										
+											$.get(wszechwiedzacy.site_url+"includes/in_game_login.php",function(data){
+												$("#rezultat").hide().html(data).fadeIn(1000); 
+											});
+											
+										}
+										
 									}
                                     
                                 } else {
@@ -455,7 +455,7 @@ var wszechwiedzacy = {
         // initializes all stuff
         init: function () {            
             
-			// assign data to #mainContent
+			// game starts
 			wszechwiedzacy.gra.gameStatus = $("#mainContent").data('game','on');
 			
 			// assign main view at the beggining
@@ -469,7 +469,7 @@ var wszechwiedzacy = {
             wszechwiedzacy.gra.mcExpose = $("#mainContent").expose({
                 color: '#2A6731',
                 opacity: 0.75,
-                loadSpeed: 500,
+                loadSpeed: 250,
                 api: true,
                 onBeforeClose: function (e) {
                     qd.dialog("open");
@@ -500,8 +500,7 @@ var wszechwiedzacy = {
                 } // end of buttons
             }); // end of quit dialog            
             
-            // initialize the setButtons
-            wszechwiedzacy.gra.setButtons();
+			
             // captureKeys
             wszechwiedzacy.gra.captureKeys(document.documentElement);
 			
@@ -519,7 +518,12 @@ var wszechwiedzacy = {
 			$("a[name=reasons]").live('click',function(){
 				alert("powody dla których warto się zarejestrować!");
 			});
-			
+			//  hover effect and mouse down/up
+			$("button").live('mouseenter mouseleave',function(){
+				$(this).toggleClass('ui-state-hover');
+			}).live('mousedown mouseup',function(){
+				$(this).toggleClass('ui-state-active');
+			});			
 			$("button[name=back]").live('click',function(e){
                 e.preventDefault();
 				// console.log("mv -> "+wszechwiedzacy.gra.mv.attr('id')+" cv -> "+wszechwiedzacy.gra.cv.attr('id'));
@@ -586,12 +590,13 @@ var wszechwiedzacy = {
 								$.ajax({
 									url: wszechwiedzacy.site_url + "includes/wynik.php",
 									success: function (data) {
+										wszechwiedzacy.gra.gameStatus.data('game', 'end');
+										console.log('gameStatus is '+wszechwiedzacy.gra.gameStatus.data('game'));
 										$("#mainContent").append(data);
 										// assigns endWrap as the main view
 										wszechwiedzacy.gra.mv = $("#endWrap");
 										wszechwiedzacy.gra.cv = $("#rezultat").fadeIn(1000);
 										$("#loaderContainer").hide(); // hides the animation gif                                                    
-										wszechwiedzacy.gra.setButtons();
 									},
 									error: function (XMLHttpRequest, textStatus, errorThrown) {console.log("ajax call to wynik.php failed -> " + textStatus);}
 									
@@ -605,7 +610,6 @@ var wszechwiedzacy = {
 									success: function (data) {
 										$("#mainContent").append(data);
 										$("#breakWrap").fadeIn(1000);
-										wszechwiedzacy.gra.setButtons();
 										$("#loaderContainer").hide(); // hides the animation gif
 									},
 									error: function (XMLHttpRequest, textStatus, errorThrown) {console.log("ajax to runda.php failed -> " + textStatus);}
@@ -659,12 +663,7 @@ var wszechwiedzacy = {
                 //console.log(e.KeyCode);
             });            
         },
-        // end of captureKeys
-        
-        setButtons: function () {
-            $("button").hover(wszechwiedzacy.mHover, wszechwiedzacy.mHover).mousedown(wszechwiedzacy.mDownUp).mouseup(wszechwiedzacy.mDownUp);
-        },
-        // end of wszechwiedzacy.gra.setButtons
+        // end of captureKeys		
         
         setupRadioButtons: function () {
             // checks all input of type radio if they have class radioNormal
@@ -744,10 +743,8 @@ var wszechwiedzacy = {
             $("#mainContent").append(data);
             // adjust visual style of input radio buttons
             wszechwiedzacy.gra.setupRadioButtons();
-            // store the button in var and hide
             $("#submitBtn").hide();
-            // set up function that runs code depending on what button was pressed
-            wszechwiedzacy.gra.setButtons();
+			
             // next fades in #pytanieWrap and after finishes it starts the counter (callback)
             $("#pytanieWrap").fadeIn(1500, function () {
                 pytanie.fadeIn(500, callback);
@@ -821,6 +818,7 @@ var wszechwiedzacy = {
                 resizable: false,
                 title: 'Dodaj pytanie',
                 width: 660,
+				dialogClass: 'dQ',
                 beforeclose: function () {
                     // this function fires when close is pressed, resets warnings and
                     // clears input
@@ -953,6 +951,7 @@ var wszechwiedzacy = {
                 draggable: false,
                 title: 'Edytuj pytanie',
                 width: 660,
+				dialogClass: 'dQ',
                 beforeclose: function () {
                     // this function fires when close is pressed, resets warnings and clears input
                     var validator = $("#frmQuestionEdit").validate();
@@ -1063,6 +1062,7 @@ var wszechwiedzacy = {
                 draggable: false,
                 height: 185,
                 width: 400,
+				dialogClass: 'dQ',
                 title: 'Usunięcie pytania',
                 buttons: {
                     Tak: function () {
@@ -1257,7 +1257,7 @@ var wszechwiedzacy = {
                     
                 } // end of #frmKontakt valid
                 
-            });
+            }).hover(wszechwiedzacy.mHover).mousedown(wszechwiedzacy.mDownUp).mouseup(wszechwiedzacy.mDownUp);
             
         } // end of kontakt.init()
         

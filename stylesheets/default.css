@@ -1150,12 +1150,13 @@ span.know {
     cursor: pointer;
 }
 
-form#odpowiedzi {
+#odpowiedzi {
     width: 785px;
     margin: 0 auto;
+    position: relative;
 }
 
-form#odpowiedzi input {
+#odpowiedzi input {
     padding: 0 !important;
     line-height: 0;
     height: 0;
@@ -1306,23 +1307,6 @@ span.user {
     font-size: 14px;;
 }
 
-/* wynik */
-.swq {
-    display: none;
-    background-color: #A1D700;
-    padding: 3em;
-    width: 69%;
-    border: 1px solid #17373C;
-}
-
-.swq p {
-    font-size: 0.9em;
-    color: #ffffff;
-    line-height: 1;
-    padding: 0;
-    margin: .25em .5em;
-}
-
 /*
  
  RADIO BUTTONS / CHECKBOXES
@@ -1353,7 +1337,7 @@ p.answer label span {
     right: 5%;
 }
 
-span#tick {
+#tick {
 	background: transparent url(http://localhost/wszechwiedzacy/images/tick_48x48.png) no-repeat scroll 0 0;
 	position: absolute;
 	top: -1000px;
@@ -1417,7 +1401,7 @@ label.highlighted {
     width: 455px;
 }
 
-form#frmKontakt {
+#frmKontakt {
     margin: 0 auto;
     padding: 20px;
 }
@@ -1642,11 +1626,11 @@ td.tla {
 }
 
 /* admin table */
-table#pytaniaAdmin {
+#pytaniaAdmin {
     clear: both;
 }
 
-table#pytaniaAdmin caption {
+#pytaniaAdmin caption {
     font-size: 1.2em;
     font-weight: bold;
     text-align: center;
@@ -1659,13 +1643,13 @@ span.css_right {
     margin-left: 0.25em;
 }
 
-table#pytaniaAdmin th {
+#pytaniaAdmin th {
     line-height: 16px;
     text-align: left;
     padding: .125em 0 0 1em;
 }
 
-table#pytaniaAdmin td {
+#pytaniaAdmin td {
     padding: 5px 18px;
 }
 
@@ -1783,6 +1767,20 @@ span.addQuestion {
 	margin: 5px 5px 0 0;
 }
 
+.ui-dialog.dQ .ui-dialog-buttonpane button {
+    width: 180px;
+    margin: 15px 0 10px 15px;
+}
+
+#question_delete p {
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 16px;
+}
+
+.dQ .ui-dialog-titlebar span {
+color: #bb0000;
+}
 /**
  * 
  * -------------------------------------------------------------------------------------------------------
@@ -1868,9 +1866,18 @@ span.addQuestion {
 .block {display:block;}
 .absolute{position:absolute;}
 .relative{position:relative;}
-.content{
-	width: 870px;
-	margin: 0 auto;
+.content{width: 870px;margin: 0 auto;}
+.display_inline {display: inline !important;}
+.login_flt {
+    float: left;
+    margin-left: 8px;
+    line-height: 1.4em;
+}
+.center_div {margin: 0 auto; text-align: center;}
+.info {
+    font-size: 13px;
+    color: #737373;
+    margin-top: 10px;
 }
 
 .roundCorners {
@@ -2111,7 +2118,7 @@ input.checkbox {
     margin: 15px 0 0.25em;
 }
 
-input#woman, input#man, label.gender {
+#woman, #man, label.gender {
     width: 1em !important;
 }
 
@@ -2177,7 +2184,7 @@ input#woman, input#man, label.gender {
     margin: 0 0 5px 0;
 }
 
-form#login_form {
+#login_form {
     margin-bottom: 10px;
 }
 
@@ -2238,7 +2245,7 @@ label.success {
 #frmQuestionAdd input.error, #frmQuestionAdd textarea.error, #frmQuestionAdd select.error {margin: 0;}
 #frmQuestionAdd input#link {width: 455px;}
 #frmQuestionAdd button {margin-left: 400px;}
-form#frmQuestionAdd {
+#frmQuestionAdd {
     width: 547px;
     margin: 0 auto;
 }
@@ -2273,33 +2280,6 @@ a.dialogLink {
 a.changeDialog:hover {
     color: #ABC507;
     text-decoration: none;
-}
-
-/* GENERIC CLASSES */
-
-.display_inline {
-    display: inline !important;
-}
-
-.login_flt {
-    float: left;
-    margin-left: 8px;
-    line-height: 1.4em;
-}
-
-.center_div {
-    margin: 0 auto;
-    text-align: center;
-}
-
-.posRel {
-    position: relative;
-}
-
-.info {
-    font-size: 13px;
-    color: #737373;
-    margin-top: 10px;
 }
 
 /*

@@ -228,7 +228,7 @@
     </form><!-- end of form for edit question -->
     
     <div id="question_delete">
-		<p>Czy jesteś pewien, że chcesz usunąć to pytanie?</p>
+		<p style="margin-top: 19px;">Czy jesteś pewien, że chcesz usunąć to pytanie?</p>
 		<p class="uwaga">Nie ma możliwości odzyskania skasowanego pytania!</p>
     </div>
     

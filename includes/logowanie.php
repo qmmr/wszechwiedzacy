@@ -1,10 +1,9 @@
 <?php
 require_once("initialize.php");
-$ja = array("email" => "valid","password" => "valid","logged" => "false","game" => "false");
+$ja = array("email" => "valid","password" => "valid","logged" => "false");
 
 if(isset($_POST['email']) && isset($_POST['password'])) {
 	
-    $ja['game'] = $_POST['game'];
 	$email = trim($db->escape_value($_POST['email']));
 	$password = trim($db->escape_value($_POST['password']));
 	$found_user = User::authenticate($email, $password);

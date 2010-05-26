@@ -1,48 +1,7 @@
-<?php
-	/*
-	// recaptcha
-	require_once('recaptchalib.php');
-	$privatekey = "6LcCxgoAAAAAAPnTryh6FnuDdzhXqW8b-Jpm0iQD";
-	// the response from reCAPTCHA
-	$resp = null;
-	// was there a reCAPTCHA response?
-	if ($_POST["recaptcha_response_field"]) {
-		
-		$resp = recaptcha_check_answer (
-		$privatekey,
-		$_SERVER["REMOTE_ADDR"],
-		$_POST["recaptcha_challenge_field"],
-		$_POST["recaptcha_response_field"]
-		);
-		
-		if ($resp->is_valid) {
-			
-			$ja['recaptcha'] = 'valid';
-			//format each email
-			//$body = format_email($info, 'html');
-			$body_plain_txt = $_POST['msg'];
-			//setup the mailer
-			$transport = Swift_MailTransport::newInstance();
-			$mailer = Swift_Mailer::newInstance($transport);
-			$message = Swift_Message::newInstance();
-			$message ->setSubject($_POST['temat']);
-			$message ->setFrom(array($_POST['email'] => $_POST['name']));
-			$message ->setTo(array('kontakt@wszechwiedzacy.pl' => 'kontakt'));
-			$message ->setBody($body_plain_txt);
-			//$message ->addPart($body, 'text/html');
-			$mailer->send($message);
-			
-			if($mailer) {
-				
-				$ja['msg'] = "valid";
-				
-			}
-			
-		} else {
-			
-			$ja['recaptcha'] = $resp->error;
-			
-		}
-		
-	}
-	*/
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+    <input type="hidden" name="cmd" value="_s-xclick">
+    <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+    ">
+    <input type="image" src="https://www.paypal.com/pl_PL/PL/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal — Płać wygodnie i bezpiecznie">
+    <img alt="" border="0" src="https://www.paypal.com/pl_PL/i/scr/pixel.gif" width="1" height="1">
+</form>
