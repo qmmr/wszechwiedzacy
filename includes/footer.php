@@ -30,9 +30,6 @@
 </div>
 -->
 
-<script src="http://www.google.com/jsapi"></script>
-<script>google.load("jquery", "1.4.2");</script>
-
 <!-- Tabs, Tooltip, Scrollable, Overlay, Expose. No jQuery. --> 
 <script src="http://cdn.jquerytools.org/1.2.2/all/jquery.tools.min.js"></script>
     
@@ -84,7 +81,7 @@ $(window).load(function () {
 		    case "/gra/index.php": 	echo "wszechwiedzacy.gra.init();"; break;
 		    case "/gracze/index.php": echo "wszechwiedzacy.twojaStrona.init();"; break;
 		    case "/admin/index.php": echo "wszechwiedzacy.admin.init();"; break;
-		    case "/ranking/index.php":	    	
+		    case "/ranking/index.php":
 		    	echo (isset($_SESSION['zdobyte_punkty'])) ? "wszechwiedzacy.session_pts = {$_SESSION['zdobyte_punkty']};" : false;
 		    	echo "wszechwiedzacy.ranking.init();";
 		    	break;
@@ -92,12 +89,12 @@ $(window).load(function () {
 		}
 	    ?>
 	    <?php if($thisPage == 'gra'):?>
-		// tutorial jQuery.tools
+
 		$(".slideContainer").scrollable({
-									size: 1,
-									clickable: true,
-									loop: false
-									}).navigator();
+    		size: 1,
+    		loop: false
+		}).navigator();
+        
 		<?php endif; ?>						
 	});	
     <?php if(!TESTING_GROUND) : ?>        

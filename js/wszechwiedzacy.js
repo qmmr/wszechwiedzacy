@@ -454,7 +454,7 @@ var wszechwiedzacy = {
 		cv: {},
 		// gamestatus
 		gameStatus: {},
-		// loader git animation div
+		// loader gif animation div
 		lc: {},
 		// fadeInOut
 		fadeInOut: function(dir,mv,cv) {
@@ -471,7 +471,6 @@ var wszechwiedzacy = {
 			wszechwiedzacy.gra.gameStatus = wszechwiedzacy.mc.data('game','on');
 			// store $("#loaderContainer")
 			wszechwiedzacy.gra.lc = $("#loaderContainer");
-			
 			// assign main view at the beggining
 			wszechwiedzacy.gra.mv = $("#startWrap");
             location.href = "#crumb"; // centers the game area
@@ -522,13 +521,14 @@ var wszechwiedzacy = {
                 wszechwiedzacy.gra.showNextQuestion();
 				return false;
 			});
+			$("#tutEnd").click(function(){
+				wszechwiedzacy.gra.cv.remove();
+				wszechwiedzacy.gra.showNextQuestion();
+				return false;
+			});
 			
             // set live() buttons
 			
-			// !!! zobaczymy czy zostanie
-			$("a[name=reasons]").live('click',function(){
-				alert("powody dla których warto się zarejestrować!");
-			});
 			//  hover effect and mouse down/up
 			$("button").live('mouseenter mouseleave',function(){
 				$(this).toggleClass('ui-state-hover');
@@ -574,6 +574,8 @@ var wszechwiedzacy = {
 				});
 			});
 			$("#submitBtn").live('click',function(e){
+				e.preventDefault();
+				// console.log(wszechwiedzacy.mc.data('game'));
 				// assigns scored points to hidden input so that it can be passed to php creates vars to store answer and correct answer
 				$("#scored").val(wszechwiedzacy.time.pts);
 				var odp = $("input[selected]").val();
@@ -587,18 +589,16 @@ var wszechwiedzacy = {
 				wszechwiedzacy.gra.lc.show();
 				// stops the count down
 				clearTimeout(wszechwiedzacy.gra.countdown);
-				var url = wszechwiedzacy.site_url + "includes/odpowiedz.php";                            
+				
 				$.ajax({                                
 					type: "POST",
 					data: odpowiedzi,
-					url: url,
 					dataType: "json",
-					success: function (data) {
+					url: wszechwiedzacy.site_url + "includes/odpowiedz.php",
+					success: function(data){
 						
-						var game = data['game_state']; // data from php dictates what to show next
-						switch (game) {
+						switch (data.game_state){
 							case "over":                                            
-								// game over
 								$.ajax({
 									url: wszechwiedzacy.site_url + "includes/wynik.php",
 									success: function (data) {
@@ -759,15 +759,14 @@ var wszechwiedzacy = {
             // adjust visual style of input radio buttons
             wszechwiedzacy.gra.setupRadioButtons();
             $("#submitBtn").hide();
-			
+			var pytanie = $("#tresc > p").hide();
+            var odpowiedzi = $("p.answer").hide();
             // next fades in #pytanieWrap and after finishes it starts the counter (callback)
             $("#pytanieWrap").fadeIn(1500, function () {
                 pytanie.fadeIn(500, callback);
             });
             // hides the animation gif
-            wszechwiedzacy.gra.lc.hide();
-            var pytanie = $("#tresc > p").hide();
-            var odpowiedzi = $("p.answer").hide();
+            wszechwiedzacy.gra.lc.hide();            
             $("#progressbar").progressbar({value: 100});
             
             function callback() {

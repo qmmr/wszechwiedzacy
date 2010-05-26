@@ -56,16 +56,6 @@ switch($_SESSION['question_number']) {
 		$ja["game_state"] = "advance";
 		break;
 
-//	case 12:
-//		$_SESSION['current_round'] ++;
-//		$ja["game_state"] = "advance";
-//		break;
-
-//	case 20:
-//		$_SESSION['current_round'] ++;
-//		$ja["game_state"] = "advance";
-//		break;
-
 	default:
 		break;
 }
@@ -81,8 +71,6 @@ if($_SESSION['chances'] == 0) {
 
 }
 
-// we pass params as json array (not needed for one param but good to know how to pass several params)
-// if we wanted simple one we just echo $game = "false"
 echo json_encode($ja);
 
 ?>

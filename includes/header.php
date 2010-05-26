@@ -42,6 +42,10 @@
     <link href="<?php echo SITE_URL; ?>stylesheets/jquery-ui-1.8.custom.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="<?php echo SITE_URL; ?>stylesheets/dataTable.css" rel="stylesheet" type="text/css" media="screen" />
     <link rel="stylesheet" type="text/css" href="<?php echo SITE_URL; ?>stylesheets/nivo-slider.css" media="all" />
+    
+    <script src="http://www.google.com/jsapi"></script>
+    <script>google.load("jquery", "1.4.2");</script>
+    
 </head>
 <?php
 

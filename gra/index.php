@@ -69,7 +69,7 @@
                             <li>wpisać się na listę zwycięzców<span>*</span><span class="bleak">* dla zarejestrowanych graczy</span></li>
                             <li>sprawdzić swoją pozycję w rankingu</li>
                         </ul>
-                        <button name="start" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu">zaczynajmy!</button>
+                        <button id="tutEnd" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu">zaczynajmy!</button>
 					</div>                    
 					
 				</div>                
