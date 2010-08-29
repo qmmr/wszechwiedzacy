@@ -87,22 +87,26 @@ $at = array(
 
 ?>
 <div id="pytanieWrap" class="oknoGry">
+
     <?php if(!$session->is_logged_in()) : ?>
-    <div id="advert" class="roundCorners errmsg">
+    
+    <div id="myAdv" class="roundCorners errmsg">
         <p><?php echo $at[array_rand($at,1)]; ?></p>
         <span></span>
     </div>
+    
     <script>
     $(function(){
         
-        var $advert = $("#advert");
-        $advert.find("span").click(function(){
+        var advert = $("#myAdv");
+        advert.find("span").click(function(){
            $(this).parent().slideToggle(500);
            $(".floatContainer").css({marginTop:'35px'});
         });
         
     });
     </script>
+    
     <?php endif; ?>
     
 	<div class="floatContainer fltCtrLft">

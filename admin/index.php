@@ -1,15 +1,17 @@
 <?php
     require_once("../includes/initialize.php");
+    // if the user is not logged in as admin we redirect him to main page
     if($session->admin_rights != 1) {
-        redirect_to('http://wszechwiedzacy.pl');	// if the user is not logged in as admin we redirect him to main page
+        redirect_to('http://wszechwiedzacy.pl');
     }
-    $questions = Question::find_all_active(1);	// finds all questions that are set as active/inactive 1/0
+    // finds all questions that are set as active/inactive 1/0
+    $questions = Question::find_all_active(1);	
     // $questions = Question::questions_by_author( $_SESSION['username'] );
     $categories = Question::find_categories();
     // loops through categories and adds them to array
     $cat_arr = array();
     foreach ( $categories as $cat ) {
-	$cat_arr[] = $cat->kategoria; 
+	   $cat_arr[] = $cat->kategoria; 
     }
     // removes duplicates
     $u_cats = array_unique($cat_arr);

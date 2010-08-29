@@ -56,19 +56,11 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Potwierdzenie rejestracji w serwisie wszechwiedzacy.pl</title>
-    <link href="http://wszechwiedzacy.pl/stylesheets/reset.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="http://wszechwiedzacy.pl/stylesheets/default.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="http://wszechwiedzacy.pl/stylesheets/jquery-ui-1.7.2.custom.css" rel="stylesheet" type="text/css" media="screen" />
+
     <script src="http://www.google.com/jsapi" type="text/javascript"></script>
     <script type="text/javascript">
-	google.load("jquery", "1.4.1");
-    </script>
-    <!-- Tabs, Tooltip, Scrollable, Overlay, Expose. No jQuery. -->
-    <!--<script src="http://cdn.jquerytools.org/1.1.2/full/jquery.tools.min.js"></script>-->
-    <script type="text/javascript" src="http://cdn.jquerytools.org/1.1.2/tiny/jquery.tools.min.js"></script>
-    <script type="text/javascript">
-	// if u want to use both jquerytools and jqueryui you need to load tools first
-	google.load("jqueryui", "1.7.2");
+	   google.load("jquery", "1.4.2");
     </script>
 </head>
 <body id="default">

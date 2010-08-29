@@ -31,7 +31,7 @@
     }
 
 ?>
-<!DOCTYPE html>
+<!DOCTYPE>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
     <meta charset="utf-8" />
@@ -45,6 +45,10 @@
     
     <script src="http://www.google.com/jsapi"></script>
     <script>google.load("jquery", "1.4.2");</script>
+    <!-- Tabs, Tooltip, Scrollable, Overlay, Expose. No jQuery. --> 
+    <script src="http://cdn.jquerytools.org/1.2.2/all/jquery.tools.min.js"></script>        
+    <!-- if u want to use both jquerytools and jqueryui you need to load tools first -->
+    <script>google.load("jqueryui", "1.8.1");</script>
     
 </head>
 <?php
@@ -66,12 +70,12 @@ switch($php_location) {
 
 ?>
 <body id="<?php echo $thisPage; ?>">
-	<a name="top"></a>
+	<a id="top"></a>
     <div id="wrapper">
 		<div id="container">
 		    <div id="topHeader">
 		    
-				<a href="<?php echo SITE_URL; ?>" target="_self">
+				<a href="<?php echo SITE_URL; ?>">
 				    <span class="logo fltlft">wszechwiedzacy</span>
 				</a>
 				
@@ -147,7 +151,7 @@ switch($php_location) {
 		    <div id="header">
 		    <!-- no script / javascript turned off msg -->
 		    <noscript>Oops! Wygląda na to że Twoja przeglądarka nie ma włączonego javascript'u. Bez niego nie zagrasz we wszechwiedzacy.pl</noscript>
-			<a name="crumb"></a>
+			<a id="crumb"></a>
 			<div id="breadcrumb">
 			    <p>Jesteś tutaj:
 				<?php

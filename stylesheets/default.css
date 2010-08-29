@@ -7,7 +7,7 @@
  *   author: Marcin Kumorek
  *   author URI: http://qmmr.pl
  *   
- *   http://localhost/wszechwiedzacy
+ *   http://localhost/wszechwiedzacy/
  *
  * 							COLORS
  * --------------------------------------------------------------
@@ -493,7 +493,7 @@ ul.browsers li a {	padding-left: 5px;}
 }
 
 .oknoGry {
-	background-color: #ffffff;
+	background-color: #fdfff9;
 	width: 870px;
 	margin: 1em auto;
 	height: 500px;
@@ -514,17 +514,18 @@ ul.browsers li a {	padding-left: 5px;}
 
 #tutorialWrap {
 	background: -moz-linear-gradient(left top, #efefef, #cfcfcf);
-	background: -webkit-gradient(linear, left top, left bottom, from(#efefef), to(#cfcfcf));
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0.25, #efefef), color-stop(.95, #BFBFBF));
 }
 
 #startWrap {
 	background: -moz-linear-gradient(left bottom, #fff, #efffe1);
-	background: -webkit-gradient(linear, 0 100%, 100% 0, from(#fff), to(#efffe1));
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0, #f9ffe8), color-stop(1, #f1ffc6));
+    /*background: -webkit-gradient(radial, center center, 10, center center, 90, from(#000), to(#f9ffe8));*/
 }
 
 #pytanieWrap {    
    	background: -moz-linear-gradient(left bottom, #fbfdfb, #eef8f0);
-	background: -webkit-gradient(linear, 0 100%, 100% 0, from(#fbfdfb), to(#eef8f0));
+	background: -webkit-gradient(linear, left bottom, right top, color-stop(0, #fff), color-stop(1, #f9ffe8));
 }
 
 #submitButton, .item button[name=start] {
@@ -866,14 +867,11 @@ h2.menu {
     width: 800px;
     padding: 20px 0;
     margin: 30px auto 20px;
-    background: #666;
+    background: #D6EF8E;
     background: -moz-linear-gradient(left top, #F9FFE8, #A1D700);
-    background: -webkit-gradient(linear, left top, left bottom, from(#F9FFE8), to(#A1D700));
-    
+    background: -webkit-gradient(linear, left bottom, right top, color-stop(0, #F9FFE8), color-stop(1, #A1D700));
     text-shadow: 0px 1px 0 #efefef;
-    
     -moz-border-radius: 5px;
-    
     -moz-box-shadow: 1px 1px 2px #4F4F4F;
     -webkit-box-shadow: 1px 1px 2px #4F4F4F;
     box-shadow: 1px 1px 2px #4F4F4F;
@@ -935,7 +933,7 @@ h3.gra {
     width: 800px;
     padding: 20px 0;
     margin: 30px auto 20px;
-    background: #666;
+    background: #D6EF8E;
     background: -moz-linear-gradient(left top, #F9FFE8, #A1D700);
     background: -webkit-gradient(linear, 10% 100%, 100% 0, from(#F9FFE8), to(#A1D700));
     
@@ -1121,7 +1119,8 @@ span.know {
 
 /* END OF ia */
 
-.errmsg {
+
+#myAdv {
     border: 1px solid #a1d700;
     background: #f8ffe6 url(http://localhost/wszechwiedzacy/stylesheets/images/ui-bg_glass_55_f8ffe6_1x400.png) 50% 50% repeat-x;
     color: #444444;
@@ -1129,6 +1128,7 @@ span.know {
     margin: 10px auto 0;
     height: 30px;
     position: relative;
+    display: block;
 }
 
 .errmsg p {

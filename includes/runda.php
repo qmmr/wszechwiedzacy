@@ -74,9 +74,7 @@ $czas .= " " . ileSekund($r['sec']);
     <?php if($session->is_logged_in()) : ?>	
         
     <?php else : ?>
-    <!--
-<h5 class="center">Jest wiele powodów, dla których warto sie zarejestrować. <a href="#" name="reasons">Oto kilka z nich</a>.</h5>
--->    	        
+   
     <?php endif; ?>
 	
 	<button name="continue" type="button" class="ui-button ui-state-default, ui-widget-content ui-state-default ui-corner-all boxShadow menu">przejdź do rundy <?php echo $_SESSION['current_round']; ?></button>

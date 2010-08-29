@@ -18,7 +18,7 @@ $message = Swift_Message::newInstance('Testowo')
 //  ->setTo(array('kumeek@gmail.com' => 'qmmr', 'chory.katol@gmail.com' => 's!ckatol'))
   ;
 
-$root = $_SERVER['DOCUMENT_ROOT'].'/rejestracja';
+$root = $_SERVER['DOCUMENT_ROOT'].'wszechwiedzacy/rejestracja';
 $template = file_get_contents($root . '/newsletter_template.html');
 
 $template = ereg_replace('{USERNAME}', 'Darwin\'s amstaff', $template);

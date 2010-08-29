@@ -52,8 +52,8 @@ if(isset($_POST)) {
 			$key = $username . $email . date("H:i:s");
 			$skey = sha1($key);
 			$query = "INSERT INTO confirm ( ";
-			$query .= "user_id, confirm_key, email ) VALUES (";
-			$query .= " '{$user_id}', '{$skey}', '{$email}' )";
+			$query .= "user_name, user_id, confirm_key, email, reg_date ) VALUES (";
+			$query .= "'{$username}', '{$user_id}', '{$skey}', '{$email}', '{$time}' )";
 				
 			$result = mysql_query($query);
 				

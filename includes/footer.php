@@ -22,7 +22,7 @@
     </div><!-- end #container -->
 
 </div><!-- end #wrapper -->
-<a name="bottom"></a>
+<a id="bottom"></a>
 
 <!--
 <div id="faq">
@@ -30,11 +30,7 @@
 </div>
 -->
 
-<!-- Tabs, Tooltip, Scrollable, Overlay, Expose. No jQuery. --> 
-<script src="http://cdn.jquerytools.org/1.2.2/all/jquery.tools.min.js"></script>
-    
-<!-- if u want to use both jquerytools and jqueryui you need to load tools first -->
-<script>google.load("jqueryui", "1.8.1");</script>
+
     
 <!-- jQuery validate plugin -->
 <script src="http://ajax.microsoft.com/ajax/jquery.validate/1.6/jquery.validate.js"></script>
@@ -99,12 +95,18 @@ $(window).load(function () {
 	});	
     <?php if(!TESTING_GROUND) : ?>        
     // google analytics code
-    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-    try{
-	    var pageTracker = _gat._getTracker("UA-7089533-2");
-	    pageTracker._trackPageview();
-    } catch(err) {}    
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-7089533-4']);
+    _gaq.push(['_trackPageview']);
+    
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+
 	<?php endif; ?>
 </script>
 </body>

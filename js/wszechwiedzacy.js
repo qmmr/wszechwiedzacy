@@ -61,12 +61,12 @@ var wszechwiedzacy = {
             open: function(e, ui){                
                 wszechwiedzacy.mForm = $("#login_form");
                 wszechwiedzacy.mForm.find("#login_email").focus();
-                $(this).keyup(function (e) {                    
+                $(this).keyup(function(e){
+					e.preventDefault();
                     var f = wszechwiedzacy.mForm.find("input:first").val();
                     var s = wszechwiedzacy.mForm.find("input:last").val();
                     if (e.keyCode == 13 && f != "" && s != "") {                        
-                        e.preventDefault();
-                        wszechwiedzacy.mForm.closest('.ui-dialog').find(".ui-dialog-buttonpane button:eq(0)").trigger("click");
+						wszechwiedzacy.mForm.closest('.ui-dialog').find(".ui-dialog-buttonpane button:eq(0)").trigger("click");
                     }                    
                 });                
             },
@@ -117,8 +117,7 @@ var wszechwiedzacy = {
                             data: "email=" + $("#login_email").val() + "&password=" + $("#login_password").val(),
                             url: wszechwiedzacy.site_url + "includes/logowanie.php",
                             dataType: "json",
-                            success: function (data) {
-                                
+                            success: function(data){                                
                                 
                                 if (data.logged == "true"){
 								
@@ -541,9 +540,9 @@ var wszechwiedzacy = {
 				wszechwiedzacy.gra.fadeInOut("out",wszechwiedzacy.gra.mv,wszechwiedzacy.gra.cv);
             });
 			$("button[name=continue]").live('click',function(e){
-				// console.log("bc.length = " + $("button[name=continue]").length);
 				$("#breakWrap").remove();
-				wszechwiedzacy.gra.showNextQuestion();				
+				wszechwiedzacy.gra.lc;
+				wszechwiedzacy.gra.showNextQuestion();
 			});
 			$("#sts").live('click',function(e){
 				wszechwiedzacy.gra.cv = $("#statystyki");
@@ -561,13 +560,13 @@ var wszechwiedzacy = {
 				alert("szefie, mamy problem ...");
 			});
 			$("button[name=again]").live('click',function(e){
-				$("#rezultat, #endWrap, #statystyki, #wrongAnswers").remove();
-				wszechwiedzacy.gra.lc.fadeIn(500);
+				$("#rezultat, #endWrap, #statystyki, #wrongAnswers, #tutorialWrap").remove();
+				wszechwiedzacy.gra.lc.show();
 				$.ajax({
 					url: wszechwiedzacy.site_url + "includes/clear_stats.php",
 					dataType: "json",
 					success: function() {
-						lc.stop(true,true).hide();
+						wszechwiedzacy.gra.lc.hide();
 						wszechwiedzacy.gra.showNextQuestion();
 					},
 					error: function (XMLHttpRequest, textStatus, errorThrown) {console.log("stats not cleared via ajax -> " + textStatus);}
@@ -641,6 +640,7 @@ var wszechwiedzacy = {
 					error: function (XMLHttpRequest, textStatus, errorThrown) {console.log("ajax to odpowiedz.php failed->" + textStatus);}
 				});
 			}); // end of #submit
+			
         },
         // end of gra.init
         

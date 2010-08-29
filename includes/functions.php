@@ -295,8 +295,6 @@ function format_email($info, $format, $type) {
 	if($type == "register") {
 
 		$template = file_get_contents($root . '/register_template.'. $format);
-		//replace all the tags
-		$template = ereg_replace('{USERNAME}', $info['username'], $template);
 		$template = ereg_replace('{KEY}', $info['key'], $template);
 		$template = ereg_replace('{SITEPATH}', 'http://wszechwiedzacy.pl/rejestracja', $template);
 
@@ -305,15 +303,27 @@ function format_email($info, $format, $type) {
 		$template = file_get_contents($root . '/recover_template.'. $format);
 		$template = ereg_replace('{PASSWORD}', $info['password'], $template);
 
+	} elseif ($type == "aktualizacja") {
+
+		$template = file_get_contents($root . '/aktualizacja_template.'. $format);
+        
+    } elseif ($type == "reminder") {
+
+		$template = file_get_contents($root . '/reg_reminder.'. $format);
+		        
+        $template = ereg_replace('{KEY}', $info['key'], $template);
+		$template = ereg_replace('{SITEPATH}', 'http://wszechwiedzacy.pl/rejestracja', $template);
+        $template = ereg_replace('{DATAR}', $info['reg_date'], $template);
+        
 	} else {
 
 		$template = file_get_contents($root . '/newsletter_template.'. $format);
-        $template = ereg_replace('{USERNAME}', $info['username'], $template);
         $template = ereg_replace('{TOPPLAYER}', 'Darwin\'s amstaff', $template);
 
 	}
 
-	// replace email
+	// replace email and username in all templates
+    $template = ereg_replace('{USERNAME}', $info['username'], $template);
 	$template = ereg_replace('{EMAIL}', $info['email'], $template);
 
 	//return the html of the template

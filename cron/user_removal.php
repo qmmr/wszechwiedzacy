@@ -13,35 +13,23 @@ require_once(LIB_PATH.DS."question.php");
 
 require_once(SITE_ROOT.DS."lib/swift_required.php");
 
-$info = array(
-    'temat' => 'Wiesz, czy nie wiesz? Podsumowanie miesiąca.',
-    'username' => 'agn0stic',
-    'email' => 'bez.niczego@gmail.com',
-    'key' => '23'
-);
-
-$q = "SELECT id FROM users WHERE active = 0 LIMIT 10";
+// sets timezone
+$db->query("SET time_zone = '+02:00'");
+$q = "DELETE FROM users WHERE active = 0 AND register_date <= DATE_SUB(NOW(), INTERVAL 96 HOUR) LIMIT 100";
 $r = $db->query($q);
-while($row = mysql_fetch_assoc($r)) {
-    $results[] = $row['id'];
-}
-$str = implode(",",$results);
 
 if($db->affected_rows() != 0) {
     
-    $q = "DELETE FROM users WHERE id IN (" . $str .")";
-    $r = $db->query($q);
-    if($r) {
-        echo "ids deleted " . $str . " czyli ilosc " . $db->affected_rows() . " graczy zostało usuniętych";
-    } else {
-        echo "problem " .mysql_error();
-    }
-	
+    $num = $db->affected_rows();
+    $db->query("DELETE FROM confirm WHERE reminded = 1 AND reg_date <= DATE_SUB(NOW(), INTERVAL 96 HOUR) LIMIT 100");
+    
+    ($num == 1) ? $a = "was" : $a = "were";
+    echo $num . " inactive accounts " . $a . " deleted from users and ". $db->affected_rows() . " from confirm.";
+    
 } else {
     
-    echo "no inactive accounts found.";
-    
+    echo "no inactive accounts found!";
+        
 }
-//send the email
-//$s = send_email($info, 'newsletter');
-//($s) ? true : false;
+
+?>

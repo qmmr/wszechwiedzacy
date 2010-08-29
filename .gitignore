@@ -1,5 +1,6 @@
-.settings
-.project
-pytania.sql.gz
+nbproject/
+sql/
 scripts/
 includes/config.php
+cron/
+sitemap.xml.gz

@@ -1,0 +1,21 @@
+Witaj {USERNAME},
+
+Mi³o mi poinformowaæ Ciê, ¿e wszechwiedzacy.pl  zosta³ aktualizowany do wersji beta 0.8
+
+Jest kilka wa¿nych zmian, aby przeczytaæ o nich zapraszam na bloga http://wszechwiedzacy.pl/blog
+
+Pracujê ca³y czas zarówno nad funkcjonowaniem jak i nad wygl¹dem gry. Bêdê Ci bardzo wdziêczny, jeœli znajdziesz kilka minut aby przetestowaæ grê i swoj¹ wiedzê!
+
+Jeœli znajdziesz jakieœ b³êdy, niedoci¹gniêcia, proszê, poinformuj mnie o nich za pomoc¹ formularza lub po prostu wysy³aj¹c do mnie emaila. Dziêkujê!
+
+Pilnie poszukujê osób, które maj¹ pomys³y na pytania i chcia³yby pomóc w tworzeniu gry!
+
+To tyle "og³oszeñ parafialnych", zapraszam do testowania!
+
+http://wszechwiedzacy.pl
+
+Pozdrawiam i ¿yczê mi³ego grania,
+Marcin 'qmmr' Kumorek
+
+Otrzyma³eœ t¹ wiadomoœæ, gdy¿ {EMAIL} jest zarejestrowany w serwisie wszechwiedzacy.pl
+Je¿eli nie chcesz wiêcej otrzymywaæ tego typu wiadomoœci przeœlij wiadomoœæ z tematem "Wypisz" na adres kontakt@wszechwiedzacy.pl

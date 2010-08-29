@@ -16,10 +16,9 @@
 		
 		<div id="loaderContainer" style="display: none">
 		    <div id="outer">
-			<div id="inner">
-			    <p>Losuję następne pytanie ...</p>
-			    <div class="ajaxLoader"></div>
-			</div>
+    			<div id="inner">
+    			    <div class="ajaxLoader"></div>
+    			</div>
 		    </div>
 		</div><!-- ajaxLoader in special container div to be shown when ajax loads pages  with vertical hack see css -->
 		

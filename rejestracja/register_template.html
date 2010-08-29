@@ -14,7 +14,7 @@
     a:hover, a:active {color:#A1D700; text-decoration:underline;}*/
     </style>
 </head>
-<body style="background-color: #A1D700;padding: 1em 0;">
+<body style="background-color: #A1D700;padding: 18px 0;font-family: Arial,Helvetica,sans-serif;">
 	<table cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" width="690" align="center">
 		<tr>
 			<td height="20" colspan="2"></td>
@@ -40,37 +40,52 @@
 			<td width="100%" height="20">&nbsp;</td>
 		</tr>
 		<tr>
-			<td colspan="2"><h1 style="font: bold 14px/16px Arial,Helvetica,,sans-serif;margin: 10px 40px;color: #17373C;">Witaj {USERNAME},</h1></td>
+			<td colspan="2"><h1 style="font-size: 20px; font-weight: bold; line-height: 24px; margin: 10px 40px; color: #17373C;">Witaj {USERNAME},</h1></td>
 		</tr>
 		<tr>
 			<td colspan="2">
 				<p style="margin:10px 40px;font-size:13px;line-height:18px;">Bardzo się cieszę, że zdecydowałeś(-aś) się na rejestrację w serwisie <a style="color:#0073ea;" href="http://wszechwiedzacy.pl" target="_blank">wszechwiedzacy.pl</a></p>
 				<p style="margin:10px 40px;font-size:13px;line-height:18px;">W tej chwili <a style="color:#0073ea;" href="http://wszechwiedzacy.pl" target="_blank">wszechwiedzacy.pl</a> jest w fazie beta testów. Bardzo zależy mi na zgłaszaniu wszystkich problemów, błędów i niedociągnięć jakie zauważysz za pomocą <a style="color:#0073ea;" href="http://wszechwiedzacy.pl/kontakt" target="_blank">formularza</a> lub po prostu wysyłając do mnie <a style="color:#0073ea;" href="mailto:kontakt@wszechwiedzacy.pl" target="_blank">emaila</a></p>
-                <p style="margin:10px 40px;font-size:16px;font-style:italic;line-height:18px;text-decoration: underline;">Pilnie poszukuję osób do tworzenia pytań. Jeśli masz pomysły i czas, proszę o <a style="color:#0073ea;" href="mailto:kontakt@wszechwiedzacy.pl" target="_blank">kontakt</a>.</p>
 			</td>
+		</tr>        
+        <tr>
+			<td colspan="2">
+                <p style="margin:10px 40px;font-size:13px;font-weight: bold;line-height:20px; padding: 10px; border: 1px solid #A1D700; background-color: #FBFFEF;">Nie ukrywam, że bardzo zależy mi na Twojej pomocy i będę Ci bardzo wdzięczny za rady, opinie i sugestie, które przyczynią się do poprawy funkcjonalności gry.</p>
+            </td>
 		</tr>
 		<tr>
-			<td colspan="2"><p style="margin:10px 40px;font-size:13px;line-height:18px;">Nie ukrywam, że bardzo zależy mi na Twojej pomocy i będę Ci bardzo wdzięczny za rady, opinie i sugestie, które przyczynią się do poprawy funkcjonalności gry.</p></td>
+			<td colspan="2">
+                <p style="margin:10px 40px;font-size:13px;line-height:18px;">Aby dokończyć proces rejestracji kliknij na poniższy link</p>
+            </td>
 		</tr>
 		<tr>
-			<td colspan="2"><p style="margin:10px 40px;font-size:13px;line-height:18px;">Aby dokończyć proces rejestracji kliknij na poniższy link</p></td>
+			<td colspan="2" align="center">
+                <p style="margin:10px 40px;font-size:20px;color:#0073ea;"><a style="color:#0073ea;" href="{SITEPATH}/confirm.php?email={EMAIL}&key={KEY}">AKTYWUJ SWOJE KONTO</a></p>
+            </td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center"><p style="margin:10px 40px;font-size:20px;color:#0073ea;"><a style="color:#0073ea;" href="{SITEPATH}/confirm.php?email={EMAIL}&key={KEY}">>>> AKTYWUJ SWOJE KONTO <<<</a></p></td>
+			<td colspan="2">
+                <p style="margin:10px 40px;font-size:13px;line-height:18px;">Jeżeli link powyżej nie działa, proszę skopiować poniższy kod i wkleić do paska adresu w Twojej przeglądarce:</p>
+            </td>
 		</tr>
 		<tr>
-			<td colspan="2"><p style="margin:10px 40px;font-size:13px;line-height:18px;">Jeżeli link powyżej nie działa, proszę skopiować poniższy kod i wkleić do paska adresu w Twojej przeglądarce:</p></td>
+			<td colspan="2" align="center">
+                <code style="margin:10px 40px;font-size:13px;line-height:18px;display:block;">{SITEPATH}/confirm.php?email={EMAIL}&key={KEY}</code>
+            </td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center"><code style="margin:10px 40px;font-size:13px;line-height:18px;display:block;">{SITEPATH}/confirm.php?email={EMAIL}&key={KEY}</code></td>
+			<td colspan="2">
+                <p style="margin:10px 40px;font-size:13px;line-height:18px;">Zapraszam Cię również do współpracy w rozwoju serwisu. Masz czas, chęci, pomysły? <a style="color:#0073ea;" href="mailto:kontakt@wszechwiedzacy.pl" target="_blank">"Daj mi znać!</a><br /> A tymczasem, do zobaczenia na szczycie tabeli "wszechwiedzących" :)</p>
+            </td>
+		<tr>
+			<td colspan="2">
+                <p style="margin:10px 40px;font-size:13px;line-height:18px;font-weight:bold;font-style:italic;">Pozdrawiam,<br />Marcin 'qmmr' Kumorek</p>
+            </td>
 		</tr>
 		<tr>
-			<td colspan="2"><p style="margin:10px 40px;font-size:13px;line-height:18px;">Zapraszam Cię również do współpracy w rozwoju serwisu. Masz czas, chęci, pomysły? <a style="color:#0073ea;" href="mailto:kontakt@wszechwiedzacy.pl" target="_blank">"Daj mi znać!</a><br /> A tymczasem, do zobaczenia na szczycie tabeli "wszechwiedzących" :)</p></td>
-		<tr>
-			<td colspan="2"><p style="margin:10px 40px;font-size:13px;line-height:18px;font-weight:bold;font-style:italic;">Pozdrawiam,<br />Marcin 'qmmr' Kumorek</p></td>
-		</tr>
-		<tr>
-			<td colspan="2"><p style="margin:10px 40px 20px;font-size:11px;color:#d1d1d1;line-height:16px;">Otrzymałeś ten email, gdyż ktoś zażadał wysłania go na ten adres z serwisu <a style="color:#0073ea;" href="http://wszechwiedzacy.pl" target="_blank">wszechwiedzacy.pl</a>.<br />Jeżeli nie chciałeś otrzymać tej wiadomości proszę o kontakt <a style="color:#0073ea;" href="mailto:kontakt@wszechwiedzacy.pl">kontakt@wszechwiedzacy.pl</a></p></td>
+			<td colspan="2">
+                <p style="margin:10px 40px 20px;font-size:11px;color:#d1d1d1;line-height:16px;">Otrzymałeś ten email, gdyż ktoś zażadał wysłania go na ten adres z serwisu <a style="color:#0073ea;" href="http://wszechwiedzacy.pl" target="_blank">wszechwiedzacy.pl</a>.<br />Jeżeli nie chciałeś otrzymać tej wiadomości proszę o kontakt <a style="color:#0073ea;" href="mailto:kontakt@wszechwiedzacy.pl">kontakt@wszechwiedzacy.pl</a></p>
+            </td>
 		</tr>
 	</table>
 </body>

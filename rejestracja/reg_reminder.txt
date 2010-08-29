@@ -1,0 +1,15 @@
+Witaj {USERNAME},
+
+Zarejestrowa³eœ(-aœ) siê {DATAR} w serwisie wszechwiedzacy.pl, ale do tej pory nie aktywowa³eœ(-aœ) swojego konta.
+Jeœli nie chcesz aktywowaæ swojego konta, nie musisz nic robiæ, zostanie ono usuniête w ci¹gu nastêpnych 48h.
+
+Jeœli jednak chcesz aktywowaæ swoje skopiuj i wklej link w Twojej ulubionej przegl¹darce
+
+{SITEPATH}/confirm.php?email={EMAIL}&key={KEY}
+
+W razie problemów, proszê skontaktuj siê ze mn¹ pod adresem kontakt@wszechwiedzacy.pl
+
+Pozdrawiam,
+Marcin 'qmmr' Kumorek
+
+Otrzyma³eœ ten email, gdy¿ zarejestrowa³eœ(-aœ) siê w serwisie wszechwiedzacy.pl
