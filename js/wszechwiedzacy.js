@@ -15,17 +15,18 @@ var wszechwiedzacy = {
     // form placeholder
     mForm: {},    
     // button hover and mouse down/up states
-	mHover: function(){$(this).toggleClass("ui-state-hover");},
-	mDownUp: function(){$(this).toggleClass("ui-state-active");},
+	mHover: function(){
+    $(this).toggleClass("ui-state-hover");
+  },
+	mDownUp: function() {
+    $(this).toggleClass("ui-state-active");
+  },
 	// initialized on every page
     init: function () {
-		
         // checks if we're developing on localhost or live online
-        (window.location.hostname == "localhost") ? wszechwiedzacy.site_url = "http://localhost/wszechwiedzacy/" : wszechwiedzacy.site_url = "http://wszechwiedzacy.pl/";
-		
-		// game if off -> for the login purpose
+        wszechwiedzacy.site_url = "http://" + (window.location.hostname == 'localhost') ? "localhost/wszechwiedzacy/" : "wszechwiedzacy.pl";
+        // game if off -> for the login purpose
         wszechwiedzacy.gra.gameStatus = wszechwiedzacy.mc.data('game','off');
-		
         // LOGIN / REGISTER
         $("#login, button[name=login], a[name=login]").live('click',function(e){
             e.preventDefault();
